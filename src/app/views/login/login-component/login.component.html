@@ -1,22 +1,27 @@
-
-asfdasdfasdfasfdad
-<form (ngSubmit)="login()">
-  <div class="container" fxLayout="row" fxLayoutAlign="center">
-
-      <div>
-          <img src="assets/img/logo.png">
-      </div>
-
-      <div class="form-login">
-          <mat-card>
-              <mat-form-field>
-                  <input matInput name="Usuario">
-              </mat-form-field>
-
-              <mat-form-field>
-                  <input matInput name="Senha">
-              </mat-form-field>
-          </mat-card>
-      </div>
-  </div>
-</form>
+<div class="login-container mybarber-bg-primary" fxFlexFill fxLayout="row" fxLayoutAlign="center center">
+        <div fxLayout="column" fxLayoutAlign="space-between stretchf" fxFlex="1 1 95%">
+            
+            <div class="logo-container"  fxLayoutAlign="center center">
+                <img src="assets/img/logo.png" class="logo" alt="logo">
+            </div>
+            
+            <div class="login-form-container" fxLayoutAlign="center stretch" >
+                <mat-card fxLayout="column" class="form-login" fxLayoutAlign="stretch" fxFlex="1 1 95">
+                    <form (ngSubmit)="login()" fxLayout="column" fxLayoutAlign="space-evenly stretch">
+                        <mat-form-field>
+                            <input matInput placeholder="Usuario" (ngModel)="login.username">
+                        </mat-form-field>
+                        
+                        <mat-form-field>
+                            <input matInput name="Senha" placeholder="Senha" (ngModel)="login.pasword">
+                        </mat-form-field>
+                        
+                        <div fxLayoutAlign="space-between">
+                            <button mat-button>Criar Conta</button>
+                            <button mat-raised-button>Entrar</button>
+                        </div>
+                    </form>
+                </mat-card>
+            </div>
+        </div>
+</div>
