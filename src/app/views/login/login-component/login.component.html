@@ -1,0 +1,27 @@
+<div class="login-container mybarber-bg-primary" fxFlexFill fxLayout="row" fxLayoutAlign="center center">
+        <div fxLayout="column" fxLayoutAlign="space-between stretch" fxFlex="1 1 90" fxLayoutGap="7%">
+            
+            <div class="logo-container flex-item"  fxLayoutAlign="center center" fxFlex="1 1 100">
+                <img src="assets/img/logo.png" class="logo" alt="logo" fxFlex="1 1 45" fxFlex.gt-xs="35" fxFlex.gt-sm="20">
+            </div>
+            
+            <div class="login-form-container flex-item" fxLayoutAlign="center stretch" >
+                <mat-card fxLayout="column" class="form-login" fxLayoutAlign="stretch" fxFlex="1 1 100" fxFlex.gt-xs="55"  fxFlex.gt-sm="40">
+                    <form (ngSubmit)="login()" fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="7%">
+                        <mat-form-field>
+                            <input matInput placeholder="Usuario" (ngModel)="login.username">
+                        </mat-form-field>
+                        
+                        <mat-form-field>
+                            <input matInput name="Senha" placeholder="Senha" (ngModel)="login.pasword">
+                        </mat-form-field>
+                        
+                        <div fxLayoutAlign="space-between">
+                            <button mat-button>Criar Conta</button>
+                            <button mat-raised-button>Entrar</button>
+                        </div>
+                    </form>
+                </mat-card>
+            </div>
+        </div>
+</div>
