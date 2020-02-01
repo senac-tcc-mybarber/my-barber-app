@@ -7,7 +7,7 @@
             
             <div class="login-form-container flex-item" fxLayoutAlign="center stretch" >
                 <mat-card fxLayout="column" class="form-login" fxLayoutAlign="stretch" fxFlex="1 1 100" fxFlex.gt-xs="55"  fxFlex.gt-sm="40">
-                    <form (ngSubmit)="login()" fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="7%">
+                    <form fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="7%">
                         <mat-form-field>
                             <input matInput placeholder="Usuario" (ngModel)="login.username">
                         </mat-form-field>
@@ -17,7 +17,7 @@
                         </mat-form-field>
                         
                         <div fxLayoutAlign="space-between">
-                            <button mat-button>Criar Conta</button>
+                            <button mat-button routerLink="/selecionaperfil">Criar Conta</button>
                             <button mat-raised-button>Entrar</button>
                         </div>
                     </form>
