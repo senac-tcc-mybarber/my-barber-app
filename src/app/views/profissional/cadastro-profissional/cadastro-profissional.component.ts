@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-cadastro-profissional',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroProfissionalComponent implements OnInit {
 
-  constructor() { }
+  public profissionalForm: FormGroup;
+
+  constructor(private location: Location) {}
 
   ngOnInit() {
+    this.profissionalForm = new FormGroup({
+      nomeCompleto: new FormControl('', [Validators.required, Validators.maxLength(60)]),
+      telefone: new FormControl('', [Validators.required, Validators.maxLength(10)]),
+      email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(50)]),
+      password: new FormControl('', [Validators.required, Validators.maxLength(8)])
+    });
   }
 
+  public hasError = (controlName: string, errorName: string) => {
+    return this.profissionalForm.controls[controlName].hasError(errorName);
+  }
 }

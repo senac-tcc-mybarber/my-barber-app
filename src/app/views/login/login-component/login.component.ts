@@ -15,17 +15,17 @@ export class LoginComponent implements OnInit {
 
   private login: Login = new Login();
   article;
-  constructor(private api: RestService) { 
-    
+  constructor(private api: RestService) {
+
   }
 
   ngOnInit() {
-    this.api.getToken().subscribe((data)=> {console.log(data); this.article = data['article'];});
+    //this.api.getToken().subscribe((data)=> {console.log(data); this.article = data['article'];});
   }
 
   entrar(){
-    
+
     const json: string = "{'username': '" + this.login.username + "', 'password': ''" + this.login.password + "'}";
-    
+
   }
 }

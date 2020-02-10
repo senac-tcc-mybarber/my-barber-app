@@ -10,11 +10,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CadastroClienteComponent } from './views/cliente/cadastro-cliente/cadastro-cliente.component';
-// import { CadastroComponent } from './views/cliente/cadastro/cadastro.component';
 import { LoginComponent } from './views/login/login-component/login.component';
-// import { LoginModule } from './views/login/login.module';
 import { CadastroProfissionalComponent } from './views/profissional/cadastro-profissional/cadastro-profissional.component';
 import { PerfilComponentComponent } from './views/selecao-perfil/perfil-component/perfil-component.component';
+import { AssociarServicosProfissionalComponent } from './views/profissional/associar-servicos-profissional/associar-servicos-profissional.component';
 
 
 
@@ -27,6 +26,7 @@ import { PerfilComponentComponent } from './views/selecao-perfil/perfil-componen
     PerfilComponentComponent,
     CadastroClienteComponent,
     CadastroProfissionalComponent,
+    AssociarServicosProfissionalComponent,
   ],
   imports: [
     AppRoutingModule,
