@@ -1,5 +1,4 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { Login } from 'src/app/model/login';
 import { RestService } from 'src/app/rest.service';
@@ -25,10 +24,10 @@ export class LoginComponent implements OnInit {
   entrar() {
     this.api.getToken(this.login.username, this.login.password).pipe(first())
       .subscribe(
-        data => {
+        () => {
           console.log("sucesso login component");
         },
-        error => {
+        () => {
           console.log("erro");
         });
   }

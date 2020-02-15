@@ -27,4 +27,8 @@ export class CadastroClienteComponent implements OnInit {
     return this.clienteForm.controls[controlName].hasError(errorName);
   }
 
+  cadastrarCliente() {
+    
+  }
+
 }
