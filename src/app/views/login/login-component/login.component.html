@@ -2,9 +2,8 @@
         <div fxLayout="column" fxLayoutAlign="space-between stretch" fxFlex="1 1 90" fxLayoutGap="7%">
             
             <div class="logo-container flex-item"  fxLayoutAlign="center center" fxFlex="1 1 100">
-                <img src="assets/img/logo.png" class="logo" alt="logo" fxFlex="1 1 45" fxFlex.gt-xs="35" fxFlex.gt-sm="20">
+                <img src="assets/img/logo.png" class="logo animated bounceIn slow delay-1s" alt="logo" fxFlex="1 1 45" fxFlex.gt-xs="35" fxFlex.gt-sm="20">
             </div>
-            <h2>{{article}}</h2>
             <div class="login-form-container flex-item" fxLayoutAlign="center stretch" >
                 <mat-card fxLayout="column" class="form-login" fxLayoutAlign="stretch" fxFlex="1 1 100" fxFlex.gt-xs="55"  fxFlex.gt-sm="40">
                     <form fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="7%">
@@ -16,8 +15,8 @@
                         </mat-form-field>
 
                         <div fxLayoutAlign="space-between">
-                            <mat-button-toggle class="add-button animated fadeInUp button" routerLink="/cadastrocliente">Criar Conta</mat-button-toggle>
-                            <mat-button-toggle class="add-button animated fadeInUp button" (click)="entrar()">Entrar </mat-button-toggle>
+                            <mat-button-toggle class="add-button animated jackInTheBox delay-1s button" routerLink="/selecionaperfil">Criar Conta</mat-button-toggle>
+                            <mat-button-toggle class="add-button animated jackInTheBox delay-1s button" (click)="entrar()">Entrar </mat-button-toggle>
                         </div>
                         
                     </form>
