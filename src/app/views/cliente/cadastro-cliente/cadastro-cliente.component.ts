@@ -1,7 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { RestService } from 'src/app/rest.service';
 
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -12,7 +14,7 @@ export class CadastroClienteComponent implements OnInit {
 
   public clienteForm: FormGroup;
 
-  constructor(private location: Location) {}
+  constructor(private location: Location, private api: RestService) {}
 
   ngOnInit() {
     this.clienteForm = new FormGroup({
@@ -28,7 +30,14 @@ export class CadastroClienteComponent implements OnInit {
   }
 
   cadastrarCliente() {
-    
+    this.api.createCliente().pipe(first())
+      .subscribe(
+        () => {
+          console.log("sucesso login component");
+        },
+        () => {
+          console.log("erro");
+        });
   }
 
 }

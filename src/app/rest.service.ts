@@ -34,4 +34,20 @@ export class RestService {
         return user;
       }));
   }
+
+  createCliente() {
+    const url = `${environment.urlApi}/create`;
+    const body = "";
+    return this.http.post<any>(url, body,
+      {
+        headers: new HttpHeaders
+          ({
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+          })
+      }).pipe(map(user => {
+        console.log(user);
+      }));
+  }
 }
