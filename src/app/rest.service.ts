@@ -4,10 +4,13 @@ import { map } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Usuario } from './model/Usuario';
 import { environment } from 'src/environments/environment';
+import { exhaust } from 'rxjs/operators';
+import { Salao } from './model/salao';
 
 @Injectable({ providedIn: 'root' })
 
 export class RestService {
+  
   private currentUserSubject: BehaviorSubject<Usuario>;
   public currentUser: Observable<Usuario>;
 
@@ -50,4 +53,38 @@ export class RestService {
         console.log(user);
       }));
   }
+
+
+  getSaloes() {
+    const url = `${environment.urlApi}/saloes`;
+    return this.http.get<Salao[]>(url,
+      {
+        headers: new HttpHeaders
+        ({
+          'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjdXN0b21lciIsImV4cCI6MTU4Mjc0NjM5OH0.SbVIt5BTYpo9XdrZMO_PRbt-r3PenVtteqzt3eDrJX6tocuf-Ym46yRB_UZOYt4B8Am5PED4RE2g9a21vdrB4g',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+        })
+      }
+    )
+  }
+
+  associateSaloes(saloes: Salao[]) {
+    const url = `${environment.urlApi}profissionais/1/saloes`;
+    return this.http.put<any>(url,
+      {
+        headers: new HttpHeaders
+        ({
+          'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjdXN0b21lciIsImV4cCI6MTU4Mjc0NjM5OH0.SbVIt5BTYpo9XdrZMO_PRbt-r3PenVtteqzt3eDrJX6tocuf-Ym46yRB_UZOYt4B8Am5PED4RE2g9a21vdrB4g',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+        }),
+        body: {saloes}
+      }
+    )
+
+  }
+
 }
