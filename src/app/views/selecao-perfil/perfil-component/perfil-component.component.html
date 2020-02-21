@@ -2,18 +2,18 @@
   <div fxLayout="column" fxLayoutAlign="space-between stretch" fxFlex="1 1 90" fxLayoutGap="7%">
 
     <div class="logo-container flex-item"  fxLayoutAlign="center center" fxFlex="1 1 100">
-      <img src="assets/img/logo.png" class="logo" alt="logo" fxFlex="1 1 45" fxFlex.gt-xs="35" fxFlex.gt-sm="20">
+      <img src="assets/img/logo.png" class="logo animated bounceIn slow delay-1s" alt="logo" fxFlex="1 1 45" fxFlex.gt-xs="35" fxFlex.gt-sm="20">
     </div>
 
     <div class="login-form-container flex-item" fxLayoutAlign="center stretch" >
       <mat-button-toggle-group #group="matButtonToggleGroup">
-        <mat-button-toggle routerLink="/cadastrocliente">
+        <mat-button-toggle routerLink="/cadastrocliente" class="animated slideInLeft slow delay-1s">
           Cliente
         </mat-button-toggle>
-        <mat-button-toggle routerLink="/cadastroprofissional">
+        <mat-button-toggle routerLink="/cadastroprofissional" class="animated slideInUp slow delay-1s">
           Professional
         </mat-button-toggle>
-        <mat-button-toggle routerLink="/">
+        <mat-button-toggle routerLink="/" class="animated slideInRight slow delay-1s">
             Voltar
         </mat-button-toggle>
       </mat-button-toggle-group>  

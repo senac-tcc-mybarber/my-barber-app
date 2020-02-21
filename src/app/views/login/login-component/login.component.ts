@@ -1,8 +1,9 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { Login } from 'src/app/model/login';
 import { RestService } from 'src/app/rest.service';
+
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -14,18 +15,20 @@ import { RestService } from 'src/app/rest.service';
 export class LoginComponent implements OnInit {
 
   private login: Login = new Login();
-  article;
   constructor(private api: RestService) {
 
   }
 
-  ngOnInit() {
-    //this.api.getToken().subscribe((data)=> {console.log(data); this.article = data['article'];});
-  }
+  ngOnInit() { }
 
-  entrar(){
-
-    const json: string = "{'username': '" + this.login.username + "', 'password': ''" + this.login.password + "'}";
-
+  entrar() {
+    this.api.getToken(this.login.username, this.login.password).pipe(first())
+      .subscribe(
+        () => {
+          console.log("sucesso login component");
+        },
+        () => {
+          console.log("erro");
+        });
   }
 }
