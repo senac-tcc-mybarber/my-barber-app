@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,8 +15,7 @@ import { CadastroProfissionalComponent } from './views/profissional/cadastro-pro
 import { PerfilComponentComponent } from './views/selecao-perfil/perfil-component/perfil-component.component';
 import { AgendamentoComponent } from './views/agendamento/agendamento.component';
 import { AssociarServicosProfissionalComponent } from './views/profissional/associar-servicos-profissional/associar-servicos-profissional.component';
-
-
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
 
 
 @NgModule({
@@ -53,7 +52,7 @@ import { AssociarServicosProfissionalComponent } from './views/profissional/asso
     MatSelectModule,
 
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
