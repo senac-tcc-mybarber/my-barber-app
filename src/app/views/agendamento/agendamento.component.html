@@ -1,0 +1,56 @@
+<div class="mybarber-bg-primary" fxFlexFill fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutAlign="space-between stretch" fxFlex="1 1 90" fxLayoutGap="7%">
+    <div class="flex-item" fxLayoutAlign="center stretch">
+      <mat-card fxLayout="column" class="form-login animated jackInTheBox" fxLayoutAlign="stretch" fxFlex="1 1 100" fxFlex.gt-xs="55"
+        fxFlex.gt-sm="40">
+        <h2>Agendamento</h2>
+        <form fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="7%">
+       
+          <mat-form-field>
+            <mat-label>Categoria</mat-label>
+            <mat-select>
+              <mat-option (onSelectionChange)="selecaoCategoria($event, categoria.Categoria)" *ngFor="let categoria of categorias" [value]="categoria.Id">
+               {{categoria.Categoria}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Serviço</mat-label>
+            <mat-select [disabled]="disableSelectServico">
+              <mat-option (onSelectionChange)="selecaoServico($event, servico.Id)" *ngFor="let servico of servicoFiltrado" [value]="servico.Id">
+               {{servico.Descricao}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          <mat-form-field>
+            <mat-label>Bairro</mat-label>
+            <mat-select [disabled]="disableSelectBairro">
+              <mat-option (onSelectionChange)="selecaoBairro($event, bairro.Id)" *ngFor="let bairro of bairros" [value]="bairro.Id">
+               {{bairro.Endereco.Bairro}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Salão</mat-label>
+            <mat-select [disabled]="disableSelectSalao">
+              <mat-option (onSelectionChange)="selecaoSalao($event, salao.Id)" *ngFor="let salao of saloes" [value]="salao.Id">
+               {{salao.Nome}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div fxLayoutAlign="space-between">
+            <mat-button-toggle [disabled]="disableBotaoAgendar" class="add-button animated jackInTheBox delay-1s button" >
+              Agendar</mat-button-toggle>
+            <mat-button-toggle class="add-button animated jackInTheBox delay-1s button" routerLink="/">
+              Cancelar</mat-button-toggle>
+          </div>
+
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>
