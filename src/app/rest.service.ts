@@ -35,6 +35,24 @@ export class RestService {
       }));
   }
 
+  addScheduling(body: string) {
+    const url = `${environment.urlApi}/addScheduling`;
+    return this.http.post<any>(url, body,
+      {
+        headers: new HttpHeaders
+          ({
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+          })
+      }).pipe(map(user => {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
+        console.log(user);
+        return user;
+      }));
+  }
+
   createCliente() {
     const url = `${environment.urlApi}/create`;
     const body = "";

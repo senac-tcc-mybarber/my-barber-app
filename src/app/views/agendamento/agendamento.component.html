@@ -17,7 +17,7 @@
 
           <mat-form-field>
             <mat-label>Serviço</mat-label>
-            <mat-select [disabled]="disableSelectServico">
+            <mat-select [(value)]="selectedIdServico" [disabled]="disableSelectServico">
               <mat-option (onSelectionChange)="selecaoServico($event, servico.Id)" *ngFor="let servico of servicoFiltrado" [value]="servico.Id">
                {{servico.Descricao}}
               </mat-option>
@@ -25,25 +25,34 @@
           </mat-form-field>
       
           <mat-form-field>
+            <mat-label>Profissional</mat-label>
+            <mat-select [(value)]="selectedIdProfissional" [disabled]="disableSelectProfissional">
+              <mat-option (onSelectionChange)="selecaoProfissional($event, profissional.Id)" *ngFor="let profissional of profissionais" [value]="profissional.Id">
+               {{profissional.nomeCompleto}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- <mat-form-field>
             <mat-label>Bairro</mat-label>
             <mat-select [disabled]="disableSelectBairro">
               <mat-option (onSelectionChange)="selecaoBairro($event, bairro.Id)" *ngFor="let bairro of bairros" [value]="bairro.Id">
                {{bairro.Endereco.Bairro}}
               </mat-option>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field> -->
 
           <mat-form-field>
             <mat-label>Salão</mat-label>
-            <mat-select [disabled]="disableSelectSalao">
-              <mat-option (onSelectionChange)="selecaoSalao($event, salao.Id)" *ngFor="let salao of saloes" [value]="salao.Id">
+            <mat-select [(value)]="selectedIdSalao" [disabled]="disableSelectSalao">
+              <mat-option (onSelectionChange)="selecaoSalao($event, salao.Id)" *ngFor="let salao of salaoFiltrado" [value]="salao.Id">
                {{salao.Nome}}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
           <div fxLayoutAlign="space-between">
-            <mat-button-toggle [disabled]="disableBotaoAgendar" class="add-button animated jackInTheBox delay-1s button" >
+            <mat-button-toggle [disabled]="disableBotaoAgendar" class="add-button animated jackInTheBox delay-1s button" (click)="agendar()" >
               Agendar</mat-button-toggle>
             <mat-button-toggle class="add-button animated jackInTheBox delay-1s button" routerLink="/">
               Cancelar</mat-button-toggle>

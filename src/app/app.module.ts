@@ -14,6 +14,8 @@ import { LoginComponent } from './views/login/login-component/login.component';
 import { CadastroProfissionalComponent } from './views/profissional/cadastro-profissional/cadastro-profissional.component';
 import { PerfilComponentComponent } from './views/selecao-perfil/perfil-component/perfil-component.component';
 import { AgendamentoComponent } from './views/agendamento/agendamento.component';
+import { AssociarServicosProfissionalComponent } from './views/profissional/associar-servicos-profissional/associar-servicos-profissional.component';
+
 
 
 
@@ -26,6 +28,7 @@ import { AgendamentoComponent } from './views/agendamento/agendamento.component'
     CadastroClienteComponent,
     CadastroProfissionalComponent,
     AgendamentoComponent,
+    AssociarServicosProfissionalComponent,
   ],
   imports: [
     AppRoutingModule,
