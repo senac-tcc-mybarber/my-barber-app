@@ -3,7 +3,7 @@
     <div class="login-form-container flex-item" fxLayoutAlign="center stretch" >
       <mat-card fxLayout="column" class="form-login" fxLayoutAlign="stretch" fxFlex="1 1 100" fxFlex.gt-xs="55"  fxFlex.gt-sm="40">
         <h2>Novo Profissional</h2>
-        <form [formGroup]="profissionalForm" fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="7%">
+        <form [formGroup]="profissionalForm" fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="7%" (ngSubmit)="addProfissional(profissionalForm.value)">
           <mat-form-field>
             <input matInput placeholder="Nome Completo" formControlName="nomeCompleto" maxlength="60">
             <mat-error *ngIf="hasError('nomeCompleto', 'required')">Campo obrigatório</mat-error>
@@ -23,8 +23,8 @@
           </mat-form-field>
 
           <div fxLayoutAlign="space-between">
-            <button mat-raised-button routerLink="/cadastroprofissional/servicos">Próximo</button>
             <button mat-button routerLink="/">Cancelar</button>
+            <button mat-raised-button type="submit">Próximo</button>
           </div>
         </form>
       </mat-card>
