@@ -78,9 +78,9 @@ export class AgendamentoComponent implements OnInit {
   ]
 
   profissionais:Profissional[] = [
-    { Id:1, nomeCompleto:"Profissional_1", telefone:"111", email:"111", password:'111', Saloes:this.saloes},
-    { Id:2, nomeCompleto:"Profissional_2", telefone:"222", email:"222", password:'222', Saloes:this.saloes2},
-    { Id:3, nomeCompleto:"Profissional_3", telefone:"333", email:"333", password:'333', Saloes:this.saloes3}
+    { Id:1, nome:"Profissional_1", telefone:"111", email:"111", senha:'111', Saloes:this.saloes},
+    { Id:2, nome:"Profissional_2", telefone:"222", email:"222", senha:'222', Saloes:this.saloes2},
+    { Id:3, nome:"Profissional_3", telefone:"333", email:"333", senha:'333', Saloes:this.saloes3}
   ]
 
   // bairros:Salao[] = this.saloes.filter(

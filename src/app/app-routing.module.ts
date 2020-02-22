@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'selecionaperfil', component: PerfilComponentComponent },
   { path: 'cadastrocliente', component: CadastroClienteComponent},
   { path: 'cadastroprofissional', component: CadastroProfissionalComponent},
-  { path: 'associarservicoprofissional', component: AssociarServicosProfissionalComponent},
+  { path: 'associarservicoprofissional/:id', component: AssociarServicosProfissionalComponent},
   { path: 'agendamento', component: AgendamentoComponent}
 ];
 @NgModule({

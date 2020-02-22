@@ -11,7 +11,7 @@ import { Salao } from 'src/app/model/Salao';
 })
 export class AssociarServicosProfissionalComponent implements OnInit {
 
-  profissional: Profissional = { Id: 0, nomeCompleto: '', telefone: '', email: '', password: '', Saloes: null};
+  profissional: Profissional = { Id: 0, nome: '', telefone: '', email: '', senha: '', Saloes: null};
 
   constructor(private router: Router, private route: ActivatedRoute, private api: RestService) { }
 
