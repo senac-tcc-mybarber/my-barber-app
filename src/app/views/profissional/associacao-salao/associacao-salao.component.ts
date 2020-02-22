@@ -1,5 +1,5 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -29,6 +29,7 @@ export class AssociacaoSalaoComponent  {
 
   @ViewChild('salaoInput', {static: false}) salaoInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+  @Input() profissionalId: string = '1'
 
   constructor(private api: RestService) {
 
@@ -81,7 +82,7 @@ export class AssociacaoSalaoComponent  {
   }
 
   associar():void {
-    this.api.associateSaloes(this.saloes);
+    this.api.associateSaloes(this.profissionalId,  this.saloes).subscribe(console.table);
   }
 
 }

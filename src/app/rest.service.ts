@@ -70,21 +70,21 @@ export class RestService {
     )
   }
 
-  associateSaloes(saloes: Salao[]) {
-    const url = `${environment.urlApi}profissionais/1/saloes`;
-    return this.http.put<any>(url,
+  associateSaloes(profissionalId: string, saloes: Salao[]) {
+    const url = `${environment.urlApi}/profissionais/${profissionalId}/saloes`;
+    const requestBody = { saloes: saloes.map(salao => salao.id) };
+    return this.http.put<any>(url, requestBody,
       {
         headers: new HttpHeaders
         ({
           'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjdXN0b21lciIsImV4cCI6MTU4Mjc0NjM5OH0.SbVIt5BTYpo9XdrZMO_PRbt-r3PenVtteqzt3eDrJX6tocuf-Ym46yRB_UZOYt4B8Am5PED4RE2g9a21vdrB4g',
           'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'POST',
-          'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-        }),
-        body: {saloes}
+          'Access-Control-Allow-Methods': 'PUT',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+          'Content-Type': 'application/json'
+        })
       }
     )
-
   }
 
 }
