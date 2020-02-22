@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { map, tap, catchError } from 'rxjs/operators';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { Usuario } from './model/Usuario';
 import { environment } from 'src/environments/environment';
 import { exhaust } from 'rxjs/operators';
 import { Salao } from './model/salao';
+import { Profissional } from './model/profissional';
 
 @Injectable({ providedIn: 'root' })
 
@@ -17,6 +18,10 @@ export class RestService {
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<Usuario>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
+  }
+
+  public get currentUserValue(): Usuario {
+    return this.currentUserSubject.value;
   }
 
   getToken(username: string, password: string) {
@@ -38,9 +43,8 @@ export class RestService {
       }));
   }
 
-  createCliente() {
-    const url = `${environment.urlApi}/create`;
-    const body = "";
+  addScheduling(body: string) {
+    const url = `${environment.urlApi}/addScheduling`;
     return this.http.post<any>(url, body,
       {
         headers: new HttpHeaders
@@ -50,10 +54,12 @@ export class RestService {
             'Access-Control-Allow-Headers': 'Content-Type, Authorization'
           })
       }).pipe(map(user => {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
         console.log(user);
+        return user;
       }));
   }
-
 
   getSaloes() {
     const url = `${environment.urlApi}/saloes`;
@@ -85,6 +91,53 @@ export class RestService {
         })
       }
     )
+  }
+
+  createCliente() {
+    const url = `${environment.urlApi}/create`;
+    const body = "";
+    return this.http.post<any>(url, body,
+      {
+        headers: new HttpHeaders
+          ({
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+          })
+      }).pipe(map(user => {
+        console.log(user);
+      }));
+  }
+
+  //funcoes para tratar profissional
+  createProfissional (profissional): Observable<Profissional> {
+    const url = `${environment.urlApi}/profissionais`;
+    return this.http.post<Profissional>(url, profissional,  {
+      headers: new HttpHeaders
+        ({
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST'
+        })
+    }).pipe(
+      tap((Profissional) => console.log(`adicionou o profissional`)),
+      catchError(this.handleError<Profissional>('createProfissional'))
+    );
+  }
+
+  getProfissional(id: number): Observable<Profissional> {
+    const url = `${environment.urlApi}/profissionais/${id}`;
+    return this.http.get<Profissional>(url).pipe(
+      tap(_ => console.log(`leu o profissional id=${id}`)),
+      catchError(this.handleError<Profissional>(`getProfissional id=${id}`))
+    );
+  }
+  //
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
   }
 
 }
