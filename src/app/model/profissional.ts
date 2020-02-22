@@ -1,4 +1,4 @@
-import { Salao } from './Salao_X';
+import { Salao } from './SalaoX';
 
 export class Profissional {
   Id:Number;

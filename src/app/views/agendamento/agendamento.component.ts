@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 
 import { Servico } from 'src/app/model/Servico';
-import { Salao } from 'src/app/model/Salao_X';
+import { Salao } from 'src/app/model/SalaoX';
 import { Endereco } from 'src/app/model/Endereco';
 import { Profissional } from 'src/app/model/profissional';
 import { RestService } from 'src/app/rest.service';
