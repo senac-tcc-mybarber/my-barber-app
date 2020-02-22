@@ -72,7 +72,10 @@ export class AssociacaoSalaoComponent  {
 
   private _filter(filter: string): Salao[] {
 
-    const filterValue = filter.toLowerCase();
+    let filterValue = filter
+    if(filter.toLocaleLowerCase) {
+      filterValue = filter.toLowerCase();
+    } 
 
     return this.allSaloes.filter(salao => salao.nome.toLowerCase().indexOf(filterValue) > 0);
   }
