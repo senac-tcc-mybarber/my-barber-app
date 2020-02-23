@@ -78,9 +78,9 @@ export class AgendamentoComponent implements OnInit {
   ]
 
   profissionais:Profissional[] = [
-    { Id:1, nome:"Profissional_1", telefone:"111", email:"111", senha:'111', Saloes:this.saloes},
-    { Id:2, nome:"Profissional_2", telefone:"222", email:"222", senha:'222', Saloes:this.saloes2},
-    { Id:3, nome:"Profissional_3", telefone:"333", email:"333", senha:'333', Saloes:this.saloes3}
+    { id:1, nome:"Profissional_1", telefone:"111", email:"111", senha:'111', Saloes:this.saloes},
+    { id:2, nome:"Profissional_2", telefone:"222", email:"222", senha:'222', Saloes:this.saloes2},
+    { id:3, nome:"Profissional_3", telefone:"333", email:"333", senha:'333', Saloes:this.saloes3}
   ]
 
   // bairros:Salao[] = this.saloes.filter(
@@ -111,7 +111,7 @@ export class AgendamentoComponent implements OnInit {
   selecaoProfissional(event, Id) {
     //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior
     if (event.source.selected) {
-        this.salaoFiltrado = this.profissionais.filter(s => s.Id === Id)[0].Saloes;
+        this.salaoFiltrado = this.profissionais.filter(s => s.id === Id)[0].Saloes;
         this.disableSelectSalao = false;
       }
   }

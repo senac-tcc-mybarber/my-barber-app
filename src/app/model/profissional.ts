@@ -1,7 +1,7 @@
 import { Salao } from './SalaoX';
 
 export class Profissional {
-  Id:Number;
+  id:Number;
   nome: string;
   telefone: string;
   email: string;
