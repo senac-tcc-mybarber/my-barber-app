@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { exhaust } from 'rxjs/operators';
 import { Salao } from './model/salao';
 import { Profissional } from './model/profissional';
+import { Servico } from './model/Servico';
 
 @Injectable({ providedIn: 'root' })
 
@@ -130,6 +131,15 @@ export class RestService {
       tap(_ => console.log(`leu o profissional id=${id}`)),
       catchError(this.handleError<Profissional>(`getProfissional id=${id}`))
     );
+  }
+
+  getServicos (): Observable<Servico[]> {
+    const url = `${environment.urlApi}/servicos`;
+    return this.http.get<Servico[]>(url)
+      .pipe(
+        tap(servicos => console.log('leu os servicos disponiveis')),
+        catchError(this.handleError('getServicos', []))
+      );
   }
   //
 
