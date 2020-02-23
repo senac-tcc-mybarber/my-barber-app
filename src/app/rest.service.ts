@@ -1,12 +1,11 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { map, tap, catchError } from 'rxjs/operators';
-import { Observable, BehaviorSubject, of } from 'rxjs';
-import { Usuario } from './model/Usuario';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { exhaust } from 'rxjs/operators';
-import { Salao } from './model/salao';
 import { Profissional } from './model/profissional';
+import { Salao } from './model/salao';
+import { Usuario } from './model/Usuario';
 
 @Injectable({ providedIn: 'root' })
 
@@ -14,6 +13,13 @@ export class RestService {
   
   private currentUserSubject: BehaviorSubject<Usuario>;
   public currentUser: Observable<Usuario>;
+
+  defaultHeaders = new HttpHeaders
+  ({
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+  })
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<Usuario>(JSON.parse(localStorage.getItem('currentUser')));
@@ -29,12 +35,7 @@ export class RestService {
     const body = '{"username": "' + username + '", "password": "' + password + '"}';
     return this.http.post<any>(url, body,
       {
-        headers: new HttpHeaders
-          ({
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-          })
+        headers: this.defaultHeaders
       }).pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
@@ -47,12 +48,7 @@ export class RestService {
     const url = `${environment.urlApi}/addScheduling`;
     return this.http.post<any>(url, body,
       {
-        headers: new HttpHeaders
-          ({
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-          })
+        headers: this.defaultHeaders
       }).pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
@@ -65,13 +61,7 @@ export class RestService {
     const url = `${environment.urlApi}/saloes`;
     return this.http.get<Salao[]>(url,
       {
-        headers: new HttpHeaders
-        ({
-          'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjdXN0b21lciIsImV4cCI6MTU4Mjc0NjM5OH0.SbVIt5BTYpo9XdrZMO_PRbt-r3PenVtteqzt3eDrJX6tocuf-Ym46yRB_UZOYt4B8Am5PED4RE2g9a21vdrB4g',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'POST',
-          'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-        })
+        headers: this.defaultHeaders
       }
     )
   }
@@ -81,14 +71,7 @@ export class RestService {
     const requestBody = { saloes: saloes.map(salao => salao.id) };
     return this.http.put<any>(url, requestBody,
       {
-        headers: new HttpHeaders
-        ({
-          'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjdXN0b21lciIsImV4cCI6MTU4Mjc0NjM5OH0.SbVIt5BTYpo9XdrZMO_PRbt-r3PenVtteqzt3eDrJX6tocuf-Ym46yRB_UZOYt4B8Am5PED4RE2g9a21vdrB4g',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'PUT',
-          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-          'Content-Type': 'application/json'
-        })
+        headers: this.defaultHeaders
       }
     )
   }
@@ -98,12 +81,7 @@ export class RestService {
     const body = "";
     return this.http.post<any>(url, body,
       {
-        headers: new HttpHeaders
-          ({
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-          })
+        headers: this.defaultHeaders
       }).pipe(map(user => {
         console.log(user);
       }));
