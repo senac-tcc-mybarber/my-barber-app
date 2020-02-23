@@ -1,4 +1,29 @@
 <p>associar-servicos-profissional works!</p>
 <p>{{profissional.nome}}</p>
 <p>{{profissional.email}}</p>
-<p>aqui vou associar os servicos depois</p>
+<p>Serviços: </p>
+<mat-table #table [dataSource]="dataSource">
+    
+    <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="descricao">
+        <mat-header-cell *matHeaderCellDef> Descricao </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.descricao}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="valor">
+        <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.valor}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="categoria">
+        <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.categoria}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Profissional } from './model/profissional';
+import { Servico } from './model/Servico';
 import { Salao } from './model/salao';
 import { Usuario } from './model/Usuario';
 
@@ -108,6 +109,15 @@ export class RestService {
       tap(_ => console.log(`leu o profissional id=${id}`)),
       catchError(this.handleError<Profissional>(`getProfissional id=${id}`))
     );
+  }
+
+  getServicos (): Observable<Servico[]> {
+    const url = `${environment.urlApi}/servicos`;
+    return this.http.get<Servico[]>(url)
+      .pipe(
+        tap(servicos => console.log('leu os servicos disponiveis')),
+        catchError(this.handleError('getServicos', []))
+      );
   }
   //
 
