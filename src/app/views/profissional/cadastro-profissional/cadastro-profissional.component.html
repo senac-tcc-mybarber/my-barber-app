@@ -5,8 +5,8 @@
         <h2>Novo Profissional</h2>
         <form [formGroup]="profissionalForm" fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="7%" (ngSubmit)="addProfissional(profissionalForm.value)">
           <mat-form-field>
-            <input matInput placeholder="Nome Completo" formControlName="nomeCompleto" maxlength="60">
-            <mat-error *ngIf="hasError('nomeCompleto', 'required')">Campo obrigatório</mat-error>
+            <input matInput placeholder="Nome Completo" formControlName="nome" maxlength="60">
+            <mat-error *ngIf="hasError('nome', 'required')">Campo obrigatório</mat-error>
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Telefone" formControlName="telefone" maxlength="10">
@@ -18,8 +18,8 @@
             <mat-error *ngIf="hasError('email', 'email')">E-mail com formato inválido</mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input matInput type="password" formControlName="password" placeholder="Senha" maxlength="8">
-            <mat-error *ngIf="hasError('password', 'required')">Campo obrigatório</mat-error>
+            <input matInput type="password" formControlName="senha" placeholder="Senha" maxlength="8">
+            <mat-error *ngIf="hasError('senha', 'required')">Campo obrigatório</mat-error>
           </mat-form-field>
 
           <div fxLayoutAlign="space-between">

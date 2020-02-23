@@ -17,10 +17,10 @@ export class CadastroProfissionalComponent implements OnInit {
 
   ngOnInit() {
     this.profissionalForm = new FormGroup({
-      nomeCompleto: new FormControl('', [Validators.required, Validators.maxLength(60)]),
+      nome: new FormControl('', [Validators.required, Validators.maxLength(60)]),
       telefone: new FormControl('', [Validators.required, Validators.maxLength(10)]),
       email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(50)]),
-      password: new FormControl('', [Validators.required, Validators.maxLength(8)])
+      senha: new FormControl('', [Validators.required, Validators.maxLength(8)])
     });
   }
 

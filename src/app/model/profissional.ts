@@ -2,9 +2,9 @@ import { Salao } from './SalaoX';
 
 export class Profissional {
   Id:Number;
-  nomeCompleto: string;
+  nome: string;
   telefone: string;
   email: string;
-  password: string;
+  senha: string;
   Saloes:Salao[];
 }

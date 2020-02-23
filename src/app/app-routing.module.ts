@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'cadastrocliente', component: CadastroClienteComponent},
   { path: 'cadastroprofissional', component: CadastroProfissionalComponent},
   { path: 'associarsalao', component: AssociacaoSalaoComponent},
-  { path: 'associarservicoprofissional', component: AssociarServicosProfissionalComponent},
+  { path: 'associarservicoprofissional/:id', component: AssociarServicosProfissionalComponent},
   { path: 'agendamento', component: AgendamentoComponent},
 ];
 
