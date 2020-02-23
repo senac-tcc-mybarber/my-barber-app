@@ -35,7 +35,7 @@ export class CadastroProfissionalComponent implements OnInit {
     this.api.createProfissional(form)
       .subscribe(res => {
           const id = res['id'];
-          this.router.navigate(['/associarservicoprofissional', id]);
+          this.router.navigate(['/associarsalao', id]);
         }, (err) => {
           console.log(err);
         });

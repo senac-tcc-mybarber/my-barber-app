@@ -1,5 +1,5 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, ElementRef, ViewChild, Input } from '@angular/core';
+import { Component, ElementRef, ViewChild, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { RestService } from 'src/app/rest.service';
 import { Salao } from 'src/app/model/salao';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { Profissional } from "/home/lucas/projects/senac/my-barber-app/src/app/model/profissional";
 
 
 @Component({
@@ -15,7 +16,7 @@ import { Salao } from 'src/app/model/salao';
   templateUrl: './associacao-salao.component.html',
   styleUrls: ['./associacao-salao.component.scss']
 })
-export class AssociacaoSalaoComponent  {
+export class AssociacaoSalaoComponent implements OnInit {
 
   visible = true;
   selectable = true;
@@ -26,12 +27,14 @@ export class AssociacaoSalaoComponent  {
   filteredSaloes: Observable<Salao[]>;
   saloes: Salao[] = [];
   allSaloes: Salao[] = [];
+  profissional: Profissional
 
   @ViewChild('salaoInput', {static: false}) salaoInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
-  @Input() profissionalId: string = '1'
 
-  constructor(private api: RestService) {
+  constructor(private api: RestService, 
+              private route: ActivatedRoute,
+              private router: Router) {
 
     api.getSaloes().subscribe(resp => this.allSaloes = resp);
 
@@ -82,7 +85,20 @@ export class AssociacaoSalaoComponent  {
   }
 
   associar():void {
-    this.api.associateSaloes(this.profissionalId,  this.saloes).subscribe(console.table);
+    this.api.associateSaloes(this.profissional.id,  this.saloes).subscribe(console.table);
+
+    this.router.navigate(['/associarservicoprofissional', this.profissional.id]);
   }
 
+  ngOnInit() {
+    this.getProfissional(this.route.snapshot.params['id'])
+  }
+
+  getProfissional(id) {
+    this.api.getProfissional(id)
+      .subscribe(data => {
+        this.profissional = data;
+        console.log(this.profissional);
+      });
+  }
 }

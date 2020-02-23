@@ -13,9 +13,13 @@ import { Observable } from 'rxjs';
 })
 export class AssociarServicosProfissionalComponent implements OnInit {
 
-  profissional: Profissional = { id: 0, nome: '', telefone: '', email: '', senha: '', Saloes: null};
+<<<<<<< Updated upstream
+  profissional: Profissional = { Id: 0, nome: '', telefone: '', email: '', senha: '', Saloes: null};
   dataSource: Servico[];
   displayedColumns: string[] = [ 'id','descricao', 'valor', 'categoria'];
+=======
+  profissional: Profissional = { id: 0, nome: '', telefone: '', email: '', senha: '', Saloes: null};
+>>>>>>> Stashed changes
 
   constructor(private router: Router, private route: ActivatedRoute, private api: RestService) { }
 

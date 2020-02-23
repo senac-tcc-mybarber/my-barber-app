@@ -67,7 +67,7 @@ export class RestService {
     )
   }
 
-  associateSaloes(profissionalId: string, saloes: Salao[]) {
+  associateSaloes(profissionalId: Number, saloes: Salao[]) {
     const url = `${environment.urlApi}/profissionais/${profissionalId}/saloes`;
     const requestBody = { saloes: saloes.map(salao => salao.id) };
     return this.http.put<any>(url, requestBody,
