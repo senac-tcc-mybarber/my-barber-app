@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Profissional } from 'src/app/model/profissional';
 import { RestService } from 'src/app/rest.service';
-import { Salao } from 'src/app/model/Salao';
+import { Salao } from 'src/app/model/SalaoX';
 
 @Component({
   selector: 'app-associar-servicos-profissional',
