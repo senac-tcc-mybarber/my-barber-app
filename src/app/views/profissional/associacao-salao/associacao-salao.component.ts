@@ -8,7 +8,7 @@ import { map, startWith } from 'rxjs/operators';
 import { RestService } from 'src/app/rest.service';
 import { Salao } from 'src/app/model/salao';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Profissional } from "/home/lucas/projects/senac/my-barber-app/src/app/model/profissional";
+import { Profissional } from "src/app/model/profissional";
 
 
 @Component({

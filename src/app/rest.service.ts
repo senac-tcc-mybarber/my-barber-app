@@ -76,6 +76,15 @@ export class RestService {
       }
     )
   }
+  associarServicos(profissionalId: Number, servicos: Servico[]){
+    const url = `${environment.urlApi}/profissionais/${profissionalId}/servicos`;
+    const requestBody = { servicos: servicos.map(servico => servico.id) };
+    return this.http.put<any>(url, requestBody,
+      {
+        headers: this.defaultHeaders
+      }
+    )
+  }
 
   createCliente() {
     const url = `${environment.urlApi}/create`;

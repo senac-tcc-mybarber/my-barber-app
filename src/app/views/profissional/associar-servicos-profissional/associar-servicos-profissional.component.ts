@@ -5,6 +5,7 @@ import { RestService } from 'src/app/rest.service';
 import { Salao } from 'src/app/model/SalaoX';
 import { Servico } from 'src/app/model/Servico';
 import { Observable } from 'rxjs';
+import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-associar-servicos-profissional',
@@ -15,19 +16,27 @@ export class AssociarServicosProfissionalComponent implements OnInit {
 
   profissional: Profissional = { id: 0, nome: '', telefone: '', email: '', senha: '', Saloes: null};
   dataSource: Servico[];
-  displayedColumns: string[] = [ 'id','descricao', 'valor', 'categoria'];
+  servicosProfissional: Servico[] = [];
+  servicosForm: FormGroup;
+    
 
-  constructor(private router: Router, private route: ActivatedRoute, private api: RestService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private api: RestService, private formBuilder: FormBuilder) {
+    this.servicosForm = this.formBuilder.group({
+      servicos: new FormArray([])
+    });
+   }
 
   ngOnInit() {
     this.getProfissional(this.route.snapshot.params['id'])
     this.api.getServicos()
     .subscribe(res => {
       this.dataSource = res;
+      this.addCheckboxes();
       console.log(this.dataSource);
     }, err => {
       console.log(err);
-    });
+    });   
+    
   }
 
   getProfissional(id) {
@@ -36,5 +45,20 @@ export class AssociarServicosProfissionalComponent implements OnInit {
         this.profissional = data;
         console.log(this.profissional);
       });
+  }
+
+  addCheckboxes() {
+    this.dataSource.forEach( (element) => {
+      const control = new FormControl();
+      (this.servicosForm.controls.servicos as FormArray).push(control);
+    });
+  }
+  
+  submit() {
+    const selectedServicosIds = this.servicosForm.value.servicos.map((v, i) => (v ? this.dataSource[i].id : null)).filter(v => v !== null);
+    for(let i=0; i<selectedServicosIds.length; i++){
+      this.servicosProfissional.push(this.dataSource.find(element => element.id === selectedServicosIds[i]))
+    }
+    this.api.associarServicos(this.profissional.id,  this.servicosProfissional).subscribe(console.table);
   }
 }

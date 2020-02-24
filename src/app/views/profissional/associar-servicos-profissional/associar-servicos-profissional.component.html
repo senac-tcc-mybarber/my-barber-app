@@ -1,29 +1,18 @@
-<p>associar-servicos-profissional works!</p>
-<p>{{profissional.nome}}</p>
-<p>{{profissional.email}}</p>
-<p>Serviços: </p>
-<mat-table #table [dataSource]="dataSource">
-    
-    <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="descricao">
-        <mat-header-cell *matHeaderCellDef> Descricao </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.descricao}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="valor">
-        <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.valor}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="categoria">
-        <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.categoria}} </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
+<div class="login-container mybarber-bg-primary" fxFlexFill fxLayout="row" fxLayoutAlign="center center">
+    <div fxLayout="column" fxLayoutAlign="space-between stretch" fxFlex="1 1 90" fxLayoutGap="7%">
+      <div class="login-form-container flex-item" fxLayoutAlign="center stretch" >
+        <mat-card fxLayout="column" class="form-login" fxLayoutAlign="stretch" fxFlex="1 1 100" fxFlex.gt-xs="55"  fxFlex.gt-sm="40">
+          <h2>Associar Serviços</h2>
+          <form [formGroup]="servicosForm" fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="7%" (ngSubmit)="submit()">
+            <label formArrayName="servicos" *ngFor="let servico of servicosForm.controls.servicos.controls; let i = index">
+                <input type="checkbox" [formControlName]="i" />
+                    {{dataSource[i].descricao}}
+            </label>
+        
+            <button>submit</button>
+          </form>
+        </mat-card>
+    </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>

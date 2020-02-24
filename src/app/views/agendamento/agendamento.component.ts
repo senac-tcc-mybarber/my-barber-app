@@ -30,19 +30,19 @@ export class AgendamentoComponent implements OnInit {
   selectedIdSalao:Number;
 
   servicos: Servico[] = [
-    {Id:1, Descricao:'Tradicional', Categoria:'Barba', Valor:10.50},
-    {Id:2, Descricao:'Design', Categoria:'Barba', Valor:10.50},
-    {Id:3, Descricao:'Camuflagem de Barba', Categoria:'Barba', Valor:10.50},
-    {Id:4, Descricao:'Corte com Máquina', Categoria:'Cabelo', Valor:10.50},
-    {Id:5, Descricao:'Corte com Tesoura', Categoria:'Cabelo', Valor:10.50},
-    {Id:6, Descricao:'Pezinho', Categoria:'Cabelo', Valor:10.50},
-    {Id:7, Descricao:'Camuflagem de Cabelo', Categoria:'Cabelo', Valor:10.50},
-    {Id:8, Descricao:'Sei lá', Categoria:'Sombrancelha', Valor:10.50},
-    {Id:9, Descricao:'Sei lá 2.0', Categoria:'Sombrancelha', Valor:10.50}
+    {id:1, descricao:'Tradicional', categoria:'Barba', valor:10.50},
+    {id:2, descricao:'Design', categoria:'Barba', valor:10.50},
+    {id:3, descricao:'Camuflagem de Barba', categoria:'Barba', valor:10.50},
+    {id:4, descricao:'Corte com Máquina', categoria:'Cabelo', valor:10.50},
+    {id:5, descricao:'Corte com Tesoura', categoria:'Cabelo', valor:10.50},
+    {id:6, descricao:'Pezinho', categoria:'Cabelo', valor:10.50},
+    {id:7, descricao:'Camuflagem de Cabelo', categoria:'Cabelo', valor:10.50},
+    {id:8, descricao:'Sei lá', categoria:'Sombrancelha', valor:10.50},
+    {id:9, descricao:'Sei lá 2.0', categoria:'Sombrancelha', valor:10.50}
   ];
 
   categorias:Servico[] = this.servicos.filter(
-    (thing, i, arr) => arr.findIndex(t => t.Categoria === thing.Categoria) === i
+    (thing, i, arr) => arr.findIndex(t => t.categoria === thing.categoria) === i
   );
 
   endereco1: Endereco = {Id:1, Logradouro:'', Numero:1, Complemento:'', Bairro:'Bairro1', Cidade:'', UF:'RJ', CEP:'111'}
@@ -96,7 +96,7 @@ export class AgendamentoComponent implements OnInit {
     //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior
     if (event.source.selected) {
         this.disableSelectServico = false;
-        this.servicoFiltrado = this.servicos.filter(s => s.Categoria === categoriaNome);
+        this.servicoFiltrado = this.servicos.filter(s => s.categoria === categoriaNome);
     }
   } 
 
