@@ -22,6 +22,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AgendamentoComponent } from './views/agendamento/agendamento.component';
 import { AssociarServicosProfissionalComponent } from './views/profissional/associar-servicos-profissional/associar-servicos-profissional.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { CheckinProfissionalComponent } from './views/profissional/checkin-profissional/checkin-profissional.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
     AssociacaoSalaoComponent,
     AgendamentoComponent,
     AssociarServicosProfissionalComponent,
+    CheckinProfissionalComponent,
   ],
   imports: [
     AppRoutingModule,

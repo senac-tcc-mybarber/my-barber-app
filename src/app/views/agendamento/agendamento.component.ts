@@ -30,15 +30,15 @@ export class AgendamentoComponent implements OnInit {
   selectedIdSalao:Number;
 
   servicos: Servico[] = [
-    {Id:1, Descricao:'Tradicional', Categoria:'Barba', Valor:10.50},
-    {Id:2, Descricao:'Design', Categoria:'Barba', Valor:10.50},
-    {Id:3, Descricao:'Camuflagem de Barba', Categoria:'Barba', Valor:10.50},
-    {Id:4, Descricao:'Corte com Máquina', Categoria:'Cabelo', Valor:10.50},
-    {Id:5, Descricao:'Corte com Tesoura', Categoria:'Cabelo', Valor:10.50},
-    {Id:6, Descricao:'Pezinho', Categoria:'Cabelo', Valor:10.50},
-    {Id:7, Descricao:'Camuflagem de Cabelo', Categoria:'Cabelo', Valor:10.50},
-    {Id:8, Descricao:'Sei lá', Categoria:'Sombrancelha', Valor:10.50},
-    {Id:9, Descricao:'Sei lá 2.0', Categoria:'Sombrancelha', Valor:10.50}
+    {Id:1, nome:'Tradicional', Categoria:'Barba', Valor:10.50},
+    {Id:2, nome:'Design', Categoria:'Barba', Valor:10.50},
+    {Id:3, nome:'Camuflagem de Barba', Categoria:'Barba', Valor:10.50},
+    {Id:4, nome:'Corte com Máquina', Categoria:'Cabelo', Valor:10.50},
+    {Id:5, nome:'Corte com Tesoura', Categoria:'Cabelo', Valor:10.50},
+    {Id:6, nome:'Pezinho', Categoria:'Cabelo', Valor:10.50},
+    {Id:7, nome:'Camuflagem de Cabelo', Categoria:'Cabelo', Valor:10.50},
+    {Id:8, nome:'Sei lá', Categoria:'Sombrancelha', Valor:10.50},
+    {Id:9, nome:'Sei lá 2.0', Categoria:'Sombrancelha', Valor:10.50}
   ];
 
   categorias:Servico[] = this.servicos.filter(
@@ -48,7 +48,7 @@ export class AgendamentoComponent implements OnInit {
   endereco1: Endereco = {Id:1, Logradouro:'', Numero:1, Complemento:'', Bairro:'Bairro1', Cidade:'', UF:'RJ', CEP:'111'}
   endereco2: Endereco = {Id:2, Logradouro:'', Numero:2, Complemento:'', Bairro:'Bairro2', Cidade:'', UF:'RJ', CEP:'222'}
   endereco3: Endereco = {Id:3, Logradouro:'', Numero:3, Complemento:'', Bairro:'Bairro3', Cidade:'', UF:'RJ', CEP:'333'}
-  
+
   endereco4: Endereco = {Id:4, Logradouro:'', Numero:4, Complemento:'', Bairro:'Bairro4', Cidade:'', UF:'RJ', CEP:'111'}
   endereco5: Endereco = {Id:5, Logradouro:'', Numero:5, Complemento:'', Bairro:'Bairro5', Cidade:'', UF:'RJ', CEP:'222'}
   endereco6: Endereco = {Id:6, Logradouro:'', Numero:6, Complemento:'', Bairro:'Bairro6', Cidade:'', UF:'RJ', CEP:'333'}
@@ -98,7 +98,7 @@ export class AgendamentoComponent implements OnInit {
         this.disableSelectServico = false;
         this.servicoFiltrado = this.servicos.filter(s => s.Categoria === categoriaNome);
     }
-  } 
+  }
 
   selecaoServico(event, Id) {
     //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior

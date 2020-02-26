@@ -1,0 +1,24 @@
+<div class="login-container mybarber-bg-primary" fxFlexFill fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutAlign="space-between stretch" fxFlex="1 1 90" fxLayoutGap="7%">
+    <div class="login-form-container flex-item" fxLayoutAlign="center stretch">
+      <mat-card fxLayout="column" class="form-login animated jackInTheBox" fxLayoutAlign="stretch" fxFlex="1 1 100" fxFlex.gt-xs="55"
+                fxFlex.gt-sm="40">
+        <h2>Check-in</h2>
+        <form [formGroup]="agendamentoCtrl" fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="7%">
+            Profissional: {{agendamento.profissional.nome}}<br /><br />
+            Cliente: {{agendamento.cliente.nome}}<br /><br />
+            Salão: {{agendamento.salao.nome}}<br /><br />
+            Serviço: {{agendamento.servico.nome}}<br /><br />
+            Horário: {{agendamento.inicioServico}} a {{agendamento.fimServico}}<br /><br />
+            <input placeholder="Informe a senha para confirmar o check-in..." [formControl]="agendamentoCtrl" />
+          <div fxLayoutAlign="space-between">
+            <mat-button-toggle class="add-button animated jackInTheBox delay-1s button" (click)="associar()">
+              Salvar</mat-button-toggle>
+            <mat-button-toggle class="add-button animated jackInTheBox delay-1s button" routerLink="/">
+              Cancelar</mat-button-toggle>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>
