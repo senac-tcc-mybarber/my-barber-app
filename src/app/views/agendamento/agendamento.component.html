@@ -5,7 +5,7 @@
         fxFlex.gt-sm="40">
         <h2>Agendamento</h2>
         <form fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="7%">
-       
+
           <mat-form-field>
             <mat-label>Categoria</mat-label>
             <mat-select>
@@ -19,11 +19,11 @@
             <mat-label>Serviço</mat-label>
             <mat-select [(value)]="selectedIdServico" [disabled]="disableSelectServico">
               <mat-option (onSelectionChange)="selecaoServico($event, servico.Id)" *ngFor="let servico of servicoFiltrado" [value]="servico.Id">
-               {{servico.Descricao}}
+               {{servico.nome}}
               </mat-option>
             </mat-select>
           </mat-form-field>
-      
+
           <mat-form-field>
             <mat-label>Profissional</mat-label>
             <mat-select [(value)]="selectedIdProfissional" [disabled]="disableSelectProfissional">

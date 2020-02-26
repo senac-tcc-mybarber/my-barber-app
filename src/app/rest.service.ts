@@ -7,11 +7,12 @@ import { Profissional } from './model/profissional';
 import { Servico } from './model/Servico';
 import { Salao } from './model/salao';
 import { Usuario } from './model/Usuario';
+import {Agendamento} from './model/agendamento';
 
 @Injectable({ providedIn: 'root' })
 
 export class RestService {
-  
+
   private currentUserSubject: BehaviorSubject<Usuario>;
   public currentUser: Observable<Usuario>;
 
@@ -120,6 +121,14 @@ export class RestService {
       );
   }
   //
+
+  getAgendamento(id: number): Observable<Agendamento> {
+    const url = `${environment.urlApi}/agendamentos/${id}`;
+    return this.http.get<Agendamento>(url).pipe(
+      tap(_ => console.log(`leu o agendamento id=${id}`)),
+      catchError(this.handleError<Agendamento>(`getAgendamento id=${id}`))
+    );
+  }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
