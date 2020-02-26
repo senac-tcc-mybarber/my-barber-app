@@ -1,5 +1,5 @@
 export class Cliente {
-  nomeCompleto: string;
+  nome: string;
   telefone: string;
   email: string;
   password: string;
