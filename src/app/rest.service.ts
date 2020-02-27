@@ -114,9 +114,7 @@ export class RestService {
   getServicos (): Observable<Servico[]> {
     const url = `${environment.urlApi}/servicos`;
     return this.http.get<Servico[]>(url)
-      .pipe(
-        tap(servicos => console.log('leu os servicos disponiveis')),
-        catchError(this.handleError('getServicos', []))
+      .pipe(catchError(this.handleError('getServicos', []))
       );
   }
   //

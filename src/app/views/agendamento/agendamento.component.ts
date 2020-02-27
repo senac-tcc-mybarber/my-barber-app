@@ -7,6 +7,7 @@ import { Endereco } from 'src/app/model/Endereco';
 import { Profissional } from 'src/app/model/profissional';
 import { RestService } from 'src/app/rest.service';
 import { first } from 'rxjs/operators';
+import { MatDatepickerInputEvent } from '@angular/material';
 
 @Component({
   selector: 'app-agendamento',
@@ -15,40 +16,45 @@ import { first } from 'rxjs/operators';
 })
 export class AgendamentoComponent implements OnInit {
 
+
   disableSelectServico = true;
-  disableSelectBairro = true;
   disableSelectProfissional = true;
   disableSelectSalao = true;
+  disableSelectCalendario = true;
+  disableSelectHorario = true;
   disableBotaoAgendar = true;
 
+  FiltroDoCalendario = new Date();
+
   servicoFiltrado:Servico[];
-  // bairroFiltrado:Endereco[];
   salaoFiltrado:Salao[];
+
+  HorarioDeAtendimento:string[] = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"]
 
   selectedIdServico:Number;
   selectedIdProfissional:Number;
   selectedIdSalao:Number;
 
-  servicos: Servico[] = [
-    {Id:1, Descricao:'Tradicional', Categoria:'Barba', Valor:10.50},
-    {Id:2, Descricao:'Design', Categoria:'Barba', Valor:10.50},
-    {Id:3, Descricao:'Camuflagem de Barba', Categoria:'Barba', Valor:10.50},
-    {Id:4, Descricao:'Corte com Máquina', Categoria:'Cabelo', Valor:10.50},
-    {Id:5, Descricao:'Corte com Tesoura', Categoria:'Cabelo', Valor:10.50},
-    {Id:6, Descricao:'Pezinho', Categoria:'Cabelo', Valor:10.50},
-    {Id:7, Descricao:'Camuflagem de Cabelo', Categoria:'Cabelo', Valor:10.50},
-    {Id:8, Descricao:'Sei lá', Categoria:'Sombrancelha', Valor:10.50},
-    {Id:9, Descricao:'Sei lá 2.0', Categoria:'Sombrancelha', Valor:10.50}
-  ];
+  servicos:Servico[] = [];
 
-  categorias:Servico[] = this.servicos.filter(
-    (thing, i, arr) => arr.findIndex(t => t.Categoria === thing.Categoria) === i
-  );
+  // http://localhost:8080/servicos
+
+  // servicos: Servico[] = [
+  //   {Id:1, Descricao:'Tradicional', Categoria:'Barba', Valor:10.50},
+  //   {Id:2, Descricao:'Design', Categoria:'Barba', Valor:10.50},
+  //   {Id:3, Descricao:'Camuflagem de Barba', Categoria:'Barba', Valor:10.50},
+  //   {Id:4, Descricao:'Corte com Máquina', Categoria:'Cabelo', Valor:10.50},
+  //   {Id:5, Descricao:'Corte com Tesoura', Categoria:'Cabelo', Valor:10.50},
+  //   {Id:6, Descricao:'Pezinho', Categoria:'Cabelo', Valor:10.50},
+  //   {Id:7, Descricao:'Camuflagem de Cabelo', Categoria:'Cabelo', Valor:10.50},
+  //   {Id:8, Descricao:'Sei lá', Categoria:'Sombrancelha', Valor:10.50},
+  //   {Id:9, Descricao:'Sei lá 2.0', Categoria:'Sombrancelha', Valor:10.50}
+  // ];
 
   endereco1: Endereco = {Id:1, Logradouro:'', Numero:1, Complemento:'', Bairro:'Bairro1', Cidade:'', UF:'RJ', CEP:'111'}
   endereco2: Endereco = {Id:2, Logradouro:'', Numero:2, Complemento:'', Bairro:'Bairro2', Cidade:'', UF:'RJ', CEP:'222'}
   endereco3: Endereco = {Id:3, Logradouro:'', Numero:3, Complemento:'', Bairro:'Bairro3', Cidade:'', UF:'RJ', CEP:'333'}
-  
+
   endereco4: Endereco = {Id:4, Logradouro:'', Numero:4, Complemento:'', Bairro:'Bairro4', Cidade:'', UF:'RJ', CEP:'111'}
   endereco5: Endereco = {Id:5, Logradouro:'', Numero:5, Complemento:'', Bairro:'Bairro5', Cidade:'', UF:'RJ', CEP:'222'}
   endereco6: Endereco = {Id:6, Logradouro:'', Numero:6, Complemento:'', Bairro:'Bairro6', Cidade:'', UF:'RJ', CEP:'333'}
@@ -83,51 +89,48 @@ export class AgendamentoComponent implements OnInit {
     { id:3, nome:"Profissional_3", telefone:"333", email:"333", senha:'333', Saloes:this.saloes3}
   ]
 
-  // bairros:Salao[] = this.saloes.filter(
-  //   (thing, i, arr) => arr.findIndex(t => t.Endereco.Bairro === thing.Endereco.Bairro) === i
-  // );
-
   constructor(private api: RestService) {}
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.PegarServicosNaAPI();
+  }
 
-
-  selecaoCategoria(event, categoriaNome) {
-    //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior
-    if (event.source.selected) {
-        this.disableSelectServico = false;
-        this.servicoFiltrado = this.servicos.filter(s => s.Categoria === categoriaNome);
-    }
-  } 
-
-  selecaoServico(event, Id) {
-    //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior
-    if (event.source.selected) {
-        // this.disableSelectBairro = false;
-        this.disableSelectProfissional = false;
-    }
+  selecaoServico(event, id) {
+    console.log(id);
+    this.disableSelectProfissional = this.ativarDropSeguinte(event);
   }
 
   selecaoProfissional(event, Id) {
-    //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior
-    if (event.source.selected) {
+    this.disableSelectSalao = this.ativarDropSeguinte(event); 
         this.salaoFiltrado = this.profissionais.filter(s => s.id === Id)[0].Saloes;
-        this.disableSelectSalao = false;
-      }
   }
 
-// selecaoBairro(event, Id) {
-//   //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior
-//   if (event.source.selected) {
-//       console.log(Id);
-//       this.disableSelectSalao = false;
-//   }
-// }
-
   selecaoSalao(event, Id) {
+    this.disableSelectCalendario = this.ativarDropSeguinte(event);
+  }
+
+  selecaoData(type: string, event: MatDatepickerInputEvent<Date>) {
+
+    if (type === "change") {
+      this.disableSelectHorario = false;
+    }
+  }
+
+  selecaoHorario(event, hora) { 
+    this.disableBotaoAgendar = this.ativarDropSeguinte(event);
+  }
+
+  ativarDropSeguinte(event) : boolean
+  {
     //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior
     if (event.source.selected)
-        this.disableBotaoAgendar = false;
+      return false;
+  }
+
+  PegarServicosNaAPI(){
+    this.api.getServicos()
+    .subscribe(
+      s => {this.servicos = s as Servico[]})
   }
 
   agendar(){

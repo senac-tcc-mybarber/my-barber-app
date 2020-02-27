@@ -22,6 +22,11 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AgendamentoComponent } from './views/agendamento/agendamento.component';
 import { AssociarServicosProfissionalComponent } from './views/profissional/associar-servicos-profissional/associar-servicos-profissional.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
+
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 @NgModule({
@@ -58,7 +63,14 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
     MatIconModule,
     MatAutocompleteModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRippleModule,
+    
+    CdkStepperModule,
+    MatStepperModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
