@@ -36,6 +36,7 @@ export class AgendamentoComponent implements OnInit {
   selectedIdSalao:Number;
 
   servicos:Servico[] = [];
+  profissionais:Profissional[] = [];
 
   // http://localhost:8080/servicos
 
@@ -83,11 +84,11 @@ export class AgendamentoComponent implements OnInit {
     {Id:9, Nome:'Salão9', Telefone:'', Email:'', Endereco:this.endereco9}
   ]
 
-  profissionais:Profissional[] = [
-    { id:1, nome:"Profissional_1", telefone:"111", email:"111", senha:'111', Saloes:this.saloes},
-    { id:2, nome:"Profissional_2", telefone:"222", email:"222", senha:'222', Saloes:this.saloes2},
-    { id:3, nome:"Profissional_3", telefone:"333", email:"333", senha:'333', Saloes:this.saloes3}
-  ]
+  // profissionais:Profissional[] = [
+  //   { id:1, nome:"Profissional_1", telefone:"111", email:"111", senha:'111', Saloes:this.saloes},
+  //   { id:2, nome:"Profissional_2", telefone:"222", email:"222", senha:'222', Saloes:this.saloes2},
+  //   { id:3, nome:"Profissional_3", telefone:"333", email:"333", senha:'333', Saloes:this.saloes3}
+  // ]
 
   constructor(private api: RestService) {}
 
@@ -95,18 +96,32 @@ export class AgendamentoComponent implements OnInit {
     this.PegarServicosNaAPI();
   }
 
-  selecaoServico(event, id) {
-    console.log(id);
-    this.disableSelectProfissional = this.ativarDropSeguinte(event);
+  selecaoServico(event, id: Number) {
+    //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior
+    if (event.source.selected)
+    {
+      console.table(this.servicos);
+      console.log('id selecionado: ' + id);
+      this.disableSelectProfissional = false;
+      this.PegarProfissionaisNaAPI(id);
+    }    
   }
 
   selecaoProfissional(event, Id) {
-    this.disableSelectSalao = this.ativarDropSeguinte(event); 
-        this.salaoFiltrado = this.profissionais.filter(s => s.id === Id)[0].Saloes;
+    //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior
+    if (event.source.selected)
+    {
+      this.disableSelectSalao = false;
+      this.salaoFiltrado = this.profissionais.filter(s => s.id === Id)[0].Saloes;
+    }
   }
 
   selecaoSalao(event, Id) {
-    this.disableSelectCalendario = this.ativarDropSeguinte(event);
+    //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior
+    if (event.source.selected)
+    {
+      this.disableSelectCalendario = false;
+    }
   }
 
   selecaoData(type: string, event: MatDatepickerInputEvent<Date>) {
@@ -117,20 +132,28 @@ export class AgendamentoComponent implements OnInit {
   }
 
   selecaoHorario(event, hora) { 
-    this.disableBotaoAgendar = this.ativarDropSeguinte(event);
-  }
-
-  ativarDropSeguinte(event) : boolean
-  {
     //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior
     if (event.source.selected)
-      return false;
+    {
+      this.disableBotaoAgendar = false;
+    }
   }
 
   PegarServicosNaAPI(){
     this.api.getServicos()
     .subscribe(
       s => {this.servicos = s as Servico[]})
+  }
+
+  PegarProfissionaisNaAPI(id:Number){
+
+    
+    this.api.getProfissionais()
+    .subscribe(
+      s => {this.profissionais = s.filter(
+        p => p.Servico.find(s => s.id === id)) as Profissional[],
+        console.table(s),
+        console.table(this.profissionais)})        
   }
 
   agendar(){

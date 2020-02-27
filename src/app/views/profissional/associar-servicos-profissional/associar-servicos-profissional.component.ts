@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class AssociarServicosProfissionalComponent implements OnInit {
 
-  profissional: Profissional = { id: 0, nome: '', telefone: '', email: '', senha: '', Saloes: null};
+  profissional: Profissional = { id: 0, nome: '', telefone: '', email: '', senha: '', Saloes: null, Servico: null};
   dataSource: Servico[];
   displayedColumns: string[] = [ 'id','descricao', 'valor', 'categoria'];
 

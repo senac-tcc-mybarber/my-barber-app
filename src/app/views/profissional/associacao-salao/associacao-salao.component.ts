@@ -8,7 +8,7 @@ import { map, startWith } from 'rxjs/operators';
 import { RestService } from 'src/app/rest.service';
 import { Salao } from 'src/app/model/salao';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Profissional } from "src/app/model/profissional";
+import { Profissional } from 'src/app/model/profissional';
 
 
 @Component({
@@ -32,7 +32,7 @@ export class AssociacaoSalaoComponent implements OnInit {
   @ViewChild('salaoInput', {static: false}) salaoInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
-  constructor(private api: RestService, 
+  constructor(private api: RestService,
               private route: ActivatedRoute,
               private router: Router) {
 
@@ -79,7 +79,7 @@ export class AssociacaoSalaoComponent implements OnInit {
     let filterValue = filter
     if(filter.toLocaleLowerCase) {
       filterValue = filter.toLowerCase();
-    } 
+    }
 
     return this.allSaloes.filter(salao => salao.nome.toLowerCase().indexOf(filterValue) > 0);
   }
