@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Profissional } from 'src/app/model/profissional';
 import { RestService } from 'src/app/rest.service';
-import { Salao } from 'src/app/model/SalaoX';
 import { Servico } from 'src/app/model/Servico';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-associar-servicos-profissional',
@@ -13,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class AssociarServicosProfissionalComponent implements OnInit {
 
-  profissional: Profissional = { id: 0, nome: '', telefone: '', email: '', senha: '', Saloes: null, Servico: null};
+  profissional: Profissional = { id: 0, nome: '', telefone: '', email: '', senha: '', saloes: null, servicos: null};
   dataSource: Servico[];
   displayedColumns: string[] = [ 'id','descricao', 'valor', 'categoria'];
 

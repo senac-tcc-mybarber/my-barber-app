@@ -32,7 +32,7 @@
 
               <mat-form-field>
                 <mat-label>Serviço</mat-label>
-                <mat-select [(value)]="selectedIdServico">
+                <mat-select>
                   <mat-option
                     (onSelectionChange)="selecaoServico($event, servico.id)"
                     *ngFor="let servico of servicos"
@@ -46,7 +46,6 @@
               <mat-form-field>
                 <mat-label>Profissional</mat-label>
                 <mat-select
-                  [(value)]="selectedIdProfissional"
                   [disabled]="disableSelectProfissional"
                 >
                   <mat-option
@@ -64,15 +63,14 @@
               <mat-form-field>
                 <mat-label>Salão</mat-label>
                 <mat-select
-                  [(value)]="selectedIdSalao"
                   [disabled]="disableSelectSalao"
                 >
                   <mat-option
-                    (onSelectionChange)="selecaoSalao($event, salao.Id)"
-                    *ngFor="let salao of salaoFiltrado"
-                    [value]="salao.Id"
+                    (onSelectionChange)="selecaoSalao($event, salao.id)"
+                    *ngFor="let salao of saloes"
+                    [value]="salao.id"
                   >
-                    {{ salao.Nome }}
+                    {{ salao.nome }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -111,9 +109,9 @@
                   <mat-option
                     (onSelectionChange)="selecaoHorario($event, hora)"
                     *ngFor="let hora of HorarioDeAtendimento"
-                    [value]="hora"
+                    [value]="hora.hours"
                   >
-                    {{ hora }}
+                    {{ hora.hours }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
