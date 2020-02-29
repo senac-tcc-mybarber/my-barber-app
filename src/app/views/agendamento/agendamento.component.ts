@@ -1,145 +1,186 @@
-import { Component, OnInit } from '@angular/core';
-import * as _ from 'lodash';
+import { Component, OnInit } from "@angular/core";
+import * as _ from "lodash";
 
-import { Servico } from 'src/app/model/Servico';
-import { Salao } from 'src/app/model/SalaoX';
-import { Endereco } from 'src/app/model/Endereco';
-import { Profissional } from 'src/app/model/profissional';
-import { RestService } from 'src/app/rest.service';
-import { first } from 'rxjs/operators';
+import { Servico } from "src/app/model/Servico";
+import { Salao } from "src/app/model/salao";
+import { Profissional } from "src/app/model/profissional";
+import { RestService } from "src/app/rest.service";
+import { first } from "rxjs/operators";
+import { MatDatepickerInputEvent, MatSnackBar } from "@angular/material";
+import { Agendamento } from "src/app/model/agendamento";
+import { Time } from "@angular/common";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-agendamento',
-  templateUrl: './agendamento.component.html',
-  styleUrls: ['./agendamento.component.scss']
+  selector: "app-agendamento",
+  templateUrl: "./agendamento.component.html",
+  styleUrls: ["./agendamento.component.scss"]
 })
 export class AgendamentoComponent implements OnInit {
-
+  //Variaveis de interação com a tela
   disableSelectServico = true;
-  disableSelectBairro = true;
   disableSelectProfissional = true;
   disableSelectSalao = true;
+  disableSelectCalendario = true;
+  disableSelectHorario = true;
   disableBotaoAgendar = true;
 
-  servicoFiltrado:Servico[];
-  // bairroFiltrado:Endereco[];
-  salaoFiltrado:Salao[];
+  FiltroDoCalendario = new Date();
 
-  selectedIdServico:Number;
-  selectedIdProfissional:Number;
-  selectedIdSalao:Number;
+  //Variavel para comunicação com a API
+  agendamento: Agendamento = new Agendamento();
 
-  servicos: Servico[] = [
-  {id:1, descricao:'Tradicional', categoria:'Barba', valor:10.50},
-  {id:2, descricao:'Design', categoria:'Barba', valor:10.50},
-  {id:3, descricao:'Camuflagem de Barba', categoria:'Barba', valor:10.50},
-  {id:4, descricao:'Corte com Máquina', categoria:'Cabelo', valor:10.50},
-  {id:5, descricao:'Corte com Tesoura', categoria:'Cabelo', valor:10.50},
-  {id:6, descricao:'Pezinho', categoria:'Cabelo', valor:10.50},
-  {id:7, descricao:'Camuflagem de Cabelo', categoria:'Cabelo', valor:10.50},
-  {id:8, descricao:'Sei lá', categoria:'Sombrancelha', valor:10.50},
-  {id:9, descricao:'Sei lá 2.0', categoria:'Sombrancelha', valor:10.50}
+  //Variaveis que armazenam objetos que populam os objetos da tela
+  servicos: Servico[] = [];
+  profissionais: Profissional[] = [];
+  saloes: Salao[];
+  HorarioDeAtendimento: Time[] = [
+    { hours: 8, minutes: 0 },
+    { hours: 9, minutes: 0 },
+    { hours: 10, minutes: 0 },
+    { hours: 11, minutes: 0 },
+    { hours: 12, minutes: 0 },
+    { hours: 13, minutes: 0 },
+    { hours: 14, minutes: 0 },
+    { hours: 15, minutes: 0 },
+    { hours: 16, minutes: 0 },
+    { hours: 17, minutes: 0 },
+    { hours: 18, minutes: 0 }
   ];
 
-  categorias:Servico[] = this.servicos.filter(
-    (thing, i, arr) => arr.findIndex(t => t.categoria === thing.categoria) === i
-  );
+  sucessoRoute: String = "/";
+  erroRoute: String = "/";
 
-  endereco1: Endereco = {Id:1, Logradouro:'', Numero:1, Complemento:'', Bairro:'Bairro1', Cidade:'', UF:'RJ', CEP:'111'}
-  endereco2: Endereco = {Id:2, Logradouro:'', Numero:2, Complemento:'', Bairro:'Bairro2', Cidade:'', UF:'RJ', CEP:'222'}
-  endereco3: Endereco = {Id:3, Logradouro:'', Numero:3, Complemento:'', Bairro:'Bairro3', Cidade:'', UF:'RJ', CEP:'333'}
+  constructor(
+    private api: RestService,
+    private _snackBar: MatSnackBar,
+    public router: Router
+  ) {}
 
-  endereco4: Endereco = {Id:4, Logradouro:'', Numero:4, Complemento:'', Bairro:'Bairro4', Cidade:'', UF:'RJ', CEP:'111'}
-  endereco5: Endereco = {Id:5, Logradouro:'', Numero:5, Complemento:'', Bairro:'Bairro5', Cidade:'', UF:'RJ', CEP:'222'}
-  endereco6: Endereco = {Id:6, Logradouro:'', Numero:6, Complemento:'', Bairro:'Bairro6', Cidade:'', UF:'RJ', CEP:'333'}
+  ngOnInit() {
+    this.PegarServicosNaAPI();
+  }
 
-  endereco7: Endereco = {Id:7, Logradouro:'', Numero:7, Complemento:'', Bairro:'Bairro7', Cidade:'', UF:'RJ', CEP:'111'}
-  endereco8: Endereco = {Id:8, Logradouro:'', Numero:8, Complemento:'', Bairro:'Bairro8', Cidade:'', UF:'RJ', CEP:'222'}
-  endereco9: Endereco = {Id:9, Logradouro:'', Numero:9, Complemento:'', Bairro:'Bairro9', Cidade:'', UF:'RJ', CEP:'333'}
-
-
-
-  saloes: Salao[] = [
-    {Id:1, Nome:'Salão1', Telefone:'', Email:'', Endereco:this.endereco1},
-    {Id:2, Nome:'Salão2', Telefone:'', Email:'', Endereco:this.endereco2},
-    {Id:3, Nome:'Salão3', Telefone:'', Email:'', Endereco:this.endereco3}
-  ]
-
-  saloes2: Salao[] = [
-    {Id:4, Nome:'Salão4', Telefone:'', Email:'', Endereco:this.endereco4},
-    {Id:5, Nome:'Salão5', Telefone:'', Email:'', Endereco:this.endereco5},
-    {Id:6, Nome:'Salão6', Telefone:'', Email:'', Endereco:this.endereco6}
-  ]
-
-  saloes3: Salao[] = [
-    {Id:7, Nome:'Salão7', Telefone:'', Email:'', Endereco:this.endereco7},
-    {Id:8, Nome:'Salão8', Telefone:'', Email:'', Endereco:this.endereco8},
-    {Id:9, Nome:'Salão9', Telefone:'', Email:'', Endereco:this.endereco9}
-  ]
-
-  profissionais:Profissional[] = [
-    { id:1, nome:"Profissional_1", telefone:"111", email:"111", senha:'111', Saloes:this.saloes},
-    { id:2, nome:"Profissional_2", telefone:"222", email:"222", senha:'222', Saloes:this.saloes2},
-    { id:3, nome:"Profissional_3", telefone:"333", email:"333", senha:'333', Saloes:this.saloes3}
-  ]
-
-  // bairros:Salao[] = this.saloes.filter(
-  //   (thing, i, arr) => arr.findIndex(t => t.Endereco.Bairro === thing.Endereco.Bairro) === i
-  // );
-
-  constructor(private api: RestService) {}
-
-  ngOnInit() { }
-
-
-  selecaoCategoria(event, categoriaNome) {
-    //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior
+  selecaoServico(event, id: Number) {
     if (event.source.selected) {
-        this.disableSelectServico = false;
-        this.servicoFiltrado = this.servicos.filter(s => s.categoria === categoriaNome);
+      this.AoSelecionarCampo("servico");
+      this.PegarProfissionaisNaAPI(id);
+      this.agendamento.idServico = id;
     }
   }
 
-  selecaoServico(event, Id) {
-    //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior
+  selecaoProfissional(event, id: Number) {
     if (event.source.selected) {
-        // this.disableSelectBairro = false;
-        this.disableSelectProfissional = false;
+      this.AoSelecionarCampo("profissional");
+      this.saloes = this.profissionais.filter(p => p.id === id)[0].saloes;
+      this.agendamento.idProfissional = id;
     }
   }
 
-  selecaoProfissional(event, Id) {
-    //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior
+  selecaoSalao(event, id: Number) {
+    if (event.source.selected) this.AoSelecionarCampo("salao");
+    this.agendamento.idSalao = id;
+  }
+
+  selecaoData(type: string, event: MatDatepickerInputEvent<Date>) {
+    if (type === "change") {
+      this.AoSelecionarCampo("data");
+      this.agendamento.inicioServico = event.value;
+    }
+  }
+
+  selecaoHorario(event, hora: Time) {
     if (event.source.selected) {
-        this.salaoFiltrado = this.profissionais.filter(s => s.id === Id)[0].Saloes;
-        this.disableSelectSalao = false;
-      }
+      this.AoSelecionarCampo("horario");
+      this.agendamento.inicioServico.setHours(hora.hours);
+    }
   }
 
-// selecaoBairro(event, Id) {
-//   //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior
-//   if (event.source.selected) {
-//       console.log(Id);
-//       this.disableSelectSalao = false;
-//   }
-// }
-
-  selecaoSalao(event, Id) {
-    //O IF abaixo é utilizado para reparar a falha da chamada do evento onSelectionChange, pois o mesmo realiza dua chamadas uma quando seleciona o novo valor e outra quando deseleciona o anterior
-    if (event.source.selected)
-        this.disableBotaoAgendar = false;
+  PegarServicosNaAPI() {
+    this.api.getServicos().subscribe(s => {
+      this.servicos = s as Servico[];
+    });
   }
 
-  agendar(){
+  PegarProfissionaisNaAPI(id: Number) {
+    this.api.getProfissionais().subscribe(s => {
+      this.profissionais = s.filter(p =>
+        p.servicos.find(s => s.id === id)
+      ) as Profissional[];
+    });
+  }
 
-    let bodyRequest = '{"idservico": ' + this.selectedIdServico + ', "idprofissional": ' + this.selectedIdProfissional + ', "idsalao": ' + this.selectedIdSalao + '}';
-    this.api.addScheduling(bodyRequest).pipe(first())
+  agendar() {
+    this.api
+      .createAgendamento(this.agendamento)
+      .pipe(first())
       .subscribe(
         () => {
           console.log("sucesso login component");
+          this.openSnackBar("Agendamento realizado com sucesso", "Ok");
         },
         () => {
-          console.log("erro");
-        });
+          this.openSnackBar(
+            "Falha ao agendar, tente novamente mais tarde.",
+            "Sair"
+          );
+        }
+      );
+  }
+
+  openSnackBar(message: string, action: string) {
+    let sucesso: Boolean = action === "Ok" ? true : false;
+
+    let snackBarRef = sucesso
+      ? this._snackBar.open(message, action, { duration: 3000 })
+      : this._snackBar.open(message, action, { duration: 5000 });
+
+    snackBarRef.onAction().subscribe(() => {
+      snackBarRef.dismiss();
+    });
+
+    snackBarRef.afterDismissed().subscribe(() => {
+      if (sucesso) this.router.navigate([this.sucessoRoute]);
+    });
+  }
+
+  private AoSelecionarCampo(nomeDoCampo: String) {
+    switch (nomeDoCampo) {
+      case "servico":
+        this.disableSelectProfissional = false;
+        this.disableSelectSalao = true;
+        this.disableSelectCalendario = true;
+        this.disableSelectHorario = true;
+        this.disableBotaoAgendar = true;
+        this.profissionais = [];
+        this.saloes = [];
+        break;
+
+      case "profissional":
+        this.disableSelectSalao = false;
+        this.disableSelectCalendario = true;
+        this.disableSelectHorario = true;
+        this.disableBotaoAgendar = true;
+        this.saloes = [];
+        break;
+
+      case "salao":
+        this.disableSelectCalendario = false;
+        this.disableSelectHorario = true;
+        this.disableBotaoAgendar = true;
+        break;
+
+      case "data":
+        this.disableSelectHorario = false;
+        this.disableBotaoAgendar = true;
+        break;
+
+      case "horario":
+        this.disableBotaoAgendar = false;
+        break;
+
+      default:
+        break;
+    }
   }
 }

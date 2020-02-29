@@ -3,5 +3,4 @@ export class Servico {
     descricao:String
     valor:Number
     categoria:String
-   
 }
