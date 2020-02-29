@@ -65,11 +65,11 @@ export class RestService {
       // a.idCliente +
       1 +
       ' }, "profissional": { "id": ' +
-      a.idProfissional +
+      a.profissional.id +
       ' }, "salao": { "id": ' +
-      a.idSalao +
+      a.salao.id +
       ' }, "servico": { "id": ' +
-      a.idServico +
+      a.servico.id +
       ' }, "inicioServico": "' +
       datePipe.transform(a.inicioServico, 'dd/MM/yyyy HH:mm') +
       '",	"fimServico": "' +
@@ -89,7 +89,7 @@ export class RestService {
     const url = `${environment.urlApi}/agendamentos/checkin/profissional`;
     return this.http.put<any>(url, body,
       {
-        headers: this.defaultHeaders
+        headers: this.defaultHeadersToPostJson
       }).pipe(map(resp => {
         console.log(resp);
         return resp;
