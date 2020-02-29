@@ -85,9 +85,9 @@ export class RestService {
       );
   }
 
-  checkInProfissional(body: string) {
-    const url = `${environment.urlApi}/agendamentos/checkin/profissional`;
-    return this.http.put<any>(url, body,
+  checkInProfissional(id: number) {
+    const url = `${environment.urlApi}/agendamentos/${id}/checkin-profissional`;
+    return this.http.put<any>(url, id,
       {
         headers: this.defaultHeadersToPostJson
       }).pipe(map(resp => {

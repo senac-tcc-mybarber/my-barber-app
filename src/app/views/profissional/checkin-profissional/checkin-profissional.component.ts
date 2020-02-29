@@ -36,11 +36,7 @@ export class CheckinProfissionalComponent implements OnInit {
   }
 
   realizarCheckin() {
-    const bodyRequest = {
-      id: this.agendamento.id
-    };
-    console.log(bodyRequest);
-    this.api.checkInProfissional(JSON.stringify(bodyRequest))
+    this.api.checkInProfissional(this.agendamento.id)
       .pipe(first())
       .subscribe(() => {
         console.log('Registro de checkin realizado com sucesso.');
