@@ -24,6 +24,7 @@ export class AgendamentoComponent implements OnInit {
   disableSelectCalendario = true;
   disableSelectHorario = true;
   disableBotaoAgendar = true;
+
   FiltroDoCalendario = new Date();
 
   //Variavel para comunicação com a API
