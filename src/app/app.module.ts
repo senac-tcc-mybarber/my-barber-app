@@ -35,6 +35,8 @@ import { MatNativeDateModule, MatRippleModule } from "@angular/material/core";
 import { MatStepperModule } from "@angular/material/stepper";
 import { CheckinProfissionalComponent } from "./views/profissional/checkin-profissional/checkin-profissional.component";
 
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +77,9 @@ import { CheckinProfissionalComponent } from "./views/profissional/checkin-profi
     MatNativeDateModule,
     MatRippleModule,
 
-    MatStepperModule
+    MatStepperModule,
+
+    MatSnackBarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
