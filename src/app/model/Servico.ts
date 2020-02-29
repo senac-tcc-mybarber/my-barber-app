@@ -1,6 +1,6 @@
 export class Servico {
-  id: Number;
-  Descricao: String;
-  Valor: Number;
-  Categoria: String;
+    id:Number
+    descricao:String
+    valor:Number
+    categoria:String
 }

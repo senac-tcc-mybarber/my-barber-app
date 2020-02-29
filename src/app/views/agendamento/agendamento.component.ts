@@ -6,9 +6,10 @@ import { Salao } from "src/app/model/salao";
 import { Profissional } from "src/app/model/profissional";
 import { RestService } from "src/app/rest.service";
 import { first } from "rxjs/operators";
-import { MatDatepickerInputEvent } from "@angular/material";
+import { MatDatepickerInputEvent, MatSnackBar } from "@angular/material";
 import { Agendamento } from "src/app/model/agendamento";
 import { Time } from "@angular/common";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-agendamento",
@@ -23,6 +24,7 @@ export class AgendamentoComponent implements OnInit {
   disableSelectCalendario = true;
   disableSelectHorario = true;
   disableBotaoAgendar = true;
+
   FiltroDoCalendario = new Date();
 
   // Variavel para comunicação com a API
@@ -46,7 +48,14 @@ export class AgendamentoComponent implements OnInit {
     { hours: 18, minutes: 0 }
   ];
 
-  constructor(private api: RestService) {}
+  sucessoRoute: String = "/";
+  erroRoute: String = "/";
+
+  constructor(
+    private api: RestService,
+    private _snackBar: MatSnackBar,
+    public router: Router
+  ) {}
 
   ngOnInit() {
     this.PegarServicosNaAPI();
@@ -83,7 +92,7 @@ export class AgendamentoComponent implements OnInit {
     }
   }
 
-  selecaoHorario(event, hora:Time) {
+  selecaoHorario(event, hora: Time) {
     if (event.source.selected) {
       this.AoSelecionarCampo("horario");
       this.agendamento.inicioServico.setHours(hora.hours);
@@ -105,18 +114,37 @@ export class AgendamentoComponent implements OnInit {
   }
 
   agendar() {
-    let bodyRequest = '';
     this.api
-      .addScheduling(bodyRequest)
+      .createAgendamento(this.agendamento)
       .pipe(first())
       .subscribe(
         () => {
           console.log("sucesso login component");
+          this.openSnackBar("Agendamento realizado com sucesso", "Ok");
         },
         () => {
-          console.log("erro");
+          this.openSnackBar(
+            "Falha ao agendar, tente novamente mais tarde.",
+            "Sair"
+          );
         }
       );
+  }
+
+  openSnackBar(message: string, action: string) {
+    let sucesso: Boolean = action === "Ok" ? true : false;
+
+    let snackBarRef = sucesso
+      ? this._snackBar.open(message, action, { duration: 3000 })
+      : this._snackBar.open(message, action, { duration: 5000 });
+
+    snackBarRef.onAction().subscribe(() => {
+      snackBarRef.dismiss();
+    });
+
+    snackBarRef.afterDismissed().subscribe(() => {
+      if (sucesso) this.router.navigate([this.sucessoRoute]);
+    });
   }
 
   private AoSelecionarCampo(nomeDoCampo: String) {

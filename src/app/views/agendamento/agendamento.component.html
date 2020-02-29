@@ -45,9 +45,7 @@
 
               <mat-form-field>
                 <mat-label>Profissional</mat-label>
-                <mat-select
-                  [disabled]="disableSelectProfissional"
-                >
+                <mat-select [disabled]="disableSelectProfissional">
                   <mat-option
                     (onSelectionChange)="
                       selecaoProfissional($event, profissional.id)
@@ -62,9 +60,7 @@
 
               <mat-form-field>
                 <mat-label>Salão</mat-label>
-                <mat-select
-                  [disabled]="disableSelectSalao"
-                >
+                <mat-select [disabled]="disableSelectSalao">
                   <mat-option
                     (onSelectionChange)="selecaoSalao($event, salao.id)"
                     *ngFor="let salao of saloes"
