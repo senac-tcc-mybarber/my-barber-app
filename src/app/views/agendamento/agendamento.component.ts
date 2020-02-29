@@ -16,7 +16,7 @@ import { Time } from "@angular/common";
   styleUrls: ["./agendamento.component.scss"]
 })
 export class AgendamentoComponent implements OnInit {
-  //Variaveis de interação com a tela
+  // Variaveis de interação com a tela
   disableSelectServico = true;
   disableSelectProfissional = true;
   disableSelectSalao = true;
@@ -25,10 +25,10 @@ export class AgendamentoComponent implements OnInit {
   disableBotaoAgendar = true;
   FiltroDoCalendario = new Date();
 
-  //Variavel para comunicação com a API
+  // Variavel para comunicação com a API
   agendamento: Agendamento = new Agendamento();
 
-  //Variaveis que armazenam objetos que populam os objetos da tela
+  // Variaveis que armazenam objetos que populam os objetos da tela
   servicos: Servico[] = [];
   profissionais: Profissional[] = [];
   saloes: Salao[];
@@ -52,25 +52,28 @@ export class AgendamentoComponent implements OnInit {
     this.PegarServicosNaAPI();
   }
 
-  selecaoServico(event, id: Number) {
+  selecaoServico(event, id: number) {
     if (event.source.selected) {
       this.AoSelecionarCampo("servico");
       this.PegarProfissionaisNaAPI(id);
-      this.agendamento.idServico = id;
+      this.agendamento.servico = new Servico();
+      this.agendamento.servico.id = id;
     }
   }
 
-  selecaoProfissional(event, id: Number) {
+  selecaoProfissional(event, id: number) {
     if (event.source.selected) {
       this.AoSelecionarCampo("profissional");
       this.saloes = this.profissionais.filter(p => p.id === id)[0].saloes;
-      this.agendamento.idProfissional = id;
+      this.agendamento.profissional = new Profissional();
+      this.agendamento.profissional.id = id;
     }
   }
 
-  selecaoSalao(event, id: Number) {
+  selecaoSalao(event, id: number) {
     if (event.source.selected) this.AoSelecionarCampo("salao");
-    this.agendamento.idSalao = id;
+    this.agendamento.salao = new Salao();
+    this.agendamento.salao.id = id;
   }
 
   selecaoData(type: string, event: MatDatepickerInputEvent<Date>) {

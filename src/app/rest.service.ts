@@ -20,7 +20,8 @@ export class RestService {
   ({
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Content-Type': 'application/json'
   })
 
   constructor(private http: HttpClient) {
@@ -57,6 +58,17 @@ export class RestService {
         console.log(user);
         return user;
       }));
+  }
+
+  checkInProfissional(body: string) {
+    const url = `${environment.urlApi}/agendamentos/checkin/profissional`;
+    return this.http.put<any>(url, body,
+      {
+        headers: this.defaultHeaders
+      }).pipe(map(resp => {
+        console.log(resp);
+        return resp;
+    }));
   }
 
   getSaloes() {
