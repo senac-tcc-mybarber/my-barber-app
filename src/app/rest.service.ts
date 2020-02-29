@@ -85,6 +85,17 @@ export class RestService {
       );
   }
 
+  checkInProfissional(body: string) {
+    const url = `${environment.urlApi}/agendamentos/checkin/profissional`;
+    return this.http.put<any>(url, body,
+      {
+        headers: this.defaultHeaders
+      }).pipe(map(resp => {
+        console.log(resp);
+        return resp;
+    }));
+  }
+
   getSaloes() {
     const url = `${environment.urlApi}/saloes`;
     return this.http.get<Salao[]>(url, {

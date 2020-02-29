@@ -10,10 +10,9 @@
             Salão: {{agendamento.salao.nome}}<br /><br />
             Serviço: {{agendamento.servico.nome}}<br /><br />
             Horário: {{agendamento.inicioServico}} a {{agendamento.fimServico}}<br /><br />
-            <input placeholder="Informe a senha para confirmar o check-in..." [formControl]="agendamentoCtrl" />
           <div fxLayoutAlign="space-between">
             <mat-button-toggle class="add-button animated jackInTheBox delay-1s button" (click)="associar()">
-              Salvar</mat-button-toggle>
+              Registrar</mat-button-toggle>
             <mat-button-toggle class="add-button animated jackInTheBox delay-1s button" routerLink="/">
               Cancelar</mat-button-toggle>
           </div>
