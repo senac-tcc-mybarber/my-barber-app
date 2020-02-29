@@ -104,6 +104,13 @@ export class RestService {
     );
   }
 
+  getProfissionais (): Observable<Profissional[]> {
+    const url = `${environment.urlApi}/profissionais`;
+    return this.http.get<Profissional[]>(url)
+      .pipe(catchError(this.handleError('getProfissionais', []))
+      );
+  }
+
   getProfissional(id: number): Observable<Profissional> {
     const url = `${environment.urlApi}/profissionais/${id}`;
     return this.http.get<Profissional>(url).pipe(
@@ -115,12 +122,10 @@ export class RestService {
   getServicos (): Observable<Servico[]> {
     const url = `${environment.urlApi}/servicos`;
     return this.http.get<Servico[]>(url)
-      .pipe(
-        tap(servicos => console.log('leu os servicos disponiveis')),
-        catchError(this.handleError('getServicos', []))
+      .pipe(catchError(this.handleError('getServicos', []))
       );
   }
-  //
+
 
   getAgendamento(id: number): Observable<Agendamento> {
     const url = `${environment.urlApi}/agendamentos/${id}`;

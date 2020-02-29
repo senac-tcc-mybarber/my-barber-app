@@ -1,4 +1,5 @@
-import { Salao } from './SalaoX';
+import { Salao } from './salao';
+import { Servico } from './Servico';
 
 export class Profissional {
   id:Number;
@@ -6,5 +7,6 @@ export class Profissional {
   telefone: string;
   email: string;
   senha: string;
-  Saloes:Salao[];
+  servicos:Servico[];
+  saloes:Salao[];
 }
