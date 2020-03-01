@@ -8,6 +8,7 @@ import { AssociacaoSalaoComponent } from './views/profissional/associacao-salao/
 import { AssociarServicosProfissionalComponent } from './views/profissional/associar-servicos-profissional/associar-servicos-profissional.component';
 import { AgendamentoComponent } from './views/agendamento/agendamento.component';
 import {CheckinProfissionalComponent} from './views/profissional/checkin-profissional/checkin-profissional.component';
+import {CheckinClienteComponent} from "./views/cliente/checkin-cliente/checkin-cliente.component";
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'associarsalao/:id', component: AssociacaoSalaoComponent},
   { path: 'associarservicoprofissional/:id', component: AssociarServicosProfissionalComponent},
   { path: 'agendamento', component: AgendamentoComponent},
-  { path: 'checkinprofissional/:id', component: CheckinProfissionalComponent}
+  { path: 'checkinprofissional/:id', component: CheckinProfissionalComponent},
+  { path: 'checkincliente/:id', component: CheckinClienteComponent}
 ];
 
 @NgModule({

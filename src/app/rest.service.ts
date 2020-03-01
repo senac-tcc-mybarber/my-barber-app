@@ -96,6 +96,17 @@ export class RestService {
     }));
   }
 
+  checkInCliente(id: number) {
+    const url = `${environment.urlApi}/agendamentos/${id}/checkin-cliente`;
+    return this.http.put<any>(url, id,
+      {
+        headers: this.defaultHeadersToPostJson
+      }).pipe(map(resp => {
+      console.log(resp);
+      return resp;
+    }));
+  }
+
   getSaloes() {
     const url = `${environment.urlApi}/saloes`;
     return this.http.get<Salao[]>(url, {
