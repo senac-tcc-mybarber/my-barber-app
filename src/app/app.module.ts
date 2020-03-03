@@ -11,7 +11,8 @@ import {
   MatHorizontalStepper,
   MatSelectModule,
   MatTableModule,
-  MatTableDataSource
+  MatTableDataSource,
+  MatToolbarModule
 } from "@angular/material";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { BrowserModule } from "@angular/platform-browser";
@@ -36,6 +37,8 @@ import { MatStepperModule } from "@angular/material/stepper";
 import { CheckinProfissionalComponent } from "./views/profissional/checkin-profissional/checkin-profissional.component";
 
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { TabelaAgendamentosComponent } from './views/tabela-agendamentos/tabela-agendamentos.component';
+import { HomeClienteComponent } from './views/cliente/home-cliente/home-cliente.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     AssociacaoSalaoComponent,
     AgendamentoComponent,
     AssociarServicosProfissionalComponent,
-    CheckinProfissionalComponent
+    CheckinProfissionalComponent,
+    TabelaAgendamentosComponent,
+    HomeClienteComponent
   ],
   imports: [
     AppRoutingModule,
@@ -72,14 +77,12 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     MatAutocompleteModule,
     MatSelectModule,
     MatTableModule,
-
     MatDatepickerModule,
     MatNativeDateModule,
     MatRippleModule,
-
     MatStepperModule,
-
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatToolbarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

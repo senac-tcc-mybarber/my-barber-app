@@ -9,6 +9,7 @@ import { Salao } from "./model/salao";
 import { Usuario } from "./model/Usuario";
 import { Agendamento } from "./model/agendamento";
 import { DatePipe } from '@angular/common';
+import { Cliente } from './model/cliente';
 
 @Injectable({ providedIn: "root" })
 export class RestService {
@@ -186,4 +187,13 @@ export class RestService {
       return of(result as T);
     };
   }
+
+  getCliente(id: number): Observable<Cliente> {
+    const url = `${environment.urlApi}/clientes/${id}`;
+    return this.http.get<Cliente>(url).pipe(
+      tap(_ => console.log(`leu o cliente id=${id}`)),
+      catchError(this.handleError<Cliente>(`getCliente id=${id}`))
+    );
+  }
+
 }
