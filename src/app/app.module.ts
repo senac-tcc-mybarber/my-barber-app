@@ -36,6 +36,7 @@ import { MatStepperModule } from "@angular/material/stepper";
 import { CheckinProfissionalComponent } from "./views/profissional/checkin-profissional/checkin-profissional.component";
 
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { HistoricoComponent } from './views/historico/historico.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     AssociacaoSalaoComponent,
     AgendamentoComponent,
     AssociarServicosProfissionalComponent,
-    CheckinProfissionalComponent
+    CheckinProfissionalComponent,
+    HistoricoComponent
   ],
   imports: [
     AppRoutingModule,

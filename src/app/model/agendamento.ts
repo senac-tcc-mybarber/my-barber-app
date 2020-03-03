@@ -11,8 +11,8 @@ export class Agendamento {
   servico: Servico;
   inicioServico: Date;
   fimServico: Date;
+  status: String;
   checkInCliente: Date;
   checkInProfissional: Date;
-  checkOutCliente: Date;
-  checkOutProfissional: Date;
+  finalizacao: Date;
 }
