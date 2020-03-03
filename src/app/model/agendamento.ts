@@ -14,5 +14,8 @@ export class Agendamento {
   status: String;
   checkInCliente: Date;
   checkInProfissional: Date;
+<<<<<<< HEAD
   finalizacao: Date;
+=======
+>>>>>>> master
 }
