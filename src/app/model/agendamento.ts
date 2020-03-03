@@ -13,6 +13,4 @@ export class Agendamento {
   fimServico: Date;
   checkInCliente: Date;
   checkInProfissional: Date;
-  checkOutCliente: Date;
-  checkOutProfissional: Date;
 }
