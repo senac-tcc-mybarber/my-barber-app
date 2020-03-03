@@ -12,7 +12,9 @@ import {
   MatSelectModule,
   MatTableModule,
   MatTableDataSource,
-  MatToolbarModule
+  MatToolbarModule,
+  MatSidenavModule,
+  MatListModule,
 } from "@angular/material";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { BrowserModule } from "@angular/platform-browser";
@@ -39,6 +41,7 @@ import { CheckinProfissionalComponent } from "./views/profissional/checkin-profi
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { TabelaAgendamentosComponent } from './views/tabela-agendamentos/tabela-agendamentos.component';
 import { HomeClienteComponent } from './views/cliente/home-cliente/home-cliente.component';
+import { LayoutComponent } from './views/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,8 @@ import { HomeClienteComponent } from './views/cliente/home-cliente/home-cliente.
     AssociarServicosProfissionalComponent,
     CheckinProfissionalComponent,
     TabelaAgendamentosComponent,
-    HomeClienteComponent
+    HomeClienteComponent,
+    LayoutComponent
   ],
   imports: [
     AppRoutingModule,
@@ -82,7 +86,9 @@ import { HomeClienteComponent } from './views/cliente/home-cliente/home-cliente.
     MatRippleModule,
     MatStepperModule,
     MatSnackBarModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

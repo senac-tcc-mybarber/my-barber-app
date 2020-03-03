@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Agendamento } from 'src/app/model/agendamento';
-import { RestService } from 'src/app/rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/model/cliente';
+import { RestService } from 'src/app/rest.service';
+import { UsuarioService } from 'src/app/usuario.service'
 
 @Component({
   selector: 'app-home-cliente',
@@ -12,17 +12,20 @@ import { Cliente } from 'src/app/model/cliente';
 export class HomeClienteComponent implements OnInit {
   cliente: Cliente;
 
-  constructor(private api: RestService,
+  constructor(
+    private api: RestService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private usuarioService: UsuarioService) {
     }
 
   ngOnInit() {
-    this.getCliente(this.route.snapshot.params['id'])
+    this.getCliente()
   }
 
-  getCliente(id) {
-    this.api.getCliente(id)
+  getCliente() {
+    const user = this.usuarioService.currentUserValue
+    this.api.getCliente(user.id)
       .subscribe(data => {
         this.cliente = data;
         console.log(this.cliente);

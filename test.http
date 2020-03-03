@@ -4,12 +4,12 @@
 POST http://localhost:8080/authenticate
 
 {
-    "username":"customer",
-    "password":"password"
+    "username":"jose@gmail.com",
+    "password":"1234"
 }
 ###
 
-GET http://localhost:8080/clientes
+GET http://localhost:8080/clientes/1
 Authorization: Bearer {{token}}
 ###
 
@@ -81,3 +81,10 @@ Content-Type: application/json
 
 {"saloes":[1,2]}
 ###
+
+
+GET http://localhost:8080/agendamentos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+
