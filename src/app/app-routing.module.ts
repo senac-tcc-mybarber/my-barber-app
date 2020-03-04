@@ -26,6 +26,7 @@ if(currentUserString) {
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
+  { path: 'home', redirectTo: 'layout/home'},
   { path: 'login', component: LoginComponent},
   { path: 'selecionaperfil', component: PerfilComponentComponent },
   { path: 'cadastrocliente', component: CadastroClienteComponent},

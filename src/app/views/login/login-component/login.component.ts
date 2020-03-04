@@ -2,6 +2,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { Login } from 'src/app/model/login';
 import { UsuarioService } from 'src/app/usuario.service'
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,9 @@ import { UsuarioService } from 'src/app/usuario.service'
 export class LoginComponent implements OnInit {
 
   private login: Login = new Login();
-  constructor(private api: UsuarioService) {
+  constructor(
+    private api: UsuarioService,
+    private router: Router) {
 
   }
 
@@ -28,6 +31,8 @@ export class LoginComponent implements OnInit {
         },
         () => {
           console.log("erro");
-        });
+      });
+
+      this.router.navigate(["layout","home"])
   }
 }
