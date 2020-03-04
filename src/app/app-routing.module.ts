@@ -33,11 +33,11 @@ const routes: Routes = [
   { path: 'cadastroprofissional', component: CadastroProfissionalComponent},
   { path: 'associarsalao/:id', component: AssociacaoSalaoComponent},
   { path: 'associarservicoprofissional/:id', component: AssociarServicosProfissionalComponent},
-  { path: 'agendamento', component: AgendamentoComponent},
   { path: 'checkinprofissional/:id', component: CheckinProfissionalComponent},
   { path: 'layout', component: LayoutComponent, children :[
     { path: 'home', redirectTo: home},
     { path: 'homecliente', component: HomeClienteComponent},
+    { path: 'agendamento', component: AgendamentoComponent},
   ] },
 ];
 
