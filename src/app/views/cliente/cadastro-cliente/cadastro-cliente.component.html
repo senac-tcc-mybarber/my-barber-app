@@ -4,10 +4,14 @@
       <mat-card fxLayout="column" class="form-login animated jackInTheBox" fxLayoutAlign="stretch" fxFlex="1 1 100" fxFlex.gt-xs="55"
         fxFlex.gt-sm="40">
         <h2>Novo Cliente</h2>
-        <form [formGroup]="clienteForm" fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="7%">
+        <form [formGroup]="clienteForm" fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="7%" (ngSubmit)="cadastrarCliente(clienteForm.value)">
           <mat-form-field>
-            <input matInput placeholder="Nome Completo" formControlName="nomeCompleto" maxlength="60">
-            <mat-error *ngIf="hasError('nomeCompleto', 'required')">Campo obrigatório</mat-error>
+            <input matInput placeholder="Nome Completo" formControlName="nome" maxlength="60">
+            <mat-error *ngIf="hasError('nome', 'required')">Campo obrigatório</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Username" formControlName="username" maxlength="60">
+            <mat-error *ngIf="hasError('username', 'required')">Campo obrigatório</mat-error>
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Telefone" formControlName="telefone" maxlength="10">
@@ -19,15 +23,19 @@
             <mat-error *ngIf="hasError('email', 'email')">E-mail com formato inválido</mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input matInput type="password" formControlName="password" placeholder="Senha" maxlength="8">
-            <mat-error *ngIf="hasError('password', 'required')">Campo obrigatório</mat-error>
+            <input matInput type="senha" formControlName="senha" placeholder="Senha" maxlength="8">
+            <mat-error *ngIf="hasError('senha', 'required')">Campo obrigatório</mat-error>
           </mat-form-field>
 
           <div fxLayoutAlign="space-between">
-            <mat-button-toggle class="add-button animated jackInTheBox delay-1s button" (click)="cadastrarCliente()">
+
+            <button mat-button routerLink="/">Cancelar</button>
+            <button mat-raised-button type="submit">Cadastrar</button>
+
+            <!-- <mat-button-toggle type="submit" class="add-button animated jackInTheBox delay-1s button">
               Cadastrar</mat-button-toggle>
             <mat-button-toggle class="add-button animated jackInTheBox delay-1s button" routerLink="/">
-              Cancelar</mat-button-toggle>
+              Cancelar</mat-button-toggle> -->
           </div>
         </form>
       </mat-card>

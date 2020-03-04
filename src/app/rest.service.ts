@@ -92,16 +92,17 @@ export class RestService {
     )
   }
 
-  createCliente() {
-    const url = `${environment.urlApi}/create`;
-    const body = "";
+  createCliente(cliente): Observable<Cliente> {
+    const url = `${environment.urlApi}/clientes`;
     return this.http
-      .post<any>(url, body, {
-        headers: this.defaultHeaders
+      .post<any>(url, cliente, {
+        headers: this.defaultHeadersToPostJson
       })
       .pipe(
-        map(user => {
-          console.log(user);
+        tap(Cliente => console.log(`adicionou o cliente`)),
+        catchError(err => {
+          console.log(err); 
+          return this.handleError<Cliente>("createCliente")
         })
       );
   }

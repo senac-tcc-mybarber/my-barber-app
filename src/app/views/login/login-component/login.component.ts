@@ -28,11 +28,10 @@ export class LoginComponent implements OnInit {
       .subscribe(
         () => {
           console.log("sucesso login component");
+          this.router.navigate(["layout","home"])
         },
         () => {
           console.log("erro");
       });
-
-      this.router.navigate(["layout","home"])
   }
 }
