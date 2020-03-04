@@ -1,3 +1,4 @@
+
 import {Cliente} from "./cliente";
 import {Profissional} from "./profissional";
 import {Salao} from "./salao";
