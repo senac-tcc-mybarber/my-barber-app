@@ -4,7 +4,7 @@
 POST http://localhost:8080/authenticate
 
 {
-    "username":"jose@gmail.com",
+    "username":"username1",
     "password":"1234"
 }
 ###
