@@ -48,8 +48,8 @@ export class AgendamentoComponent implements OnInit {
     { hours: 18, minutes: 0 }
   ];
 
-  sucessoRoute: String = "/";
-  erroRoute: String = "/";
+  sucessoRoute: String = "/home";
+  erroRoute: String = "/home";
 
   constructor(
     private api: RestService,

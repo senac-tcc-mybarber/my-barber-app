@@ -26,17 +26,18 @@ if(currentUserString) {
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
+  { path: 'home', redirectTo: 'layout/home'},
   { path: 'login', component: LoginComponent},
   { path: 'selecionaperfil', component: PerfilComponentComponent },
   { path: 'cadastrocliente', component: CadastroClienteComponent},
   { path: 'cadastroprofissional', component: CadastroProfissionalComponent},
   { path: 'associarsalao/:id', component: AssociacaoSalaoComponent},
   { path: 'associarservicoprofissional/:id', component: AssociarServicosProfissionalComponent},
-  { path: 'agendamento', component: AgendamentoComponent},
   { path: 'checkinprofissional/:id', component: CheckinProfissionalComponent},
   { path: 'layout', component: LayoutComponent, children :[
     { path: 'home', redirectTo: home},
     { path: 'homecliente', component: HomeClienteComponent},
+    { path: 'agendamento', component: AgendamentoComponent},
   ] },
 ];
 

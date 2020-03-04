@@ -9,13 +9,12 @@ POST http://localhost:8080/authenticate
 }
 ###
 
-GET http://localhost:8080/clientes/1
+GET http://localhost:8080/clientes
 Authorization: Bearer {{token}}
 ###
 
 
 POST http://localhost:8080/clientes
-Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -38,7 +37,6 @@ Authorization: Bearer {{token}}
 ###
 
 POST http://localhost:8080/profissionais
-Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {

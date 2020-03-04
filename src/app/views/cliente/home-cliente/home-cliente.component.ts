@@ -10,7 +10,8 @@ import { UsuarioService } from 'src/app/usuario.service'
   styleUrls: ['./home-cliente.component.scss']
 })
 export class HomeClienteComponent implements OnInit {
-  cliente: Cliente;
+  
+  cliente = new Cliente();
 
   constructor(
     private api: RestService,
