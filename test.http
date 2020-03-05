@@ -4,8 +4,8 @@
 POST http://localhost:8080/authenticate
 
 {
-    "username":"customer",
-    "password":"password"
+    "username":"username1",
+    "password":"1234"
 }
 ###
 
@@ -15,7 +15,6 @@ Authorization: Bearer {{token}}
 
 
 POST http://localhost:8080/clientes
-Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -38,7 +37,6 @@ Authorization: Bearer {{token}}
 ###
 
 POST http://localhost:8080/profissionais
-Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -81,3 +79,10 @@ Content-Type: application/json
 
 {"saloes":[1,2]}
 ###
+
+
+GET http://localhost:8080/agendamentos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+

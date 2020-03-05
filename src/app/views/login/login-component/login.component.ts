@@ -1,9 +1,9 @@
-import { Component, OnInit, Injectable } from '@angular/core';
-
-import { Login } from 'src/app/model/login';
-import { RestService } from 'src/app/rest.service';
-
+import { Component, Injectable, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
+import { Login } from 'src/app/model/login';
+import { UsuarioService } from 'src/app/usuario.service'
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,9 @@ import { first } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
 
   private login: Login = new Login();
-  constructor(private api: RestService) {
+  constructor(
+    private api: UsuarioService,
+    private router: Router) {
 
   }
 
@@ -26,9 +28,10 @@ export class LoginComponent implements OnInit {
       .subscribe(
         () => {
           console.log("sucesso login component");
+          this.router.navigate(["layout","home"])
         },
         () => {
           console.log("erro");
-        });
+      });
   }
 }
