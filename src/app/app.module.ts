@@ -8,10 +8,7 @@ import {
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
-  MatHorizontalStepper,
   MatSelectModule,
-  MatTableModule,
-  MatTableDataSource
 } from "@angular/material";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { BrowserModule } from "@angular/platform-browser";
@@ -37,6 +34,9 @@ import { CheckinProfissionalComponent } from "./views/profissional/checkin-profi
 
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { HistoricoComponent } from './views/historico/historico.component';
+
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -81,7 +81,10 @@ import { HistoricoComponent } from './views/historico/historico.component';
 
     MatStepperModule,
 
-    MatSnackBarModule
+    MatSnackBarModule,
+    
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

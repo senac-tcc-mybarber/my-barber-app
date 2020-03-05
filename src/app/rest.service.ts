@@ -9,6 +9,7 @@ import { Salao } from "./model/salao";
 import { Usuario } from "./model/Usuario";
 import { Agendamento } from "./model/agendamento";
 import { DatePipe } from '@angular/common';
+import { Cliente } from './model/cliente';
 
 @Injectable({ providedIn: "root" })
 export class RestService {
@@ -120,20 +121,6 @@ export class RestService {
     )
   }
 
-  createCliente() {
-    const url = `${environment.urlApi}/create`;
-    const body = "";
-    return this.http
-      .post<any>(url, body, {
-        headers: this.defaultHeaders
-      })
-      .pipe(
-        map(user => {
-          console.log(user);
-        })
-      );
-  }
-
   //funcoes para tratar profissional
   createProfissional(profissional): Observable<Profissional> {
     const url = `${environment.urlApi}/profissionais`;
@@ -185,5 +172,27 @@ export class RestService {
       console.error(error);
       return of(result as T);
     };
+  }
+
+  createCliente() {
+    const url = `${environment.urlApi}/create`;
+    const body = "";
+    return this.http
+      .post<any>(url, body, {
+        headers: this.defaultHeaders
+      })
+      .pipe(
+        map(user => {
+          console.log(user);
+        })
+      );
+  }
+
+  getClientes(id:Number): Observable<Cliente> {
+    const url = `${environment.urlApi}/clientes/${id}`;
+    return this.http.get<Cliente>(url).pipe(
+      tap(_ => console.log(`leu o Cliente id=${id}`)),
+      catchError(this.handleError<Cliente>(`erro Cliente id=${id}`))
+    );
   }
 }

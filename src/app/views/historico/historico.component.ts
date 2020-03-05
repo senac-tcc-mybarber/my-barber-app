@@ -1,5 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Agendamento } from 'src/app/model/agendamento';
+import { RestService } from 'src/app/rest.service';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import { Cliente } from 'src/app/model/cliente';
+import { Profissional } from 'src/app/model/profissional';
+import { Salao } from 'src/app/model/salao';
+import { Servico } from 'src/app/model/Servico';
+import { Stats } from 'fs';
 
 @Component({
   selector: 'app-historico',
@@ -8,224 +16,67 @@ import { Agendamento } from 'src/app/model/agendamento';
 })
 export class HistoricoComponent implements OnInit {
 
-  constructor() { }
+  historico:Agendamento[]=[];
+  ag:IAgendamento[];
+
+  constructor(private api: RestService) { }
+
+  // @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit() {
+    this.PegarHistorico(1)
+  }
+  
+  PegarHistorico(id:Number)
+  {
+    this.api.getClientes(id).subscribe(s => {
+      this.historico = s.agendamentos;
+      let h:IAgendamento[];
+      // const {servico, inicioServico:horario, salao: {endereco:local}, status} = s.agendamentos[0];
+      // const teste = {servico:this.historico[0].servico.nome, horario:this.historico[0].inicioServico, salao:this.historico[0].salao.endereco, status:this.historico[0].status};
+      // const teste = s.agendamentos.map(x => {x.servico.nome, x.inicioServico, x.salao.endereco, x.status} ). //{servico:this.historico[0].servico.nome, horario:this.historico[0].inicioServico, salao:this.historico[0].salao.endereco, status:this.historico[0].status};
+      // const teste = s.agendamentos.forEach(x => h.push( x.servico.nome, x.inicioServico, x.salao.endereco, x.status} ) ). //{servico:this.historico[0].servico.nome, horario:this.historico[0].inicioServico, salao:this.historico[0].salao.endereco, status:this.historico[0].status};
+
+      for (var {servico: {nome:servico}, inicioServico:horario, salao: { endereco:local }, status  } of this.historico) {
+        console.log("Serviço: " + servico + " Horario: " + horario + " Local: " + local + " Status: " + status);
+        // this.ag.push({servico + horario + local + status});
+      }
+
+      // console.log(teste);
+
+      // const {inicioServico, status } = s.agendamentos.forEach(x => this.ag.push({x: {}})) 
+
+    });
   }
 
-  agendamentos:Agendamento[] = [
-    {
-      "id": 1,
-      "cliente": {
-        "nome": "Maria da Silva",
-        "telefone": "2199219384723948",
-        "email": "maria@gmail.com",
-        "password": "1234"
-      },
-      "profissional": {
-        "id": 2,
-        "nome": "Jose Maria",
-        "telefone": "123456789",
-        "email": "josemaria@gmail.com",
-        "senha": "1234",
-        "servicos": [
-          {
-            "id": 5,
-            "descricao": "Escova Progressiva",
-            "valor": 0,
-            "categoria": ""
-          },
-          {
-            "id": 3,
-            "descricao": "Pedicure",
-            "valor": 0,
-            "categoria": ""
-          }
-        ],
-        "saloes": [
-          {
-            "id": 3,
-            "nome": "Salao dos Turistas",
-            "cnpj": "33.366.825/0001-83",
-            "bairro": "Copacabana",
-            "endereco": "Av Atlantica 342",
-            "coordenadaX": "1",
-            "coordenadaY": "2"
-          },
-          {
-            "id": 2,
-            "nome": "Salao do Centro",
-            "cnpj": "45.298.705/0001-75",
-            "bairro": "Centro",
-            "endereco": "Rua da Quitanda 35",
-            "coordenadaX": "1",
-            "coordenadaY": "2"
-          }
-        ]
-      },
-      "salao": {
-        "id": 2,
-        "nome": "Salao do Centro",
-        "cnpj": "45.298.705/0001-75",
-        "bairro": "Centro",
-        "endereco": "Rua da Quitanda 35",
-        "coordenadaX": "1",
-        "coordenadaY": "2"
-      },
-      "servico": {
-        "id": 2,
-        "descricao": "Manicure",
-        "valor": 0,
-        "categoria": ""
-      },
-      "inicioServico": new Date("01/03/2020 19:00"),
-      "fimServico": new Date("01/03/2020 19:30"),
-      "status": "CONCLUIDO",
-      "checkInCliente": null,
-      "checkInProfissional": null,
-      "finalizacao":  new Date("01/03/2020 19:30")
-    },
-    {
-      "id": 2,
-      "cliente": {
-        "nome": "Luiz da Silva",
-        "telefone": "2199219384723948",
-        "email": "luiz@gmail.com",
-        "password": "1234"
-      },
-      "profissional": {
-        "id": 3,
-        "nome": "Alphonse Eric",
-        "telefone": "123456789",
-        "email": "alphonse@gmail.com",
-        "senha": "1234",
-        "servicos": [
-          {
-            "id": 6,
-            "descricao": "Barba",
-            "valor": 0,
-            "categoria": ""
-          },
-          {
-            "id": 1,
-            "descricao": "Depilacao",
-            "valor": 0,
-            "categoria": ""
-          }
-        ],
-        "saloes": [
-          {
-            "id": 3,
-            "nome": "Salao dos Turistas",
-            "cnpj": "33.366.825/0001-83",
-            "bairro": "Copacabana",
-            "endereco": "Av Atlantica 342",
-            "coordenadaX": "1",
-            "coordenadaY": "2"
-          },
-          {
-            "id": 4,
-            "nome": "Salao da Lapa",
-            "cnpj": "10.162.885/0001-78",
-            "bairro": "Centro",
-            "endereco": "Rua da Lapa 1",
-            "coordenadaX": "1",
-            "coordenadaY": "2"
-          }
-        ]
-      },
-      "salao": {
-        "id": 3,
-        "nome": "Salao dos Turistas",
-        "cnpj": "33.366.825/0001-83",
-        "bairro": "Copacabana",
-        "endereco": "Av Atlantica 342",
-        "coordenadaX": "1",
-        "coordenadaY": "2"
-      },
-      "servico": {
-        "id": 3,
-        "descricao": "Pedicure",
-        "valor": 0,
-        "categoria": ""
-      },
-      "inicioServico": new Date("01/03/2020 19:00"),
-      "fimServico": new Date("01/03/2020 19:30"),
-      "status": "CONCLUIDO",
-      "checkInCliente": new Date("01/03/2020 19:00"),
-      "checkInProfissional": new Date("01/03/2020 19:00"),
-      "finalizacao": new Date("01/03/2020 19:30")
-    },
-    {
-      "id": 3,
-      "cliente": {
-        "nome": "Jose da Silva",
-        "telefone": "2199219384723948",
-        "email": "jose@gmail.com",
-        "password": "1234"
-      },
-      "profissional": {
-        "id": 4,
-        "nome": "Dr. Mundo",
-        "telefone": "123456789",
-        "email": "mundo@gmail.com",
-        "senha": "1234",
-        "servicos": [
-          {
-            "id": 2,
-            "descricao": "Manicure",
-            "valor": 0,
-            "categoria": ""
-          },
-          {
-            "id": 5,
-            "descricao": "Escova Progressiva",
-            "valor": 0,
-            "categoria": ""
-          }
-        ],
-        "saloes": [
-          {
-            "id": 1,
-            "nome": "Salao do Shopping",
-            "cnpj": "62.408.761/0001-34",
-            "bairro": "Barra da Tijuca",
-            "endereco": "Av das Americas 96975",
-            "coordenadaX": "1",
-            "coordenadaY": "2"
-          },
-          {
-            "id": 4,
-            "nome": "Salao da Lapa",
-            "cnpj": "10.162.885/0001-78",
-            "bairro": "Centro",
-            "endereco": "Rua da Lapa 1",
-            "coordenadaX": "1",
-            "coordenadaY": "2"
-          }
-        ]
-      },
-      "salao": {
-        "id": 4,
-        "nome": "Salao da Lapa",
-        "cnpj": "10.162.885/0001-78",
-        "bairro": "Centro",
-        "endereco": "Rua da Lapa 1",
-        "coordenadaX": "1",
-        "coordenadaY": "2"
-      },
-      "servico": {
-        "id": 5,
-        "descricao": "Escova Progressiva",
-        "valor": 0,
-        "categoria": ""
-      },
-      "inicioServico": new Date("01/03/2020 19:00"),
-      "fimServico": new Date("01/03/2020 19:30"),
-      "status": "CANCELADO",
-      "checkInCliente": null,
-      "checkInProfissional": null,
-      "finalizacao": null
-    }
-  ]
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  dataSource = ELEMENT_DATA;
 }
+
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+}
+
+export interface IAgendamento {
+  servico: string;
+  horario: Date;
+  local: string;
+  status: string;
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
+  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
+  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
+  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
+  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
+  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
+  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
+  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
+  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+];
+
