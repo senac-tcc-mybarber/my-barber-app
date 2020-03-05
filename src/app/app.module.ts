@@ -43,6 +43,7 @@ import { TabelaAgendamentosComponent } from './views/tabela-agendamentos/tabela-
 import { HomeClienteComponent } from './views/cliente/home-cliente/home-cliente.component';
 import { LayoutComponent } from './views/layout/layout.component';
 import { CheckinClienteComponent } from './views/cliente/checkin-cliente/checkin-cliente.component';
+import { CheckinComponent } from './views/checkin/checkin.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { CheckinClienteComponent } from './views/cliente/checkin-cliente/checkin
     TabelaAgendamentosComponent,
     HomeClienteComponent,
     LayoutComponent,
-    CheckinClienteComponent
+    CheckinClienteComponent,
+    CheckinComponent
   ],
   imports: [
     AppRoutingModule,

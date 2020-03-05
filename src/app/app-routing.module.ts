@@ -34,12 +34,12 @@ const routes: Routes = [
   { path: 'cadastroprofissional', component: CadastroProfissionalComponent},
   { path: 'associarsalao/:id', component: AssociacaoSalaoComponent},
   { path: 'associarservicoprofissional/:id', component: AssociarServicosProfissionalComponent},
-  { path: 'checkinprofissional/:id', component: CheckinProfissionalComponent},
-  { path: 'checkincliente/:id', component: CheckinClienteComponent},
   { path: 'layout', component: LayoutComponent, children :[
     { path: 'home', redirectTo: home},
     { path: 'homecliente', component: HomeClienteComponent},
     { path: 'agendamento', component: AgendamentoComponent},
+    { path: 'checkincliente/:id', component: CheckinClienteComponent},
+    { path: 'checkinprofissional/:id', component: CheckinProfissionalComponent},
   ] }
 ];
 
