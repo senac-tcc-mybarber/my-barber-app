@@ -10,16 +10,17 @@ import { CadastroProfissionalComponent } from './views/profissional/cadastro-pro
 import { CheckinProfissionalComponent } from './views/profissional/checkin-profissional/checkin-profissional.component';
 import { PerfilComponentComponent } from './views/selecao-perfil/perfil-component/perfil-component.component';
 import { LayoutComponent } from './views/layout/layout.component';
+import {CheckinClienteComponent} from './views/cliente/checkin-cliente/checkin-cliente.component';
 
 
-var home: string = "homecliente";
-const currentUserString = localStorage.getItem("currentUser")
+var home: string = 'homecliente';
+const currentUserString = localStorage.getItem('currentUser');
 
 if(currentUserString) {
-  const role = JSON.parse(localStorage.getItem("currentUser")).perfil;
-  
-  if (role == "profissional") {
-    home = "homeprofissional"
+  const role = JSON.parse(localStorage.getItem('currentUser')).perfil;
+
+  if (role == 'profissional') {
+    home = 'homeprofissional';
   }
 }
 
@@ -33,12 +34,13 @@ const routes: Routes = [
   { path: 'cadastroprofissional', component: CadastroProfissionalComponent},
   { path: 'associarsalao/:id', component: AssociacaoSalaoComponent},
   { path: 'associarservicoprofissional/:id', component: AssociarServicosProfissionalComponent},
-  { path: 'checkinprofissional/:id', component: CheckinProfissionalComponent},
   { path: 'layout', component: LayoutComponent, children :[
     { path: 'home', redirectTo: home},
     { path: 'homecliente', component: HomeClienteComponent},
     { path: 'agendamento', component: AgendamentoComponent},
-  ] },
+    { path: 'checkincliente/:id', component: CheckinClienteComponent},
+    { path: 'checkinprofissional/:id', component: CheckinProfissionalComponent},
+  ] }
 ];
 
 @NgModule({
