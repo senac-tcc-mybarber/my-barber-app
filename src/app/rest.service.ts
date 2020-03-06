@@ -8,6 +8,7 @@ import { Agendamento } from "./model/agendamento";
 import { Cliente } from './model/cliente';
 import { Profissional } from "./model/profissional";
 import { Salao } from "./model/salao";
+import { Usuario } from "./model/Usuario";
 import { Servico } from "./model/Servico";
 
 @Injectable({ providedIn: "root" })

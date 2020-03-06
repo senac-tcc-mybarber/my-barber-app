@@ -10,7 +10,9 @@ import { CadastroProfissionalComponent } from './views/profissional/cadastro-pro
 import { CheckinProfissionalComponent } from './views/profissional/checkin-profissional/checkin-profissional.component';
 import { PerfilComponentComponent } from './views/selecao-perfil/perfil-component/perfil-component.component';
 import { LayoutComponent } from './views/layout/layout.component';
+import { HistoricoComponent } from './views/historico/historico.component';
 import {CheckinClienteComponent} from './views/cliente/checkin-cliente/checkin-cliente.component';
+
 
 
 var home: string = 'homecliente';
@@ -38,6 +40,7 @@ const routes: Routes = [
     { path: 'home', redirectTo: home},
     { path: 'homecliente', component: HomeClienteComponent},
     { path: 'agendamento', component: AgendamentoComponent},
+    { path: 'historico', component: HistoricoComponent},
     { path: 'checkincliente/:id', component: CheckinClienteComponent},
     { path: 'checkinprofissional/:id', component: CheckinProfissionalComponent},
   ] }
@@ -47,5 +50,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
-
+export class AppRoutingModule {}
