@@ -40,8 +40,4 @@ export class CadastroProfissionalComponent implements OnInit {
           console.log(err);
         });
   }
-  
-  
-
-  
 }

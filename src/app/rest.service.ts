@@ -1,20 +1,18 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { Observable, of } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
+import { Agendamento } from "./model/agendamento";
+import { Cliente } from './model/cliente';
 import { Profissional } from "./model/profissional";
-import { Servico } from "./model/Servico";
 import { Salao } from "./model/salao";
 import { Usuario } from "./model/Usuario";
-import { Agendamento } from "./model/agendamento";
-import { DatePipe } from '@angular/common';
-import { Cliente } from './model/cliente';
+import { Servico } from "./model/Servico";
 
 @Injectable({ providedIn: "root" })
 export class RestService {
-  private currentUserSubject: BehaviorSubject<Usuario>;
-  public currentUser: Observable<Usuario>;
 
   defaultHeaders = new HttpHeaders({
     "Access-Control-Allow-Origin": "*",
@@ -29,34 +27,8 @@ export class RestService {
     "Content-Type": "application/json"
   });
 
-  constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<Usuario>(
-      JSON.parse(localStorage.getItem("currentUser"))
-    );
-    this.currentUser = this.currentUserSubject.asObservable();
-  }
+  constructor(private http: HttpClient) {}
 
-  public get currentUserValue(): Usuario {
-    return this.currentUserSubject.value;
-  }
-
-  getToken(username: string, password: string) {
-    const url = `${environment.urlApi}/authenticate`;
-    const body =
-      '{"username": "' + username + '", "password": "' + password + '"}';
-    return this.http
-      .post<any>(url, body, {
-        headers: this.defaultHeaders
-      })
-      .pipe(
-        map(user => {
-          localStorage.setItem("currentUser", JSON.stringify(user));
-          this.currentUserSubject.next(user);
-          console.log(user);
-          return user;
-        })
-      );
-  }
 
   createAgendamento(a: Agendamento) {
     let datePipe: DatePipe = new DatePipe("en-US");
@@ -121,6 +93,21 @@ export class RestService {
     )
   }
 
+  createCliente(cliente): Observable<Cliente> {
+    const url = `${environment.urlApi}/clientes`;
+    return this.http
+      .post<any>(url, cliente, {
+        headers: this.defaultHeadersToPostJson
+      })
+      .pipe(
+        tap(Cliente => console.log(`adicionou o cliente`)),
+        catchError(err => {
+          console.log(err); 
+          return this.handleError<Cliente>("createCliente")
+        })
+      );
+  }
+
   //funcoes para tratar profissional
   createProfissional(profissional): Observable<Profissional> {
     const url = `${environment.urlApi}/profissionais`;
@@ -174,25 +161,11 @@ export class RestService {
     };
   }
 
-  createCliente() {
-    const url = `${environment.urlApi}/create`;
-    const body = "";
-    return this.http
-      .post<any>(url, body, {
-        headers: this.defaultHeaders
-      })
-      .pipe(
-        map(user => {
-          console.log(user);
-        })
-      );
-  }
-
-  getClientes(id:Number): Observable<Cliente> {
+  getCliente(id: number): Observable<Cliente> {
     const url = `${environment.urlApi}/clientes/${id}`;
     return this.http.get<Cliente>(url).pipe(
-      tap(_ => console.log(`leu o Cliente id=${id}`)),
-      catchError(this.handleError<Cliente>(`erro Cliente id=${id}`))
+      tap(_ => console.log(`leu o cliente id=${id}`)),
+      catchError(this.handleError<Cliente>(`getCliente id=${id}`))
     );
   }
 }

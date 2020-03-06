@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Detalhe do histórico</h1>
+<div mat-dialog-content>
+  <form>
+    <mat-form-field>
+      <mat-label>Serviço</mat-label>
+      <input matInput readonly value="{{data.servico.nome}}">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Profissional</mat-label>
+      <input matInput readonly value="{{data.profissional.nome}}">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Salão</mat-label>
+      <input matInput readonly value="{{data.salao.nome}}">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Data e Hora de Inicio</mat-label>
+      <input matInput readonly value="{{data.inicioServico}}">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Data e Hora de Termino</mat-label>
+      <input matInput readonly value="{{data.fimServico}}">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Valor</mat-label>
+      <input matInput readonly value="{{data.servico.valor}}">
+    </mat-form-field>
+
+  </form>
+
+
+  <!-- <label>{{data.salao.nome}}</label> -->
+  <!-- <label>{{data.profissional.nome}}</label> -->
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div>
+
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

@@ -1,11 +1,11 @@
-import { Servico } from './Servico';
 import { Agendamento } from './agendamento';
 
 export class Cliente {
-  id:Number
+  id:Number;
+  username: string;
   nome: string;
   telefone: string;
   email: string;
   senha: string;
-  agendamentos:Agendamento[];
+  agendamentos: Agendamento[];
 }

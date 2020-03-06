@@ -9,6 +9,9 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatListModule
 } from "@angular/material";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { BrowserModule } from "@angular/platform-browser";
@@ -33,10 +36,17 @@ import { MatStepperModule } from "@angular/material/stepper";
 import { CheckinProfissionalComponent } from "./views/profissional/checkin-profissional/checkin-profissional.component";
 
 import { MatSnackBarModule } from "@angular/material/snack-bar";
-import { HistoricoComponent } from './views/historico/historico.component';
+import { HistoricoComponent } from "./views/historico/historico.component";
 
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatTableModule } from "@angular/material/table";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { TabelaAgendamentosComponent } from "./views/tabela-agendamentos/tabela-agendamentos.component";
+import { HomeClienteComponent } from "./views/cliente/home-cliente/home-cliente.component";
+import { LayoutComponent } from "./views/layout/layout.component";
+import { DataTableHistoricoComponent, DialogDetalheHistorico } from './views/historico/data-table-historico/data-table-historico.component';
+import { MatSortModule } from '@angular/material/sort';
+
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -49,7 +59,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     AgendamentoComponent,
     AssociarServicosProfissionalComponent,
     CheckinProfissionalComponent,
-    HistoricoComponent
+    HistoricoComponent,
+    TabelaAgendamentosComponent,
+    HomeClienteComponent,
+    LayoutComponent,
+    DataTableHistoricoComponent,
+    DialogDetalheHistorico
   ],
   imports: [
     AppRoutingModule,
@@ -74,20 +89,28 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatAutocompleteModule,
     MatSelectModule,
     MatTableModule,
-
     MatDatepickerModule,
     MatNativeDateModule,
     MatRippleModule,
-
     MatStepperModule,
 
     MatSnackBarModule,
-    
+
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatSortModule,
+
+    MatDialogModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
+  entryComponents: [
+    DialogDetalheHistorico
   ],
   bootstrap: [AppComponent]
 })
