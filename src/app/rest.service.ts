@@ -58,14 +58,14 @@ export class RestService {
       );
   }
 
-  checkInProfissional(id: number) {
-    const url = `${environment.urlApi}/agendamentos/${id}/checkin-profissional`;
+  checkIn(id: number, tipoCheckin: string) {
+    const url = `${environment.urlApi}/agendamentos/${id}/checkin-${tipoCheckin}`;
     return this.http.put<any>(url, id,
       {
         headers: this.defaultHeadersToPostJson
       }).pipe(map(resp => {
-        console.log(resp);
-        return resp;
+      console.log(resp);
+      return resp;
     }));
   }
 
@@ -102,7 +102,7 @@ export class RestService {
       .pipe(
         tap(Cliente => console.log(`adicionou o cliente`)),
         catchError(err => {
-          console.log(err); 
+          console.log(err);
           return this.handleError<Cliente>("createCliente")
         })
       );
