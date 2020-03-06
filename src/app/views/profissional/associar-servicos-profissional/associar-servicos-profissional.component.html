@@ -6,10 +6,10 @@
           <form [formGroup]="servicosForm" fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="7%" (ngSubmit)="submit()">
             <label formArrayName="servicos" *ngFor="let servico of servicosForm.controls.servicos.controls; let i = index">
                 <input type="checkbox" [formControlName]="i" />
-                    {{dataSource[i].descricao}}
+                    {{dataSource[i].nome}}
             </label>
-        
-            <button>submit</button>
+            <button>Concluir</button>
+
           </form>
         </mat-card>
     </div>

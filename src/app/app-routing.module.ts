@@ -12,6 +12,7 @@ import { PerfilComponentComponent } from './views/selecao-perfil/perfil-componen
 import { LayoutComponent } from './views/layout/layout.component';
 import { HistoricoComponent } from './views/historico/historico.component';
 import {CheckinClienteComponent} from './views/cliente/checkin-cliente/checkin-cliente.component';
+import {HomeProfissionalComponent} from './views/profissional/home-profissional/home-profissional.component';
 
 
 
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'layout', component: LayoutComponent, children :[
     { path: 'home', redirectTo: home},
     { path: 'homecliente', component: HomeClienteComponent},
+    { path: 'homeprofissional', component: HomeProfissionalComponent},
     { path: 'agendamento', component: AgendamentoComponent},
     { path: 'historico', component: HistoricoComponent},
     { path: 'checkincliente/:id', component: CheckinClienteComponent},

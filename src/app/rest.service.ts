@@ -1,23 +1,23 @@
 import { DatePipe } from '@angular/common';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
-import { catchError, map, tap } from "rxjs/operators";
-import { environment } from "src/environments/environment";
-import { Agendamento } from "./model/agendamento";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { Agendamento } from './model/agendamento';
 import { Cliente } from './model/cliente';
-import { Profissional } from "./model/profissional";
-import { Salao } from "./model/salao";
-import { Usuario } from "./model/Usuario";
-import { Servico } from "./model/Servico";
+import { Profissional } from './model/profissional';
+import { Salao } from './model/salao';
+import { Usuario } from './model/Usuario';
+import { Servico } from './model/Servico';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class RestService {
 
   defaultHeaders = new HttpHeaders({
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "POST",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
   });
 
   defaultHeadersToPostJson = new HttpHeaders({
