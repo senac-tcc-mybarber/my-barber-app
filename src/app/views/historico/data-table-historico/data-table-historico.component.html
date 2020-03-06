@@ -8,17 +8,17 @@
 
     <ng-container matColumnDef="horario">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Horário</th>
-      <td mat-cell *matCellDef="let row">{{row.inicioServico}}</td>
+      <td mat-cell *matCellDef="let row" (click)="openDialog(row)">{{row.inicioServico}}</td>
     </ng-container>
 
     <ng-container matColumnDef="local">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Local</th>
-      <td mat-cell *matCellDef="let row">{{row.salao.nome}}</td>
+      <td mat-cell *matCellDef="let row" (click)="openDialog(row)">{{row.salao.nome}}</td>
     </ng-container>
 
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-      <td mat-cell *matCellDef="let row">{{row.status}}</td>
+      <td mat-cell *matCellDef="let row" (click)="openDialog(row)">{{row.status}}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
