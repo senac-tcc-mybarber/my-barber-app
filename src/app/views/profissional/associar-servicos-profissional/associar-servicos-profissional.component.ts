@@ -14,11 +14,11 @@ import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 })
 export class AssociarServicosProfissionalComponent implements OnInit {
 
-  profissional: Profissional = { id: 0, nome: '', telefone: '', email: '', senha: '', saloes: null, servicos: null};
+  profissional: Profissional = { id: 0, nome: '', username: '', telefone: '', email: '', senha: '', saloes: null, servicos: null, agendamentos: null};
   dataSource: Servico[];
   servicosProfissional: Servico[] = [];
   servicosForm: FormGroup;
-    
+
 
   constructor(private router: Router, private route: ActivatedRoute, private api: RestService, private formBuilder: FormBuilder) {
     this.servicosForm = this.formBuilder.group({
@@ -35,8 +35,8 @@ export class AssociarServicosProfissionalComponent implements OnInit {
       console.log(this.dataSource);
     }, err => {
       console.log(err);
-    });   
-    
+    });
+
   }
 
   getProfissional(id) {
@@ -53,12 +53,18 @@ export class AssociarServicosProfissionalComponent implements OnInit {
       (this.servicosForm.controls.servicos as FormArray).push(control);
     });
   }
-  
+
   submit() {
     const selectedServicosIds = this.servicosForm.value.servicos.map((v, i) => (v ? this.dataSource[i].id : null)).filter(v => v !== null);
     for(let i=0; i<selectedServicosIds.length; i++){
       this.servicosProfissional.push(this.dataSource.find(element => element.id === selectedServicosIds[i]))
     }
-    this.api.associarServicos(this.profissional.id,  this.servicosProfissional).subscribe(console.table);
+    this.api.associarServicos(this.profissional.id,  this.servicosProfissional).subscribe(() => {
+        console.log('associacao de servicos ok');
+        this.router.navigate(["layout","home"])
+      },
+      err => {
+        console.log(err);
+      });
   }
 }

@@ -34,19 +34,19 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatStepperModule } from '@angular/material/stepper';
 import { CheckinProfissionalComponent } from './views/profissional/checkin-profissional/checkin-profissional.component';
-import { MatSnackBarModule } from "@angular/material/snack-bar";
-import { HistoricoComponent } from "./views/historico/historico.component";
-import { MatTableModule } from "@angular/material/table";
-import { MatPaginatorModule } from "@angular/material/paginator";
-import { TabelaAgendamentosComponent } from "./views/tabela-agendamentos/tabela-agendamentos.component";
-import { HomeClienteComponent } from "./views/cliente/home-cliente/home-cliente.component";
-import { LayoutComponent } from "./views/layout/layout.component";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HistoricoComponent } from './views/historico/historico.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { HomeClienteComponent } from './views/cliente/home-cliente/home-cliente.component';
+import { LayoutComponent } from './views/layout/layout.component';
 import { DataTableHistoricoComponent, DialogDetalheHistorico } from './views/historico/data-table-historico/data-table-historico.component';
 import { MatSortModule } from '@angular/material/sort';
 import { CheckinClienteComponent } from './views/cliente/checkin-cliente/checkin-cliente.component';
 import { CheckinComponent } from './views/checkin/checkin.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { TabelaAgendamentosComponent } from './views/tabela-agendamentos/tabela-agendamentos.component';
+import { HomeProfissionalComponent } from './views/profissional/home-profissional/home-profissional.component';
 
 @NgModule({
   declarations: [
@@ -64,9 +64,10 @@ import { TabelaAgendamentosComponent } from './views/tabela-agendamentos/tabela-
     HomeClienteComponent,
     LayoutComponent,
     DataTableHistoricoComponent,
-    DialogDetalheHistorico
+    DialogDetalheHistorico,
     CheckinClienteComponent,
-    CheckinComponent
+    CheckinComponent,
+    HomeProfissionalComponent
 
   ],
   imports: [

@@ -9,6 +9,10 @@
             <mat-error *ngIf="hasError('nome', 'required')">Campo obrigatório</mat-error>
           </mat-form-field>
           <mat-form-field>
+            <input matInput placeholder="Username" formControlName="username" maxlength="60">
+            <mat-error *ngIf="hasError('username', 'required')">Campo obrigatório</mat-error>
+          </mat-form-field>
+          <mat-form-field>
             <input matInput placeholder="Telefone" formControlName="telefone" maxlength="10">
             <mat-error *ngIf="hasError('telefone', 'required')">Campo obrigatório</mat-error>
           </mat-form-field>
@@ -18,7 +22,7 @@
             <mat-error *ngIf="hasError('email', 'email')">E-mail com formato inválido</mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input matInput type="password" formControlName="senha" placeholder="Senha" maxlength="8">
+            <input matInput type="senha" formControlName="senha" placeholder="Senha" maxlength="8">
             <mat-error *ngIf="hasError('senha', 'required')">Campo obrigatório</mat-error>
           </mat-form-field>
 
