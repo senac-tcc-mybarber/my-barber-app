@@ -54,7 +54,9 @@ export class RestService {
         headers: this.defaultHeadersToPostJson
       })
       .pipe(
-        map(ag => { console.table(ag); })
+        map(ag => { 
+        //  console.table(ag);
+         })
       );
   }
 

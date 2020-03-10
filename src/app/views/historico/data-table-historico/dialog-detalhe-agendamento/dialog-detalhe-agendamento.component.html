@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>Detalhes</h1>
+<div mat-dialog-content>
+  <form>
+    <mat-form-field>
+      <mat-label>Serviço</mat-label>
+      <input matInput readonly value="{{data.servico.nome}}" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Profissional</mat-label>
+      <input matInput readonly value="{{data.profissional.nome}}" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Salão</mat-label>
+      <input matInput readonly value="{{data.salao.nome}}" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Data e Hora de Inicio</mat-label>
+      <input matInput readonly value="{{data.inicioServico}}" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Data e Hora de Termino</mat-label>
+      <input matInput readonly value="{{data.fimServico}}" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Valor</mat-label>
+      <input matInput readonly value="{{data.servico.valor}}" />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button [mat-dialog-close] color="primary">
+    <mat-icon>done</mat-icon>
+    Ok
+  </button>
+  <div
+    *ngIf="data.status!=='CANCELADO' && data.status!=='CONCLUIDO'; then thenBlock"
+  ></div>
+  <ng-template #thenBlock>
+    <button mat-raised-button color="warn" (click)="cancelar()">
+      <mat-icon>delete</mat-icon>
+      Cancelar
+    </button>
+  </ng-template>
+</div>
