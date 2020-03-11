@@ -1,0 +1,8 @@
+{
+  "appId": "com.senac.mybarber.app",
+  "appName": "MyBarber",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

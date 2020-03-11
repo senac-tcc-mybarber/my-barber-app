@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MyBarber</string>
+    <string name="title_activity_main">MyBarber</string>
+    <string name="package_name">com.senac.mybarber.app</string>
+    <string name="custom_url_scheme">com.senac.mybarber.app</string>
+</resources>

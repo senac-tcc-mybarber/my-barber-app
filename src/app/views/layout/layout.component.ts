@@ -13,7 +13,7 @@ import { first } from 'rxjs/operators';
 export class LayoutComponent {
 
   usuario$: Observable<Usuario>;
-  private isCliente: Boolean
+  isCliente: Boolean
 
   constructor(private api: UsuarioService) {}
 

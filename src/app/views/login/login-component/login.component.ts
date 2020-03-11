@@ -12,16 +12,14 @@ import { Router } from '@angular/router';
 })
 
 @Injectable()
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  private login: Login = new Login();
+  login: Login = new Login();
   constructor(
     private api: UsuarioService,
     private router: Router) {
 
   }
-
-  ngOnInit() { }
 
   entrar() {
     this.api.getToken(this.login.username, this.login.password).pipe(first())
