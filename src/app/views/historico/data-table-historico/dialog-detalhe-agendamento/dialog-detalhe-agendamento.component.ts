@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { RestService } from 'src/app/rest.service';
-import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { DialogData } from '../data-table-historico.component';
 import { first } from 'rxjs/operators';
@@ -12,12 +12,15 @@ import { Agendamento } from 'src/app/model/agendamento';
 })
 export class DialogDetalheHistorico {
 
+  result: string = '';
+
   constructor(
     public dialogRef: MatDialogRef<DialogDetalheHistorico>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private api: RestService,
     private _snackBar: MatSnackBar,
-    public router: Router) {}
+    public router: Router,
+    public dialog: MatDialog) {}
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -26,14 +29,12 @@ export class DialogDetalheHistorico {
   cancelar(agendamento:Agendamento)
   {
     agendamento.status = 'CANCELADO';
-    console.log(agendamento);
    
     this.api
       .updateAgendamento(agendamento)
       .pipe(first())
       .subscribe(
         () => {
-          console.log("sucesso login component");
           this.openSnackBar("Agendamento realizado com sucesso", "Ok");
         },
         () => {

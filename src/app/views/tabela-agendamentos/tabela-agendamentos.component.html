@@ -15,32 +15,32 @@
 <table mat-table [dataSource]="agendamentos">
     <ng-container matColumnDef="servico">
         <th mat-header-cell *matHeaderCellDef>Serviço</th>
-        <td mat-cell *matCellDef="let agendamento">{{agendamento.servico.nome}}</td>
+        <td mat-cell *matCellDef="let agendamento" (click)="openDialog(agendamento)">{{agendamento.servico.nome}}</td>
     </ng-container>
     
     <ng-container matColumnDef="horario">
         <th mat-header-cell *matHeaderCellDef>Horário</th>
-        <td mat-cell *matCellDef="let agendamento">{{agendamento.inicioServico}}</td>
+        <td mat-cell *matCellDef="let agendamento" (click)="openDialog(agendamento)">{{agendamento.inicioServico}}</td>
     </ng-container>
 
     <ng-container matColumnDef="local">
         <th mat-header-cell *matHeaderCellDef>Local</th>
-        <td mat-cell *matCellDef="let agendamento">{{agendamento.salao.nome}}</td>
+        <td mat-cell *matCellDef="let agendamento" (click)="openDialog(agendamento)">{{agendamento.salao.nome}}</td>
     </ng-container>
 
     <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef>Status</th>
-        <td mat-cell *matCellDef="let agendamento">{{agendamento.status}}</td>
+        <td mat-cell *matCellDef="let agendamento" (click)="openDialog(agendamento)">{{agendamento.status}}</td>
     </ng-container>
 
     <ng-container matColumnDef="atendente">
         <th mat-header-cell *matHeaderCellDef>Atendente</th>
-        <td mat-cell *matCellDef="let agendamento">{{agendamento.profissional.nome}}</td>
+        <td mat-cell *matCellDef="let agendamento" (click)="openDialog(agendamento)">{{agendamento.profissional.nome}}</td>
     </ng-container>
 
     <ng-container matColumnDef="cliente">
         <th mat-header-cell *matHeaderCellDef>Cliente</th>
-        <td mat-cell *matCellDef="let agendamento">{{agendamento.cliente.nome}}</td>
+        <td mat-cell *matCellDef="let agendamento" (click)="openDialog(agendamento)">{{agendamento.cliente.nome}}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

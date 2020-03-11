@@ -33,8 +33,7 @@ export class RestService {
     const url = `${environment.urlApi}/agendamentos`;
     const body =
       '{"cliente": { "id": ' +
-      // a.idCliente +
-      1 +
+      a.cliente.id +
       ' }, "profissional": { "id": ' +
       a.profissional.id +
       ' }, "salao": { "id": ' +
@@ -81,7 +80,7 @@ export class RestService {
       })
       .pipe(
         map(ag => {
-          console.table(ag);
+          //console.table(ag);
         })
       );
   }
@@ -94,7 +93,7 @@ export class RestService {
       })
       .pipe(
         map(resp => {
-          console.log(resp);
+          //console.log(resp);
           return resp;
         })
       );

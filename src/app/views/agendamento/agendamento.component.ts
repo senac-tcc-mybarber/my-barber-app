@@ -10,6 +10,8 @@ import { MatDatepickerInputEvent, MatSnackBar } from "@angular/material";
 import { Agendamento } from "src/app/model/agendamento";
 import { Time } from "@angular/common";
 import { Router } from "@angular/router";
+import { UsuarioService } from 'src/app/usuario.service';
+import { Cliente } from 'src/app/model/cliente';
 
 @Component({
   selector: "app-agendamento",
@@ -54,8 +56,14 @@ export class AgendamentoComponent implements OnInit {
   constructor(
     private api: RestService,
     private _snackBar: MatSnackBar,
-    public router: Router
-  ) {}
+    public router: Router,
+    private usuarioService: UsuarioService
+  ) {
+    let user = this.usuarioService.currentUserValue
+
+    this.agendamento.cliente = new Cliente()
+    this.agendamento.cliente.id =  user.id;
+  }
 
   ngOnInit() {
     this.PegarServicosNaAPI();
@@ -114,6 +122,11 @@ export class AgendamentoComponent implements OnInit {
   }
 
   agendar() {
+
+    const user = this.usuarioService.currentUserValue
+
+    this.agendamento.cliente.id = user.id;
+    this.agendamento.status = "AGENDADO";
     this.api
       .createAgendamento(this.agendamento)
       .pipe(first())

@@ -100,7 +100,7 @@ export class AssociacaoSalaoComponent implements OnInit {
     this.api.getProfissional(id)
       .subscribe(data => {
         this.profissional = data;
-        console.log(this.profissional);
+        // console.log(this.profissional);
       });
   }
 }

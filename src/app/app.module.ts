@@ -69,7 +69,7 @@ import { HomeProfissionalComponent } from "./views/profissional/home-profissiona
     DialogDetalheHistorico,
     CheckinClienteComponent,
     CheckinComponent,
-    HomeProfissionalComponent
+    HomeProfissionalComponent,
   ],
   imports: [
     AppRoutingModule,

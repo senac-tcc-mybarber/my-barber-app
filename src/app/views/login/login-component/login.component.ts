@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.api.getToken(this.login.username, this.login.password).pipe(first())
       .subscribe(
         () => {
-          console.log("sucesso login component");
+          //console.log("sucesso login component");
           this.router.navigate(["layout","home"])
         },
         () => {
