@@ -36,7 +36,7 @@
     *ngIf="data.status!=='CANCELADO' && data.status!=='CONCLUIDO'; then thenBlock"
   ></div>
   <ng-template #thenBlock>
-    <button mat-raised-button color="warn" (click)="cancelar()">
+    <button mat-raised-button color="warn" (click)="cancelar(data)">
       <mat-icon>delete</mat-icon>
       Cancelar
     </button>

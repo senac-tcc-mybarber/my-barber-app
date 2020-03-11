@@ -3,6 +3,8 @@ import { RestService } from 'src/app/rest.service';
 import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 import { DialogData } from '../data-table-historico.component';
+import { first } from 'rxjs/operators';
+import { Agendamento } from 'src/app/model/agendamento';
 
 @Component({
   selector: 'dialog-detalhe-agendamento',
@@ -21,8 +23,41 @@ export class DialogDetalheHistorico {
     this.dialogRef.close();
   }
 
-  cancelar()
+  cancelar(agendamento:Agendamento)
   {
-    alert("Teste2")
+    agendamento.status = 'CANCELADO';
+    console.log(agendamento);
+   
+    this.api
+      .updateAgendamento(agendamento)
+      .pipe(first())
+      .subscribe(
+        () => {
+          console.log("sucesso login component");
+          this.openSnackBar("Agendamento realizado com sucesso", "Ok");
+        },
+        () => {
+          this.openSnackBar(
+            "Falha ao agendar, tente novamente mais tarde.",
+            "Sair"
+          );
+        }
+      );
+  }
+
+  openSnackBar(message: string, action: string) {
+    let sucesso: Boolean = action === "Ok" ? true : false;
+
+    let snackBarRef = sucesso
+      ? this._snackBar.open(message, action, { duration: 3000 })
+      : this._snackBar.open(message, action, { duration: 5000 });
+
+    snackBarRef.onAction().subscribe(() => {
+      snackBarRef.dismiss();
+    });
+
+    snackBarRef.afterDismissed().subscribe(() => {
+      // if (sucesso) this.router.navigate([this.sucessoRoute]);
+    });
   }
 }
