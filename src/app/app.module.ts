@@ -47,6 +47,7 @@ import { CheckinComponent } from './views/checkin/checkin.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { TabelaAgendamentosComponent } from './views/tabela-agendamentos/tabela-agendamentos.component';
 import { HomeProfissionalComponent } from './views/profissional/home-profissional/home-profissional.component';
+import { EditProfissionalComponent } from './views/profissional/edit-profissional/edit-profissional.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { HomeProfissionalComponent } from './views/profissional/home-profissiona
     DialogDetalheHistorico,
     CheckinClienteComponent,
     CheckinComponent,
-    HomeProfissionalComponent
+    HomeProfissionalComponent,
+    EditProfissionalComponent
 
   ],
   imports: [

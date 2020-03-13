@@ -13,6 +13,7 @@ import { LayoutComponent } from './views/layout/layout.component';
 import { HistoricoComponent } from './views/historico/historico.component';
 import {CheckinClienteComponent} from './views/cliente/checkin-cliente/checkin-cliente.component';
 import {HomeProfissionalComponent} from './views/profissional/home-profissional/home-profissional.component';
+import {EditProfissionalComponent} from './views/profissional/edit-profissional/edit-profissional.component';
 
 
 
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'selecionaperfil', component: PerfilComponentComponent },
   { path: 'cadastrocliente', component: CadastroClienteComponent},
   { path: 'cadastroprofissional', component: CadastroProfissionalComponent},
+  { path: 'editprofissional', component: EditProfissionalComponent},
   { path: 'associarsalao/:id', component: AssociacaoSalaoComponent},
   { path: 'associarservicoprofissional/:id', component: AssociarServicosProfissionalComponent},
   { path: 'layout', component: LayoutComponent, children :[

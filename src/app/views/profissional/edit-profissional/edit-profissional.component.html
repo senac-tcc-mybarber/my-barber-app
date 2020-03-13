@@ -1,1 +1,38 @@
-<p>edit-profissional works!</p>
+<div class="login-container mybarber-bg-primary" fxFlexFill fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutAlign="space-between stretch" fxFlex="1 1 90" fxLayoutGap="7%">
+    <div class="login-form-container flex-item" fxLayoutAlign="center stretch" >
+      <mat-card fxLayout="column" class="form-login" fxLayoutAlign="stretch" fxFlex="1 1 100" fxFlex.gt-xs="55"  fxFlex.gt-sm="40">
+        <h2>Editar Profissional</h2>
+        <form [formGroup]="editForm" fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="7%" (ngSubmit)="updateProfissional(editForm.value)">
+          <mat-form-field>
+            <input matInput placeholder="Nome Completo" formControlName="nome" [(ngModel)]="profissional.nome" maxlength="60">
+            <mat-error *ngIf="hasError('nome', 'required')">Campo obrigatório</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Username" formControlName="username" [(ngModel)]="profissional.username"  maxlength="60">
+            <mat-error *ngIf="hasError('username', 'required')">Campo obrigatório</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Telefone" formControlName="telefone" [(ngModel)]="profissional.telefone" maxlength="10">
+            <mat-error *ngIf="hasError('telefone', 'required')">Campo obrigatório</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email" email="true" [(ngModel)]="profissional.email" maxlength="50">
+            <mat-error *ngIf="hasError('email', 'required')">Campo obrigatório</mat-error>
+            <mat-error *ngIf="hasError('email', 'email')">E-mail com formato inválido</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="senha" formControlName="senha" placeholder="Senha" [(ngModel)]="profissional.senha" maxlength="8">
+            <mat-error *ngIf="hasError('senha', 'required')">Campo obrigatório</mat-error>
+          </mat-form-field>
+
+          <div fxLayoutAlign="space-between">
+            <button mat-button routerLink="/layout/home">Cancelar</button>
+            <button mat-raised-button type="submit">Próximo</button>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

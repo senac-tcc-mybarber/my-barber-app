@@ -6,6 +6,14 @@
         <mat-icon color="primary">home</mat-icon> Home
       </mat-list-item>
 
+      <mat-list-item routerLink="/editprofissional" (click)="sidenav.toggle()" *ngIf="isCliente == false">
+        <mat-icon color="primary">face</mat-icon> Editar Perfil
+      </mat-list-item>
+
+      <mat-list-item routerLink="/editcliente" (click)="sidenav.toggle()" *ngIf="isCliente">
+        <mat-icon color="primary">face</mat-icon> Editar Perfil
+      </mat-list-item>
+
       <mat-list-item routerLink="/layout/historico" (click)="sidenav.toggle()">
         <mat-icon color="primary">history</mat-icon> Histórico de Atendimentos
       </mat-list-item>
