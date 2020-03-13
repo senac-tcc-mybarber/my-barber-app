@@ -48,6 +48,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { TabelaAgendamentosComponent } from './views/tabela-agendamentos/tabela-agendamentos.component';
 import { HomeProfissionalComponent } from './views/profissional/home-profissional/home-profissional.component';
 import { EditProfissionalComponent } from './views/profissional/edit-profissional/edit-profissional.component';
+import { EditClienteComponent } from './views/cliente/edit-cliente/edit-cliente.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { EditProfissionalComponent } from './views/profissional/edit-profissiona
     CheckinClienteComponent,
     CheckinComponent,
     HomeProfissionalComponent,
-    EditProfissionalComponent
+    EditProfissionalComponent,
+    EditClienteComponent
 
   ],
   imports: [
