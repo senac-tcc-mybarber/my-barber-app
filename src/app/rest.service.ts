@@ -131,6 +131,11 @@ export class RestService {
       .pipe(catchError(this.handleError("getProfissionais", [])));
   }
 
+  updateProfissional(profissional: Profissional): Observable<Object> {
+    const url = `${environment.urlApi}/profissionais/`
+    return this.http.put<Profissional>(url + profissional.id, profissional);
+  }
+
   getProfissional(id: number): Observable<Profissional> {
     const url = `${environment.urlApi}/profissionais/${id}`;
     return this.http.get<Profissional>(url).pipe(
