@@ -19,9 +19,6 @@ export class LayoutComponent {
 
   ngOnInit() {
     this.usuario$ = this.api.currentUser;
-    this.usuario$.pipe(first()).subscribe( usr => {
-      this.isCliente = (usr.perfil == 'cliente')
-    })
   }
 
   logout() {
