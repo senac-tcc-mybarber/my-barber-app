@@ -9,7 +9,7 @@ import {
 import { RestService } from "src/app/rest.service";
 import { UsuarioService } from "src/app/usuario.service";
 import { Cliente } from "src/app/model/cliente";
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Profissional } from 'src/app/model/profissional';
 import { Salao } from 'src/app/model/salao';
 import { Servico } from 'src/app/model/Servico';

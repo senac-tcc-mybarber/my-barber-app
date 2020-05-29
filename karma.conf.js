@@ -2,8 +2,17 @@
 // Generated on Fri May 29 2020 00:31:20 GMT-0300 (GMT-03:00)
 
 module.exports = function(config) {
+  
+  require('ts-node').register({
+    compilerOptions: {
+      module: 'commonjs'
+    }
+  });
+  require('./karma.conf.ts');
+
   config.set({
 
+    
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
@@ -15,6 +24,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'test/**/*.spec.js'
     ],
 
 
@@ -65,4 +75,6 @@ module.exports = function(config) {
     // how many browser should be started simultaneous
     concurrency: Infinity
   })
+
+  
 }
