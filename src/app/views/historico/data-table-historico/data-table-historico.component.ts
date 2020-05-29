@@ -21,9 +21,9 @@ import { Servico } from 'src/app/model/Servico';
 })
 
 export class DataTableHistoricoComponent implements AfterViewInit, OnInit {
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
-  @ViewChild(MatTable, { static: false }) table: MatTable<
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatTable) table: MatTable<
     DataTableHistoricoItem
   >;
   dataSource: DataTableHistoricoDataSource;

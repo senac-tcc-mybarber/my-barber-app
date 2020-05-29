@@ -29,8 +29,8 @@ export class AssociacaoSalaoComponent implements OnInit {
   allSaloes: Salao[] = [];
   profissional: Profissional
 
-  @ViewChild('salaoInput', {static: false}) salaoInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+  @ViewChild('salaoInput') salaoInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor(private api: RestService,
               private route: ActivatedRoute,
