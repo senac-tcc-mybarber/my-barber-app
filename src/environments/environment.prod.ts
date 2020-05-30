@@ -4,7 +4,7 @@
 
 export const environment = {
   production: true,
-  urlApi: 'https://my-barber.herokuapp.com'
+  urlApi: 'https://api:8080'
 };
 
 /*
