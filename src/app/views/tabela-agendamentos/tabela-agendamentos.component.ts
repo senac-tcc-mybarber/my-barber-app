@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Agendamento } from 'src/app/model/agendamento';
 import {Router} from "@angular/router";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {ConfirmationDialogComponent} from "../confirmation-dialog/confirmation-dialog.component";
+import {first} from "rxjs/operators";
+import {RestService} from "../../rest.service";
 
 @Component({
   selector: 'app-tabela-agendamentos',
@@ -15,7 +19,12 @@ export class TabelaAgendamentosComponent {
   @Input()
   displayedColumns: string[];
 
-  constructor(private router: Router) {
+  dialogRef: MatDialogRef<ConfirmationDialogComponent>;
+
+  constructor(
+    private router: Router,
+    private dialog: MatDialog,
+    private api: RestService) {
   }
 
 
@@ -40,6 +49,27 @@ export class TabelaAgendamentosComponent {
   }
 
   navigateConcluirAtendimento(agendamento) {
+    this.dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      disableClose: false
+    });
+    this.dialogRef.componentInstance.confirmMessage = 'Deseja finalizar o atendimento?';
 
+    this.dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.concluirAtendimento(agendamento);
+      }
+      this.dialogRef = null;
+    });
+  }
+
+  concluirAtendimento(agendamento) {
+    this.api.concluirAtendimento(agendamento.id)
+      .pipe(first())
+      .subscribe(() => {
+        console.log(`Atendimento concluído com sucesso.`);
+        window.location.reload();
+      }, () => {
+        console.log('Erro');
+      });
   }
 }

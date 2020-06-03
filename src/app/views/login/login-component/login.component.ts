@@ -25,11 +25,22 @@ export class LoginComponent {
     this.api.getToken(this.login.username, this.login.password).pipe(first())
       .subscribe(
         () => {
-          console.log("sucesso login component");
-          this.router.navigate(["layout","home"])
+          console.log('sucesso login component');
+          this.redirecionar();
         },
         () => {
-          console.log("erro");
+          console.log('erro');
       });
+  }
+
+  redirecionar() {
+    const currentUserString = localStorage.getItem('currentUser');
+    let role = 'cliente';
+
+    if(currentUserString) {
+      role = JSON.parse(currentUserString).perfil;
+    }
+
+    this.router.navigate(['layout', `home${role}`]);
   }
 }
