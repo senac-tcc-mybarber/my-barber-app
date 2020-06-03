@@ -44,8 +44,13 @@ export class CheckinComponent implements OnInit {
       .pipe(first())
       .subscribe(() => {
         console.log(`Registro de check-in do ${this.tipoCheckin} realizado com sucesso.`);
+        this.redirecionarHome();
       }, () => {
         console.log('Erro');
       });
+  }
+
+  redirecionarHome() {
+    this.router.navigate([`layout/home${this.tipoCheckin}`]);
   }
 }

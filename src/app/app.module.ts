@@ -47,6 +47,7 @@ import { CheckinComponent } from './views/checkin/checkin.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { TabelaAgendamentosComponent } from './views/tabela-agendamentos/tabela-agendamentos.component';
 import { HomeProfissionalComponent } from './views/profissional/home-profissional/home-profissional.component';
+import { ConfirmationDialogComponent } from './views/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { HomeProfissionalComponent } from './views/profissional/home-profissiona
     DialogDetalheHistorico,
     CheckinClienteComponent,
     CheckinComponent,
-    HomeProfissionalComponent
+    HomeProfissionalComponent,
+    ConfirmationDialogComponent
 
   ],
   imports: [
@@ -114,7 +116,8 @@ import { HomeProfissionalComponent } from './views/profissional/home-profissiona
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   entryComponents: [
-    DialogDetalheHistorico
+    DialogDetalheHistorico,
+    ConfirmationDialogComponent
   ],
   bootstrap: [AppComponent]
 })

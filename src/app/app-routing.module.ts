@@ -14,20 +14,6 @@ import { HistoricoComponent } from './views/historico/historico.component';
 import {CheckinClienteComponent} from './views/cliente/checkin-cliente/checkin-cliente.component';
 import {HomeProfissionalComponent} from './views/profissional/home-profissional/home-profissional.component';
 
-
-
-var home: string = 'homecliente';
-const currentUserString = localStorage.getItem('currentUser');
-
-if(currentUserString) {
-  const role = JSON.parse(localStorage.getItem('currentUser')).perfil;
-
-  if (role == 'profissional') {
-    home = 'homeprofissional';
-  }
-}
-
-
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'home', redirectTo: 'layout/home'},
@@ -37,8 +23,7 @@ const routes: Routes = [
   { path: 'cadastroprofissional', component: CadastroProfissionalComponent},
   { path: 'associarsalao/:id', component: AssociacaoSalaoComponent},
   { path: 'associarservicoprofissional/:id', component: AssociarServicosProfissionalComponent},
-  { path: 'layout', component: LayoutComponent, children :[
-    { path: 'home', redirectTo: home},
+  { path: 'layout', component: LayoutComponent, children : [
     { path: 'homecliente', component: HomeClienteComponent},
     { path: 'homeprofissional', component: HomeProfissionalComponent},
     { path: 'agendamento', component: AgendamentoComponent},
