@@ -13,6 +13,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Profissional } from 'src/app/model/profissional';
 import { Salao } from 'src/app/model/salao';
 import { Servico } from 'src/app/model/Servico';
+import { DialogDetalheHistorico } from './dialog-detalhe-agendamento/dialog-detalhe-agendamento.component';
 
 @Component({
   selector: "app-data-table-historico",
@@ -48,7 +49,7 @@ export class DataTableHistoricoComponent implements AfterViewInit, OnInit {
       this.dataSource.paginator = this.paginator;
       this.table.dataSource = this.dataSource;
 
-      console.table(data.agendamentos);
+      //console.table(data.agendamentos);
     });
   }
 
@@ -64,7 +65,7 @@ export class DataTableHistoricoComponent implements AfterViewInit, OnInit {
       data: obj,
     });
 
-    console.table(obj);
+    //console.table(obj);
   }
 }
 
@@ -80,20 +81,4 @@ export interface DialogData {
   checkInCliente: Date;
   checkInProfissional: Date;
   finalizacao: Date;
-}
-
-@Component({
-  selector: 'dialog-detalhe-historico',
-  templateUrl: './dialog-detalhe-historico/dialog-detalhe-historico.html',
-})
-export class DialogDetalheHistorico {
-
-  constructor(
-    public dialogRef: MatDialogRef<DialogDetalheHistorico>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
 }

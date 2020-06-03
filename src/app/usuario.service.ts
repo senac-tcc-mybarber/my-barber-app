@@ -44,7 +44,7 @@ export class UsuarioService {
         map(user => {
           localStorage.setItem(this.localStorageKey, JSON.stringify(user));
           this.currentUserSubject.next(user);
-          console.log(user);
+          //console.log(user);
           return user;
         })
       );

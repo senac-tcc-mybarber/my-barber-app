@@ -32,7 +32,7 @@ export class AssociarServicosProfissionalComponent implements OnInit {
     .subscribe(res => {
       this.dataSource = res;
       this.addCheckboxes();
-      console.log(this.dataSource);
+      // console.log(this.dataSource);
     }, err => {
       console.log(err);
     });
@@ -43,7 +43,7 @@ export class AssociarServicosProfissionalComponent implements OnInit {
     this.api.getProfissional(id)
       .subscribe(data => {
         this.profissional = data;
-        console.log(this.profissional);
+        // console.log(this.profissional);
       });
   }
 

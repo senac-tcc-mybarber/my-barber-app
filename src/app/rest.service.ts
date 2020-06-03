@@ -1,23 +1,22 @@
-import { DatePipe } from '@angular/common';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
-import { Agendamento } from './model/agendamento';
-import { Cliente } from './model/cliente';
-import { Profissional } from './model/profissional';
-import { Salao } from './model/salao';
-import { Usuario } from './model/Usuario';
-import { Servico } from './model/Servico';
+import { DatePipe } from "@angular/common";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable, of } from "rxjs";
+import { catchError, map, tap } from "rxjs/operators";
+import { environment } from "src/environments/environment";
+import { Agendamento } from "./model/agendamento";
+import { Cliente } from "./model/cliente";
+import { Profissional } from "./model/profissional";
+import { Salao } from "./model/salao";
+import { Usuario } from "./model/Usuario";
+import { Servico } from "./model/Servico";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class RestService {
-
   defaultHeaders = new HttpHeaders({
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'POST',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "POST",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization"
   });
 
   defaultHeadersToPostJson = new HttpHeaders({
@@ -29,14 +28,12 @@ export class RestService {
 
   constructor(private http: HttpClient) {}
 
-
   createAgendamento(a: Agendamento) {
     let datePipe: DatePipe = new DatePipe("en-US");
     const url = `${environment.urlApi}/agendamentos`;
     const body =
       '{"cliente": { "id": ' +
-      // a.idCliente +
-      1 +
+      a.cliente.id +
       ' }, "profissional": { "id": ' +
       a.profissional.id +
       ' }, "salao": { "id": ' +
@@ -44,9 +41,12 @@ export class RestService {
       ' }, "servico": { "id": ' +
       a.servico.id +
       ' }, "inicioServico": "' +
-      datePipe.transform(a.inicioServico, 'dd/MM/yyyy HH:mm') +
+      datePipe.transform(a.inicioServico, "dd/MM/yyyy HH:mm") +
       '",	"fimServico": "' +
-      datePipe.transform(a.inicioServico.setHours(a.inicioServico.getHours() + 1), 'dd/MM/yyyy HH:mm') +
+      datePipe.transform(
+        a.inicioServico.setHours(a.inicioServico.getHours() + 1),
+        "dd/MM/yyyy HH:mm"
+      ) +
       '",	"checkInCliente": null, "checkInProfissional": null, "checkoutCliente": null,	"checkoutProfissional": null}';
 
     return this.http
@@ -54,19 +54,49 @@ export class RestService {
         headers: this.defaultHeadersToPostJson
       })
       .pipe(
-        map(ag => { console.table(ag); })
+        map(ag => {
+          //  console.table(ag);
+        })
+      );
+  }
+
+  updateAgendamento(a: Agendamento) {
+    let datePipe: DatePipe = new DatePipe("en-US");
+    const url = `${environment.urlApi}/agendamentos`;
+    const body =
+      '{ "id": ' +
+      a.id +
+      ', "inicioServico": "' +
+      datePipe.transform(a.inicioServico, "dd/MM/yyyy HH:mm") +
+      '", "fimServico": "' +
+      datePipe.transform(a.fimServico, "dd/MM/yyyy HH:mm") +
+      '", "status": "' +
+      a.status +
+      '"}';
+
+    return this.http
+      .put<any>(url, body, {
+        headers: this.defaultHeadersToPostJson
+      })
+      .pipe(
+        map(ag => {
+          //console.table(ag);
+        })
       );
   }
 
   checkIn(id: number, tipoCheckin: string) {
     const url = `${environment.urlApi}/agendamentos/${id}/checkin-${tipoCheckin}`;
-    return this.http.put<any>(url, id,
-      {
+    return this.http
+      .put<any>(url, id, {
         headers: this.defaultHeadersToPostJson
-      }).pipe(map(resp => {
-      console.log(resp);
-      return resp;
-    }));
+      })
+      .pipe(
+        map(resp => {
+          //console.log(resp);
+          return resp;
+        })
+      );
   }
 
   getSaloes() {
@@ -83,14 +113,12 @@ export class RestService {
       headers: this.defaultHeaders
     });
   }
-  associarServicos(profissionalId: Number, servicos: Servico[]){
+  associarServicos(profissionalId: Number, servicos: Servico[]) {
     const url = `${environment.urlApi}/profissionais/${profissionalId}/servicos`;
     const requestBody = { servicos: servicos.map(servico => servico.id) };
-    return this.http.put<any>(url, requestBody,
-      {
-        headers: this.defaultHeaders
-      }
-    )
+    return this.http.put<any>(url, requestBody, {
+      headers: this.defaultHeaders
+    });
   }
 
   createCliente(cliente): Observable<Cliente> {
@@ -103,7 +131,7 @@ export class RestService {
         tap(Cliente => console.log(`adicionou o cliente`)),
         catchError(err => {
           console.log(err);
-          return this.handleError<Cliente>("createCliente")
+          return this.handleError<Cliente>("createCliente");
         })
       );
   }

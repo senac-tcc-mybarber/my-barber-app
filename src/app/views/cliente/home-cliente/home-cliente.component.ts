@@ -29,7 +29,7 @@ export class HomeClienteComponent implements OnInit {
     this.api.getCliente(user.id)
       .subscribe(data => {
         this.cliente = data;
-        console.log(this.cliente);
+        //console.log(this.cliente);
       });
   }
 }
