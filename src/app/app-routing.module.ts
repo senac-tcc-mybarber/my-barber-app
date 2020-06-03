@@ -21,10 +21,7 @@ const currentUserString = localStorage.getItem('currentUser');
 
 if(currentUserString) {
   const role = JSON.parse(localStorage.getItem('currentUser')).perfil;
-
-  if (role == 'profissional') {
-    home = 'homeprofissional';
-  }
+  home = `home${role}`;
 }
 
 

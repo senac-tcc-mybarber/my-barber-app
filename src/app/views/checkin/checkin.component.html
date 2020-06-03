@@ -8,12 +8,12 @@
           </h3>
         </div>
         <div class="flex-item">
-          <form [formGroup]="agendamentoCtrl" fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="7%">
-            Profissional: {{agendamento.profissional.nome}}<br /><br />
-            Cliente: {{agendamento.cliente.nome}}<br /><br />
-            Salão: {{agendamento.salao.nome}}<br /><br />
-            Serviço: {{agendamento.servico.nome}}<br /><br />
-            Horário: {{agendamento.inicioServico}} a {{agendamento.fimServico}}<br /><br />
+          <form [formGroup]="agendamentoCtrl" fxLayout="column" fxLayoutAlign="space-evenly stretch">
+            <p>Profissional: {{agendamento.profissional.nome}}</p>
+            <p>Cliente: {{agendamento.cliente.nome}}</p>
+            <p>Salão: {{agendamento.salao.nome}}</p>
+            <p>Serviço: {{agendamento.servico.nome}}</p>
+            <p>Horário: {{agendamento.inicioServico}} a {{agendamento.fimServico}}</p>
           </form>
           <div fxLayoutAlign="begin">
             <button color="primary" mat-raised-button class="animated jackInTheBox" (click)="associar()">Registrar</button>
