@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Profissional } from 'src/app/model/profissional';
-import { RestService } from 'src/app/rest.service';
-import { Servico } from 'src/app/model/Servico';
-import { Observable } from 'rxjs';
+import { Profissional } from '../../../model/profissional';
+import { RestService } from '../../../rest.service';
+import { Servico } from '../../../model/Servico';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 
 
@@ -48,7 +47,7 @@ export class AssociarServicosProfissionalComponent implements OnInit {
   }
 
   addCheckboxes() {
-    this.dataSource.forEach( (element) => {
+    this.dataSource.forEach( () => {
       const control = new FormControl();
       (this.servicosForm.controls.servicos as FormArray).push(control);
     });

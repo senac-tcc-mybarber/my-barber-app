@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TabelaAgendamentosComponent } from './tabela-agendamentos.component';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 
 describe('TabelaAgendamentosComponent', () => {
   let component: TabelaAgendamentosComponent;
@@ -8,9 +9,15 @@ describe('TabelaAgendamentosComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TabelaAgendamentosComponent ]
+      declarations: [TabelaAgendamentosComponent]
     })
-    .compileComponents();
+      .compileComponents()
+      .then(() => {
+        fixture = TestBed.createComponent(TabelaAgendamentosComponent);
+        component = fixture.componentInstance;
+
+        fixture.detectChanges();
+      });
   }));
 
   beforeEach(() => {

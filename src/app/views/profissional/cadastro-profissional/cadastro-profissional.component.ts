@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators, NgForm} from '@angular/forms';
 import {Location} from '@angular/common';
-import { RestService } from 'src/app/rest.service';
+import { RestService } from '../../../rest.service';
 import { Router } from '@angular/router';
 import {first} from 'rxjs/operators';
 import {UsuarioService} from '../../../usuario.service';

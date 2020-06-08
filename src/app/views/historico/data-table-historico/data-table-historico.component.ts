@@ -6,13 +6,14 @@ import {
   DataTableHistoricoDataSource,
   DataTableHistoricoItem
 } from "./data-table-historico-datasource";
-import { RestService } from "src/app/rest.service";
-import { UsuarioService } from "src/app/usuario.service";
-import { Cliente } from "src/app/model/cliente";
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Profissional } from 'src/app/model/profissional';
-import { Salao } from 'src/app/model/salao';
-import { Servico } from 'src/app/model/Servico';
+import { RestService } from "../../../rest.service";
+import { UsuarioService } from "../../../usuario.service";
+import { Cliente } from "../../../model/cliente";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Profissional } from '../../../model/profissional';
+import { Salao } from '../../../model/salao';
+import { Servico } from '../../../model/Servico';
+// import { Servico } from '../../../model/Servico';
 
 @Component({
   selector: "app-data-table-historico",
@@ -21,9 +22,9 @@ import { Servico } from 'src/app/model/Servico';
 })
 
 export class DataTableHistoricoComponent implements AfterViewInit, OnInit {
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
-  @ViewChild(MatTable, { static: false }) table: MatTable<
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatTable) table: MatTable<
     DataTableHistoricoItem
   >;
   dataSource: DataTableHistoricoDataSource;

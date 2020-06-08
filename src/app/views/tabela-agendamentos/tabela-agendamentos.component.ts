@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Agendamento } from 'src/app/model/agendamento';
+import { Component, Input } from '@angular/core';
+import { Agendamento } from '../../model/agendamento';
 
 @Component({
   selector: 'app-tabela-agendamentos',

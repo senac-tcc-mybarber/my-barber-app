@@ -3,12 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { environment } from './../environments/environment';
 import { Agendamento } from './model/agendamento';
 import { Cliente } from './model/cliente';
 import { Profissional } from './model/profissional';
 import { Salao } from './model/salao';
-import { Usuario } from './model/Usuario';
 import { Servico } from './model/Servico';
 
 @Injectable({ providedIn: 'root' })
@@ -100,10 +99,10 @@ export class RestService {
         headers: this.defaultHeadersToPostJson
       })
       .pipe(
-        tap(Cliente => console.log(`adicionou o cliente`)),
+        tap(() => console.log(`adicionou o cliente`)),
         catchError(err => {
           console.log(err);
-          return this.handleError<Cliente>("createCliente")
+          return this.handleError<Cliente>()
         })
       );
   }
@@ -119,8 +118,8 @@ export class RestService {
         })
       })
       .pipe(
-        tap(Profissional => console.log(`adicionou o profissional`)),
-        catchError(this.handleError<Profissional>("createProfissional"))
+        tap(() => console.log(`adicionou o profissional`)),
+        catchError(this.handleError<Profissional>())
       );
   }
 
@@ -128,14 +127,14 @@ export class RestService {
     const url = `${environment.urlApi}/profissionais`;
     return this.http
       .get<Profissional[]>(url)
-      .pipe(catchError(this.handleError("getProfissionais", [])));
+      .pipe(catchError(this.handleError([])));
   }
 
   getProfissional(id: number): Observable<Profissional> {
     const url = `${environment.urlApi}/profissionais/${id}`;
     return this.http.get<Profissional>(url).pipe(
       tap(_ => console.log(`leu o profissional id=${id}`)),
-      catchError(this.handleError<Profissional>(`getProfissional id=${id}`))
+      catchError(this.handleError<Profissional>())
     );
   }
 
@@ -143,18 +142,18 @@ export class RestService {
     const url = `${environment.urlApi}/servicos`;
     return this.http
       .get<Servico[]>(url)
-      .pipe(catchError(this.handleError("getServicos", [])));
+      .pipe(catchError(this.handleError([])));
   }
 
   getAgendamento(id: number): Observable<Agendamento> {
     const url = `${environment.urlApi}/agendamentos/${id}`;
     return this.http.get<Agendamento>(url).pipe(
       tap(_ => console.log(`leu o agendamento id=${id}`)),
-      catchError(this.handleError<Agendamento>(`getAgendamento id=${id}`))
+      catchError(this.handleError<Agendamento>())
     );
   }
 
-  private handleError<T>(operation = "operation", result?: T) {
+  private handleError<T>(result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
       return of(result as T);
@@ -165,7 +164,7 @@ export class RestService {
     const url = `${environment.urlApi}/clientes/${id}`;
     return this.http.get<Cliente>(url).pipe(
       tap(_ => console.log(`leu o cliente id=${id}`)),
-      catchError(this.handleError<Cliente>(`getCliente id=${id}`))
+      catchError(this.handleError<Cliente>())
     );
   }
 }

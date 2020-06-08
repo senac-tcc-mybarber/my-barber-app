@@ -1,7 +1,7 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { first } from 'rxjs/operators';
-import { Login } from 'src/app/model/login';
-import { UsuarioService } from 'src/app/usuario.service'
+import { Login } from '../../../model/login';
+import { UsuarioService } from '../../../usuario.service'
 import { Router } from '@angular/router';
 
 
