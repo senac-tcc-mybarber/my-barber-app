@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Injectable } from '@angular/core';
 import { Agendamento } from '../../model/agendamento';
 
 @Component({
@@ -6,6 +6,8 @@ import { Agendamento } from '../../model/agendamento';
   templateUrl: './tabela-agendamentos.component.html',
   styleUrls: ['./tabela-agendamentos.component.scss']
 })
+
+@Injectable()
 export class TabelaAgendamentosComponent {
 
   @Input()
