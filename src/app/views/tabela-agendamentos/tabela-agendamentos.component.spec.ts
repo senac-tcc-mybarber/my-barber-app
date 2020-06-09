@@ -32,7 +32,7 @@ describe('TabelaAgendamentosComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(1).toEqual(1);
+  it('deve ser criado', () => {
+    expect(component).toBeTruthy();
   });
 });
