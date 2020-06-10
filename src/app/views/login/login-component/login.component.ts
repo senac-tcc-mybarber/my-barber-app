@@ -34,13 +34,6 @@ export class LoginComponent {
   }
 
   redirecionar() {
-    const currentUserString = localStorage.getItem('currentUser');
-    let role = 'cliente';
-
-    if(currentUserString) {
-      role = JSON.parse(currentUserString).perfil;
-    }
-
-    this.router.navigate(['layout', `home${role}`]);
+    this.router.navigate(['layout', 'home']);
   }
 }
