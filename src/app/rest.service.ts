@@ -12,6 +12,7 @@ import { Servico } from './model/Servico';
 
 @Injectable({ providedIn: 'root' })
 export class RestService {
+  [x: string]: any;
 
   defaultHeaders = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
@@ -63,6 +64,16 @@ export class RestService {
       {
         headers: this.defaultHeadersToPostJson
       }).pipe(map(resp => {
+      console.log(resp);
+      return resp;
+    }));
+  }
+
+  concluirAtendimento(id: number) {
+    const url = `${environment.urlApi}/agendamentos/${id}/concluir`;
+    return this.http.put<any>(url, id, {
+      headers: this.defaultHeadersToPostJson
+    }).pipe(map(resp => {
       console.log(resp);
       return resp;
     }));

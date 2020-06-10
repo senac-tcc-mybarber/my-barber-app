@@ -21,7 +21,7 @@ export class UsuarioService {
   });
 
 
-  constructor(private http: HttpClient, 
+  constructor(private http: HttpClient,
               private router: Router) {
     this.currentUserSubject = new BehaviorSubject<Usuario>(
       JSON.parse(localStorage.getItem(this.localStorageKey))
@@ -50,9 +50,22 @@ export class UsuarioService {
       );
   }
 
+  public redirectToUserHome() {
+    const currentUserString = localStorage.getItem('currentUser');
+    let role = 'cliente';
+
+    if(!currentUserString) {
+      this.logout();
+      return;
+    }
+
+    role = JSON.parse(currentUserString).perfil;
+    this.router.navigate(['layout', `home${role}`]);
+  }
+
   public logout() {
-    localStorage.removeItem(this.localStorageKey)
-    this.router.navigate(['/login'])
+    localStorage.removeItem(this.localStorageKey);
+    this.router.navigate(['/login']);
   }
 }
 
