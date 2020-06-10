@@ -48,6 +48,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { TabelaAgendamentosComponent } from './views/tabela-agendamentos/tabela-agendamentos.component';
 import { HomeProfissionalComponent } from './views/profissional/home-profissional/home-profissional.component';
 import { ConfirmationDialogComponent } from './views/confirmation-dialog/confirmation-dialog.component';
+import { HomeComponent } from './views/home/home.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { ConfirmationDialogComponent } from './views/confirmation-dialog/confirm
     CheckinClienteComponent,
     CheckinComponent,
     HomeProfissionalComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    HomeComponent
 
   ],
   imports: [

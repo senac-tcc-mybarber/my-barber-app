@@ -13,10 +13,10 @@ import { LayoutComponent } from './views/layout/layout.component';
 import { HistoricoComponent } from './views/historico/historico.component';
 import {CheckinClienteComponent} from './views/cliente/checkin-cliente/checkin-cliente.component';
 import {HomeProfissionalComponent} from './views/profissional/home-profissional/home-profissional.component';
+import {HomeComponent} from './views/home/home.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
-  { path: 'home', redirectTo: 'layout/home'},
   { path: 'login', component: LoginComponent},
   { path: 'selecionaperfil', component: PerfilComponentComponent },
   { path: 'cadastrocliente', component: CadastroClienteComponent},
@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'associarsalao/:id', component: AssociacaoSalaoComponent},
   { path: 'associarservicoprofissional/:id', component: AssociarServicosProfissionalComponent},
   { path: 'layout', component: LayoutComponent, children : [
+    { path: 'home', component: HomeComponent},
     { path: 'homecliente', component: HomeClienteComponent},
     { path: 'homeprofissional', component: HomeProfissionalComponent},
     { path: 'agendamento', component: AgendamentoComponent},
