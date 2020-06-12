@@ -1,7 +1,7 @@
 const { element, browser } = require('protractor');
 
 class HomePage {
-  get textoMyBarber() { return element(by.css('.toolbar-tittle')) }
+  get textoMyBarber() { return $(".toolbar-tittle"); }
 
   async getTextoMyBarber() {
     browser.sleep(2000);
