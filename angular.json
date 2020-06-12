@@ -33,7 +33,7 @@
             "scripts": []
           },
           "configurations": {
-              "heroku": {
+            "heroku": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -132,14 +132,16 @@
             "production": {
               "devServerTarget": "mybarber-app:serve:production"
             },
-
             "heroku": {
               "devServerTarget": "mybarber-app:serve:heroku"
             }
-
           }
         }
       }
-    }},
-  "defaultProject": "mybarber-app"
+    }
+  },
+  "defaultProject": "mybarber-app",
+  "cli": {
+    "analytics": "b63356c4-8df5-460e-8903-a3c775f7fb78"
+  }
 }

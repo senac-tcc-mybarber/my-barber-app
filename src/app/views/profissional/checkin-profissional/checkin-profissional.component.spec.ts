@@ -19,7 +19,7 @@ describe('CheckinProfissionalComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('deve ser criado', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, Injectable } from '@angular/core';
 import { Agendamento } from 'src/app/model/agendamento';
 import {Router} from "@angular/router";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
@@ -11,6 +11,8 @@ import {RestService} from "../../rest.service";
   templateUrl: './tabela-agendamentos.component.html',
   styleUrls: ['./tabela-agendamentos.component.scss']
 })
+
+@Injectable()
 export class TabelaAgendamentosComponent {
 
   @Input()

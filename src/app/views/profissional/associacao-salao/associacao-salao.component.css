@@ -1,0 +1,11 @@
+.logo {
+  max-width: 100%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.example-chip-list {
+  width: 100%;
+}
+/*# sourceMappingURL=associacao-salao.component.css.map */

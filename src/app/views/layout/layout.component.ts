@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UsuarioService } from 'src/app/usuario.service';
-import { Usuario } from 'src/app/model/Usuario';
-import { first } from 'rxjs/operators';
+import { UsuarioService } from '../../usuario.service';
+import { Usuario } from '../../model/Usuario';
 
 
 @Component({
