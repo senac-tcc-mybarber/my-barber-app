@@ -27,6 +27,7 @@
     "@capacitor/core": "^2.1.2",
     "core-js": "^2.6.11",
     "core-util-is": "^1.0.2",
+    "chai": "^4.2.0",
     "dependencies": "0.0.1",
     "rxjs": "~6.5.5",
     "tslib": "^1.10.0",
