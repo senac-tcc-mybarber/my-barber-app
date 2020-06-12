@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Cliente } from 'src/app/model/cliente';
-import { RestService } from 'src/app/rest.service';
-import { UsuarioService } from 'src/app/usuario.service'
+import { Cliente } from '../../../model/cliente';
+import { RestService } from '../../../rest.service';
+import { UsuarioService } from '../../../usuario.service'
 
 @Component({
   selector: 'app-home-cliente',

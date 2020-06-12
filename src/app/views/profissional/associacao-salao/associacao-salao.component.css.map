@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAIA,AAAA,KAAK,CAAC;EACJ,SAAS,EAAE,IAAI;EACf,UAAU,EAAE,MAAM;CACnB;;AAKD,AAAA,kBAAkB,CAAC;EACf,KAAK,EAAE,IAAI;CACZ",
+    "sources": [
+        "associacao-salao.component.scss"
+    ],
+    "names": [],
+    "file": "associacao-salao.component.css"
+}

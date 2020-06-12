@@ -1,7 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./out-tsc/spec",
+    "module": "commonjs",
+    "outDir": "./out-tsc/src",
     "types": [
       "jasmine",
       "node"
@@ -12,7 +13,7 @@
     "src/polyfills.ts"
   ],
   "include": [
-    "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "src/**/*.spec.ts"
   ]
+  
 }

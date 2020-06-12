@@ -1,12 +1,11 @@
-import { Location } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
-import { RestService } from 'src/app/rest.service';
+import { RestService } from '../../../rest.service';
 
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { UsuarioService } from 'src/app/usuario.service';
-import { Cliente } from 'src/app/model/cliente';
+import { UsuarioService } from '../../../usuario.service';
 
 @Component({
   selector: 'app-cadastro-cliente',

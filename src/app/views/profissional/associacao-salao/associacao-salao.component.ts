@@ -1,14 +1,14 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, ElementRef, ViewChild, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { RestService } from 'src/app/rest.service';
-import { Salao } from 'src/app/model/salao';
+import { RestService } from '../../../rest.service';
+import { Salao } from '../../../model/salao';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Profissional } from 'src/app/model/profissional';
+import { Profissional } from '../../../model/profissional';
 
 
 @Component({
@@ -29,8 +29,8 @@ export class AssociacaoSalaoComponent implements OnInit {
   allSaloes: Salao[] = [];
   profissional: Profissional
 
-  @ViewChild('salaoInput', {static: false}) salaoInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+  @ViewChild('salaoInput') salaoInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor(private api: RestService,
               private route: ActivatedRoute,

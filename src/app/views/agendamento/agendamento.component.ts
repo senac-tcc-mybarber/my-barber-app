@@ -1,13 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import * as _ from "lodash";
 
-import { Servico } from "src/app/model/Servico";
-import { Salao } from "src/app/model/salao";
-import { Profissional } from "src/app/model/profissional";
-import { RestService } from "src/app/rest.service";
+import { Servico } from "../../model/Servico";
+import { Salao } from "../../model/salao";
+import { Profissional } from "../../model/profissional";
+import { RestService } from "../../rest.service";
 import { first } from "rxjs/operators";
-import { MatDatepickerInputEvent, MatSnackBar } from "@angular/material";
-import { Agendamento } from "src/app/model/agendamento";
+import { MatDatepickerInputEvent } from "@angular/material/datepicker";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { Agendamento } from "../../model/agendamento";
 import { Time } from "@angular/common";
 import { Router } from "@angular/router";
 

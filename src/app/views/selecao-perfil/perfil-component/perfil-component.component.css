@@ -1,0 +1,11 @@
+.logo {
+  max-width: 100%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+mat-button-toggle {
+  width: 110px;
+}
+/*# sourceMappingURL=perfil-component.component.css.map */
