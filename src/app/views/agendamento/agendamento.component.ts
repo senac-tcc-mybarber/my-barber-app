@@ -49,9 +49,6 @@ export class AgendamentoComponent implements OnInit {
     { hours: 18, minutes: 0 }
   ];
 
-  sucessoRoute: String = "/home";
-  erroRoute: String = "/home";
-
   constructor(
     private api: RestService,
     private _snackBar: MatSnackBar,
@@ -144,7 +141,7 @@ export class AgendamentoComponent implements OnInit {
     });
 
     snackBarRef.afterDismissed().subscribe(() => {
-      if (sucesso) this.router.navigate([this.sucessoRoute]);
+      if (sucesso) this.router.navigate(['layout', 'home']);
     });
   }
 
