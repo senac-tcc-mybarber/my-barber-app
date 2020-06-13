@@ -29,6 +29,9 @@ export class HomeClienteComponent implements OnInit {
     this.api.getCliente(user.id)
       .subscribe(data => {
         this.cliente = data;
+        this.cliente.agendamentos = this.cliente.agendamentos.filter(x => 
+        x.status != 'CONCLUIDO'
+        && x.status != 'CANCELADO' )
         console.log(this.cliente);
       });
   }
