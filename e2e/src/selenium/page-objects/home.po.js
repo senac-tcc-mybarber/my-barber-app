@@ -1,10 +1,10 @@
 const { element, browser } = require('protractor');
 
 class HomePage {
-  get textoMyBarber() { return element(by.css('.toolbar-tittle')) }
+  get textoMyBarber() { return $(".toolbar-tittle"); }
 
   async getTextoMyBarber() {
-    browser.sleep(5000);
+    browser.sleep(2000);
     console.log(await this.textoMyBarber.getText());
     return this.textoMyBarber.getText();
   }
