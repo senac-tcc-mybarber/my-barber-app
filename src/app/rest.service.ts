@@ -33,21 +33,17 @@ export class RestService {
   createAgendamento(a: Agendamento) {
     let datePipe: DatePipe = new DatePipe("en-US");
     const url = `${environment.urlApi}/agendamentos`;
-    const body =
-      '{"cliente": { "id": ' +
-      // a.idCliente +
-      1 +
-      ' }, "profissional": { "id": ' +
-      a.profissional.id +
-      ' }, "salao": { "id": ' +
-      a.salao.id +
-      ' }, "servico": { "id": ' +
-      a.servico.id +
-      ' }, "inicioServico": "' +
-      datePipe.transform(a.inicioServico, 'dd/MM/yyyy HH:mm') +
-      '",	"fimServico": "' +
-      datePipe.transform(a.inicioServico.setHours(a.inicioServico.getHours() + 1), 'dd/MM/yyyy HH:mm') +
-      '",	"checkInCliente": null, "checkInProfissional": null, "checkoutCliente": null,	"checkoutProfissional": null}';
+    const body = {
+      cliente: { id: a.cliente.id },
+      profissional: { id: a.profissional.id },
+      salao: { id: a.salao.id},
+      servico: {id:a.servico.id},
+      inicioServico: datePipe.transform(a.inicioServico, 'dd/MM/yyyy HH:mm'),
+      fimServico: datePipe.transform(a.inicioServico.setHours(a.inicioServico.getHours() + 1), 'dd/MM/yyyy HH:mm'),
+      checkInCliente: null, checkInProfissional: null, checkoutCliente: null,	checkoutProfissional: null
+    };
+
+    console.table(body)
 
     return this.http
       .post<any>(url, body, {

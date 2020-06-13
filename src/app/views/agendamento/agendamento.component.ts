@@ -4,6 +4,7 @@ import * as _ from "lodash";
 import { Servico } from "../../model/Servico";
 import { Salao } from "../../model/salao";
 import { Profissional } from "../../model/profissional";
+import { Cliente } from '../../model/cliente';
 import { RestService } from "../../rest.service";
 import { first } from "rxjs/operators";
 import { MatDatepickerInputEvent } from "@angular/material/datepicker";
@@ -11,6 +12,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { Agendamento } from "../../model/agendamento";
 import { Time } from "@angular/common";
 import { Router } from "@angular/router";
+import { UsuarioService } from '../../usuario.service'
 
 @Component({
   selector: "app-agendamento",
@@ -25,7 +27,6 @@ export class AgendamentoComponent implements OnInit {
   disableSelectCalendario = true;
   disableSelectHorario = true;
   disableBotaoAgendar = true;
-
   FiltroDoCalendario = new Date();
 
   // Variavel para comunicação com a API
@@ -52,11 +53,12 @@ export class AgendamentoComponent implements OnInit {
   constructor(
     private api: RestService,
     private _snackBar: MatSnackBar,
-    public router: Router
-  ) {}
+    public router: Router,
+    private usuarioService: UsuarioService) {}
 
   ngOnInit() {
     this.PegarServicosNaAPI();
+    this.getCliente();
   }
 
   selecaoServico(event, id: number) {
@@ -183,5 +185,14 @@ export class AgendamentoComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  getCliente() {
+    const user = this.usuarioService.currentUserValue
+    this.api.getCliente(user.id)
+      .subscribe(data => {
+        this.agendamento.cliente = data
+        console.log(data);
+      });
   }
 }
