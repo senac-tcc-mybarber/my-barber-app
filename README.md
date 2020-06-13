@@ -6,6 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 `npm install --save @capacitor/core @capacitor/cli`
 `ng build --configuration=heroku`
 `npx cap copy`
+`npx cap update android`
 
 Abrir o projeto mobile no Android Studio.
 
