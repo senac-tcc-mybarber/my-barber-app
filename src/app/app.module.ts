@@ -47,6 +47,8 @@ import { TabelaAgendamentosComponent } from './views/tabela-agendamentos/tabela-
 import { HomeProfissionalComponent } from './views/profissional/home-profissional/home-profissional.component';
 import { ConfirmationDialogComponent } from './views/confirmation-dialog/confirmation-dialog.component';
 import { HomeComponent } from './views/home/home.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+
 
 @NgModule({
   declarations: [
@@ -111,6 +113,7 @@ import { HomeComponent } from './views/home/home.component';
     MatSortModule,
 
     MatDialogModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

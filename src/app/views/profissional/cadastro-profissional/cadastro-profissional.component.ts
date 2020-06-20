@@ -21,7 +21,7 @@ export class CadastroProfissionalComponent implements OnInit {
     this.profissionalForm = new FormGroup({
       nome: new FormControl('', [Validators.required, Validators.maxLength(60)]),
       username: new FormControl('', [Validators.required, Validators.maxLength(60)]),
-      telefone: new FormControl('', [Validators.required, Validators.maxLength(10)]),
+      telefone: new FormControl('', [Validators.required, Validators.maxLength(15)]),
       email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(50)]),
       senha: new FormControl('', [Validators.required, Validators.maxLength(8)])
     });

@@ -17,7 +17,7 @@ export class CadastroClienteComponent implements OnInit {
   public clienteForm: FormGroup;
 
   constructor(
-    private router: Router, 
+    private router: Router,
     private api: RestService,
     private usuarioService: UsuarioService) {}
 
@@ -25,7 +25,7 @@ export class CadastroClienteComponent implements OnInit {
     this.clienteForm = new FormGroup({
         nome: new FormControl('', [Validators.required, Validators.maxLength(60)]),
         username: new FormControl('', [Validators.required, Validators.maxLength(60)]),
-        telefone: new FormControl('', [Validators.required, Validators.maxLength(10)]),
+        telefone: new FormControl('', [Validators.required, Validators.maxLength(15)]),
         email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(50)]),
         senha: new FormControl('', [Validators.required, Validators.maxLength(8)])
     });
@@ -42,7 +42,7 @@ export class CadastroClienteComponent implements OnInit {
           console.table(cliente )
           this.login(form['username'], form['senha'])
         },
-        
+
         err => {
           console.log(err);
         });
