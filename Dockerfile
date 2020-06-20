@@ -8,5 +8,5 @@ RUN npm install -g @angular/cli
 
 EXPOSE 4200
 
-ENTRYPOINT ng serve --host $HOST --configuration $CONFIGURATION
+ENTRYPOINT ng serve --host $HOST --disableHostCheck true --configuration $CONFIGURATION
 
