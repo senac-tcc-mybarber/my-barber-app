@@ -17,7 +17,7 @@ describe('Cadastrar Cliente', function () {
     await browser.wait(ExpectedConditions.elementToBeClickable($('#mat-input-3')), 10000);
     await $('#mat-input-2').sendKeys('Usuário de Teste');
     await $('#mat-input-3').sendKeys('usuarioteste');
-    await $('#mat-input-4').sendKeys('2199999999');
+    await $('#mat-input-4').sendKeys('21999999999');
     await $('#mat-input-5').sendKeys('usuarioteste@email.com');
     await $('#mat-input-6').sendKeys('1234');
     await $('.mat-raised-button.mat-button-base').click();

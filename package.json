@@ -29,6 +29,7 @@
     "core-js": "^2.6.11",
     "core-util-is": "^1.0.2",
     "dependencies": "0.0.1",
+    "ngx-mask": "^9.1.2",
     "rxjs": "~6.5.5",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.3"
