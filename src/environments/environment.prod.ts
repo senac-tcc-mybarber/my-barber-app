@@ -4,7 +4,7 @@
 
 export const environment = {
   production: true,
-  urlApi: 'http://ec2-18-228-119-85.sa-east-1.compute.amazonaws.com:8080'
+  urlApi: 'http://ec2-18-230-196-50.sa-east-1.compute.amazonaws.com:8080'
 };
 
 /*
