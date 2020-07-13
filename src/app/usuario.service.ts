@@ -51,16 +51,22 @@ export class UsuarioService {
   }
 
   public redirectToUserHome() {
+    const role = this.getUserRole();
+    if (role === '') {
+      this.logout();
+    } else {
+      this.router.navigate(['layout', `home${role}`]);
+    }
+  }
+
+  public getUserRole() {
     const currentUserString = localStorage.getItem('currentUser');
-    let role = 'cliente';
 
     if(!currentUserString) {
-      this.logout();
-      return;
+      return '';
     }
 
-    role = JSON.parse(currentUserString).perfil;
-    this.router.navigate(['layout', `home${role}`]);
+    return JSON.parse(currentUserString).perfil;
   }
 
   public logout() {
