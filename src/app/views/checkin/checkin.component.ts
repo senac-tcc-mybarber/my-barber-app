@@ -55,7 +55,6 @@ export class CheckinComponent implements OnInit {
     this.api.checkIn(this.agendamento.id, this.tipoCheckin)
       .pipe(first())
       .subscribe(() => {
-        console.log(`Registro de check-in do ${this.tipoCheckin} realizado com sucesso.`);
         this.redirecionarHome();
       }, () => {
         console.log('Erro');

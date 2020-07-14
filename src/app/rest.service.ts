@@ -43,15 +43,12 @@ export class RestService {
       checkInCliente: null, checkInProfissional: null, checkoutCliente: null,	checkoutProfissional: null
     };
 
-    console.table(body)
 
     return this.http
       .post<any>(url, body, {
         headers: this.defaultHeadersToPostJson
       })
-      .pipe(
-        map(ag => { console.table(ag); })
-      );
+      .pipe();
   }
 
   checkIn(id: number, tipoCheckin: string) {
@@ -60,7 +57,6 @@ export class RestService {
       {
         headers: this.defaultHeadersToPostJson
       }).pipe(map(resp => {
-      console.log(resp);
       return resp;
     }));
   }
@@ -70,7 +66,6 @@ export class RestService {
     return this.http.put<any>(url, id, {
       headers: this.defaultHeadersToPostJson
     }).pipe(map(resp => {
-      console.log(resp);
       return resp;
     }));
   }
@@ -106,7 +101,7 @@ export class RestService {
         headers: this.defaultHeadersToPostJson
       })
       .pipe(
-        tap(() => console.log(`adicionou o cliente`)),
+        tap(),
         catchError(err => {
           console.log(err);
           return this.handleError<Cliente>()
@@ -125,7 +120,7 @@ export class RestService {
         })
       })
       .pipe(
-        tap(() => console.log(`adicionou o profissional`)),
+        tap(),
         catchError(this.handleError<Profissional>())
       );
   }
@@ -140,7 +135,7 @@ export class RestService {
   getProfissional(id: number): Observable<Profissional> {
     const url = `${environment.urlApi}/profissionais/${id}`;
     return this.http.get<Profissional>(url).pipe(
-      tap(_ => console.log(`leu o profissional id=${id}`)),
+      tap(),
       catchError(this.handleError<Profissional>())
     );
   }
@@ -155,7 +150,7 @@ export class RestService {
   getAgendamento(id: number): Observable<Agendamento> {
     const url = `${environment.urlApi}/agendamentos/${id}`;
     return this.http.get<Agendamento>(url).pipe(
-      tap(_ => console.log(`leu o agendamento id=${id}`)),
+      tap(),
       catchError(this.handleError<Agendamento>())
     );
   }
@@ -170,7 +165,7 @@ export class RestService {
   getCliente(id: number): Observable<Cliente> {
     const url = `${environment.urlApi}/clientes/${id}`;
     return this.http.get<Cliente>(url).pipe(
-      tap(_ => console.log(`leu o cliente id=${id}`)),
+      tap(),
       catchError(this.handleError<Cliente>())
     );
   }

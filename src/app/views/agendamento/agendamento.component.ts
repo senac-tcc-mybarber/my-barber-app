@@ -119,7 +119,6 @@ export class AgendamentoComponent implements OnInit {
       .pipe(first())
       .subscribe(
         () => {
-          console.log("sucesso login component");
           this.openSnackBar("Agendamento realizado com sucesso", "Ok");
         },
         () => {
@@ -192,7 +191,6 @@ export class AgendamentoComponent implements OnInit {
     this.api.getCliente(user.id)
       .subscribe(data => {
         this.agendamento.cliente = data
-        console.log(data);
       });
   }
 }
