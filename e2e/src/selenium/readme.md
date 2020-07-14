@@ -57,7 +57,42 @@ Para rodar o Protractor, realizar os seguintes passos:
             <img src="https://i.ibb.co/ZMmdD6J/protractor-success.png" alt="protractor-success" border="0">
         </p>
     </li>
+    <li>
+        <p>
+            Após a execução do protractor, para gerar o relatório, deverá instalar o allure-commandline
+        </p>
+        <p>
+            <code>npm install -g allure-commandline</code>
+        </p>
+    </li>
+    <li>
+        <p>
+            Após instalar o commandline do allure, execute o comando abaixo para gerar o relatório
+        </p>
+        <p>
+            <code>allure generate --clean</code>
+        </p>
+    </li>
+    <li>
+        <p>
+            Os arquivos do relatório serão gerados.
+            Para abrir o relatório, digite o comando para rodar o servidor do allure, onde o relatório será exibido.
+        </p>
+        <p>
+            <code>allure serve</code>
+        </p>
+    </li>
+    <li>
+        <p>
+            O navegador será aberto e mostrará o relatório parecido com o que está na imagem.
+        </p>
+        <p>
+            <img src="https://i.ibb.co/q1wq2BX/Allure.png" alt="image" border="0">
+        </p>
+    </li>
 </ul>
 
-Fonte: https://medium.com/cwi-software/automa%C3%A7%C3%A3o-de-testes-com-protractor-e-selenium-webdriver-para-aplica%C3%A7%C3%B5es-web-8d80fe440b20
+Fonte Protractor: https://medium.com/cwi-software/automa%C3%A7%C3%A3o-de-testes-com-protractor-e-selenium-webdriver-para-aplica%C3%A7%C3%B5es-web-8d80fe440b20
+
+Fonte Relatório Protractor: https://medium.com/qaninja/apresentando-relat%C3%B3rios-de-testes-automatizados-com-protractor-nodejs-257246a69b16
 
