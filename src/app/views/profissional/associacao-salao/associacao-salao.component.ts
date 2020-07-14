@@ -81,7 +81,7 @@ export class AssociacaoSalaoComponent implements OnInit {
       filterValue = filter.toLowerCase();
     }
 
-    return this.allSaloes.filter(salao => salao.nome.toLowerCase().indexOf(filterValue) > 0);
+    return this.allSaloes.filter(salao => salao.nome.toLowerCase().includes(filterValue.toLowerCase()));
   }
 
   associar():void {
