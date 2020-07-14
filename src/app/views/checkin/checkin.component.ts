@@ -47,7 +47,6 @@ export class CheckinComponent implements OnInit {
         this.cliente = this.agendamento?.cliente;
         this.salao = this.agendamento?.salao;
         this.servico = this.agendamento?.servico;
-        console.log(this.agendamento);
       });
   }
 
@@ -56,8 +55,6 @@ export class CheckinComponent implements OnInit {
       .pipe(first())
       .subscribe(() => {
         this.redirecionarHome();
-      }, () => {
-        console.log('Erro');
       });
   }
 
