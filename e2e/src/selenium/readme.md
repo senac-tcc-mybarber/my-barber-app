@@ -87,7 +87,7 @@ Para rodar o Protractor, realizar os seguintes passos:
             O navegador será aberto e mostrará o relatório parecido com o que está na imagem.
         </p>
         <p>
-            <img src="https://i.ibb.co/ZY3YQqF/image.png" alt="image" border="0">
+            <img src="https://i.ibb.co/q1wq2BX/Allure.png" alt="image" border="0">
         </p>
     </li>
 </ul>
