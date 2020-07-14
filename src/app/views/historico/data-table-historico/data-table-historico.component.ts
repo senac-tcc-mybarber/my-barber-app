@@ -61,8 +61,6 @@ export class DataTableHistoricoComponent implements AfterViewInit, OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
-
-    console.table(data.agendamentos);
   }
 
   ngOnInit() {
@@ -76,8 +74,6 @@ export class DataTableHistoricoComponent implements AfterViewInit, OnInit {
       width: '250px',
       data: obj,
     });
-
-    console.table(obj);
   }
 }
 

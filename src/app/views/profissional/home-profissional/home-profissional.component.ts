@@ -25,7 +25,6 @@ export class HomeProfissionalComponent implements OnInit {
     this.api.getProfissional(user.id)
       .subscribe(data => {
         this.profissional = data;
-        console.log(this.profissional);
       });
   }
 }

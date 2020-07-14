@@ -31,7 +31,6 @@ export class AssociarServicosProfissionalComponent implements OnInit {
     .subscribe(res => {
       this.dataSource = res;
       this.addCheckboxes();
-      console.log(this.dataSource);
     }, err => {
       console.log(err);
     });
@@ -42,7 +41,6 @@ export class AssociarServicosProfissionalComponent implements OnInit {
     this.api.getProfissional(id)
       .subscribe(data => {
         this.profissional = data;
-        console.log(this.profissional);
       });
   }
 
@@ -59,7 +57,6 @@ export class AssociarServicosProfissionalComponent implements OnInit {
       this.servicosProfissional.push(this.dataSource.find(element => element.id === selectedServicosIds[i]))
     }
     this.api.associarServicos(this.profissional.id,  this.servicosProfissional).subscribe(() => {
-        console.log('associacao de servicos ok');
         this.router.navigate(["layout","home"])
       },
       err => {

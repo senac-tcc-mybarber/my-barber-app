@@ -38,8 +38,6 @@ export class CadastroClienteComponent implements OnInit {
   cadastrarCliente(form: NgForm) {
     this.api.createCliente(form).pipe(first())
       .subscribe(cliente => {
-
-          console.table(cliente )
           this.login(form['username'], form['senha'])
         },
 
@@ -52,7 +50,6 @@ export class CadastroClienteComponent implements OnInit {
     this.usuarioService.getToken(username, senha).pipe(first())
     .subscribe(
       () => {
-        console.log("sucesso login");
         this.router.navigate(["layout","home"])
       },
       err => {

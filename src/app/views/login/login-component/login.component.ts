@@ -28,7 +28,6 @@ export class LoginComponent {
     this.api.getToken(this.login.username, this.login.password).pipe(first())
       .subscribe(
         () => {
-          console.log('sucesso login component');
           this.redirecionar();
         },
         (err: HttpErrorResponse) => {

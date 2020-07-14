@@ -68,7 +68,6 @@ export class TabelaAgendamentosComponent {
     this.api.concluirAtendimento(agendamento.id)
       .pipe(first())
       .subscribe(() => {
-        console.log(`Atendimento concluído com sucesso.`);
         window.location.reload();
       }, () => {
         console.log('Erro');
