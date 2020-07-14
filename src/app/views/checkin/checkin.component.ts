@@ -59,6 +59,6 @@ export class CheckinComponent implements OnInit {
   }
 
   redirecionarHome() {
-    this.router.navigate([`layout/home${this.tipoCheckin}`]);
+    this.router.navigate(['layout/home']);
   }
 }
