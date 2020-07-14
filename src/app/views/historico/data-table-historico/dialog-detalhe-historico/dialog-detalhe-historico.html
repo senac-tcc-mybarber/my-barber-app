@@ -5,9 +5,13 @@
       <mat-label>Serviço</mat-label>
       <input matInput readonly value="{{data.servico.nome}}">
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field *ngIf="data.profissional">
       <mat-label>Profissional</mat-label>
       <input matInput readonly value="{{data.profissional.nome}}">
+    </mat-form-field>
+    <mat-form-field *ngIf="data.cliente">
+      <mat-label>Cliente</mat-label>
+      <input matInput readonly value="{{data.cliente.nome}}">
     </mat-form-field>
     <mat-form-field>
       <mat-label>Salão</mat-label>

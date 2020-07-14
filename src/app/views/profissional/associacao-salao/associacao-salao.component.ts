@@ -85,7 +85,7 @@ export class AssociacaoSalaoComponent implements OnInit {
   }
 
   associar():void {
-    this.api.associateSaloes(this.profissional.id,  this.saloes).subscribe(console.table);
+    this.api.associateSaloes(this.profissional.id,  this.saloes).subscribe();
 
     this.router.navigate(['/associarservicoprofissional', this.profissional.id]);
   }
@@ -98,7 +98,6 @@ export class AssociacaoSalaoComponent implements OnInit {
     this.api.getProfissional(id)
       .subscribe(data => {
         this.profissional = data;
-        console.log(this.profissional);
       });
   }
 }

@@ -40,21 +40,31 @@ export class DataTableHistoricoComponent implements AfterViewInit, OnInit {
     public dialog: MatDialog
   ) {}
 
-  getCliente() {
+  getHistorico() {
     const user = this.usuarioService.currentUserValue;
-    this.api.getCliente(user.id).subscribe(data => {
-      this.dataSource = new DataTableHistoricoDataSource();
-      this.dataSource.data = data.agendamentos;
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-      this.table.dataSource = this.dataSource;
+    if (user.perfil === 'cliente') {
+      this.api.getCliente(user.id).subscribe(data => {
+        this.setDataBinding(data);
+      });
+    } else if (user.perfil === 'profissional') {
+      this.api.getProfissional(user.id).subscribe(data => {
+        this.setDataBinding(data);
+      });
+    } else {
+      throw new Error('Perfil de usuário não definido!');
+    }
+  }
 
-      console.table(data.agendamentos);
-    });
+  setDataBinding(data) {
+    this.dataSource = new DataTableHistoricoDataSource();
+    this.dataSource.data = data.agendamentos;
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.table.dataSource = this.dataSource;
   }
 
   ngOnInit() {
-    this.getCliente();
+    this.getHistorico();
   }
 
   ngAfterViewInit() {}
@@ -64,8 +74,6 @@ export class DataTableHistoricoComponent implements AfterViewInit, OnInit {
       width: '250px',
       data: obj,
     });
-
-    console.table(obj);
   }
 }
 

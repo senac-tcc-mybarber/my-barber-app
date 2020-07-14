@@ -37,7 +37,6 @@ export class CadastroProfissionalComponent implements OnInit {
   addProfissional(form: NgForm){
     this.api.createProfissional(form)
       .subscribe(Profissional => {
-          console.log(Profissional);
           this.login(form['username'], form['senha'])
       }, (err) => {
           console.log(err);
@@ -47,7 +46,6 @@ export class CadastroProfissionalComponent implements OnInit {
   private login(username: string, senha: string) {
     this.usuarioService.getToken(username, senha).pipe(first())
       .subscribe(res => {
-          console.log('sucesso login');
           const id = res['id'];
           this.router.navigate(['/associarsalao', id]);
         },
