@@ -15,12 +15,14 @@ import {CheckinClienteComponent} from './views/cliente/checkin-cliente/checkin-c
 import {HomeProfissionalComponent} from './views/profissional/home-profissional/home-profissional.component';
 import {HomeComponent} from './views/home/home.component';
 import {EditProfissionalComponent} from './views/profissional/edit-profissional/edit-profissional.component';
+import {EditClienteComponent} from './views/cliente/edit-cliente/edit-cliente.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'login', component: LoginComponent},
   { path: 'selecionaperfil', component: PerfilComponentComponent },
   { path: 'cadastrocliente', component: CadastroClienteComponent},
+  { path: 'editcliente', component: EditClienteComponent},
   { path: 'cadastroprofissional', component: CadastroProfissionalComponent},
   { path: 'editprofissional', component: EditProfissionalComponent},
   { path: 'associarsalao/:id', component: AssociacaoSalaoComponent},
