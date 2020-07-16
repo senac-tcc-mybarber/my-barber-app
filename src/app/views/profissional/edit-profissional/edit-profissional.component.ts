@@ -44,7 +44,7 @@ export class EditProfissionalComponent implements OnInit {
   }
 
   updateProfissional(form: NgForm){
-    this.api.updateProfissional(this.profissional.id, form).subscribe(data => { console.log(data),console.log("profissional updated") ,this.router.navigate(["layout","home"])}, error => console.log(error));
+    this.api.updateProfissional(this.profissional).subscribe(data => { console.log(data),console.log("profissional updated") ,this.router.navigate(["layout","home"])}, error => console.log(error));
   }
 
 }
