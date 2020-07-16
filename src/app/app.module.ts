@@ -48,6 +48,7 @@ import { HomeProfissionalComponent } from './views/profissional/home-profissiona
 import { ConfirmationDialogComponent } from './views/confirmation-dialog/confirmation-dialog.component';
 import { HomeComponent } from './views/home/home.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { EditProfissionalComponent } from './views/profissional/edit-profissional/edit-profissional.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
     CheckinComponent,
     HomeProfissionalComponent,
     ConfirmationDialogComponent,
-    HomeComponent
+    HomeComponent,
+    EditProfissionalComponent
 
   ],
   imports: [
