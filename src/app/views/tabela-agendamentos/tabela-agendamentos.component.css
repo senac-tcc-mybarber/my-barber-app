@@ -22,4 +22,15 @@ td.mat-cell {
 tr.mat-row {
   border: none;
 }
+
+mat-cell{
+  display:flex !important;
+  justify-content:center!important;
+  
+}
+
+mat-header-cell {
+  display:flex;
+  justify-content:center !important;
+}
 /*# sourceMappingURL=tabela-agendamentos.component.css.map */

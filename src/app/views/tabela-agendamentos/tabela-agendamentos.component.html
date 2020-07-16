@@ -46,35 +46,54 @@
     <ng-container matColumnDef="checkinprofissional">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let agendamento">
-          <button *ngIf="this.isAgendadoProfissional(agendamento)"
-                mat-raised-button
-                (click)="navigateCheckinProfissional(agendamento)">
-            Realizar Check-in
-          </button>
+
+          <div *ngIf="this.isAgendadoProfissional(agendamento);then content else other_content">here is ignored</div>    
+          <ng-template #content>
+            <button mat-raised-button (click)="navigateCheckinProfissional(agendamento)">
+              Check-in
+            </button>
+          </ng-template>
+          <ng-template #other_content>
+            <button mat-raised-button disabled>
+              Check-in
+            </button>
+          </ng-template>
+
+
+          
       </td>
     </ng-container>
 
     <ng-container matColumnDef="checkincliente">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let agendamento">
-        <button *ngIf="this.isAgendadoCliente(agendamento)"
-                mat-raised-button
-                (click)="navigateCheckinCliente(agendamento)">
-          Realizar Check-in
-        </button>
+
+        <ng-container *ngIf="this.isAgendadoCliente(agendamento)">
+          <button mat-raised-button (click)="navigateCheckinCliente(agendamento)">
+            Check-in
+          </button>
+        </ng-container>
+        
+        <ng-container *ngIf="!this.isAgendadoCliente(agendamento) && !this.isAndamento(agendamento)">
+          <button mat-raised-button disabled>
+            Check-in
+          </button>
+        </ng-container>
+        
+        <ng-container *ngIf="this.isAndamento(agendamento)">
+          <button mat-raised-button (click)="navigateConcluirAtendimento(agendamento)">
+            Concluir
+          </button>
+        </ng-container>
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="concluirAtendimento">
+    <!-- <ng-container matColumnDef="concluirAtendimento">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let agendamento">
-        <button *ngIf="this.isAndamento(agendamento)"
-                mat-raised-button
-                (click)="navigateConcluirAtendimento(agendamento)">
-          Concluir Atendimento
-        </button>
+        
       </td>
-    </ng-container>
+    </ng-container> -->
 
 
 

@@ -12,14 +12,13 @@
         <div class="flex-item">
             <app-tabela-agendamentos
               fxLayoutAlign="center"
-              [displayedColumns]="['servico', 'horario', 'local', 'status', 'atendente', 'checkincliente', 'concluirAtendimento']"
+              [displayedColumns]="this.colunms"
               [agendamentos]="cliente.agendamentos"></app-tabela-agendamentos>
-        </div>
 
-        <div fxLayoutAlign="end">
-          <button color="primary" mat-raised-button routerLink="/layout/agendamento">Agendar Atendimento</button>
+              <div fxLayoutAlign="end">
+                <button color="primary" mat-raised-button routerLink="/layout/agendamento">Agendar Atendimento</button>
+              </div>
         </div>
-
       </div>
     </div>
   </div>
