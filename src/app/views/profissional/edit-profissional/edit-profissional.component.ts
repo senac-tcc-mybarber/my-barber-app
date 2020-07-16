@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Profissional} from '../../../model/profissional';
-import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {RestService} from '../../../rest.service';
-import {UsuarioService} from '../../../usuario.service';
-import {Observable} from 'rxjs';
-import {Usuario} from '../../../model/Usuario';
+import { Profissional } from '../../../model/profissional';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RestService } from '../../../rest.service';
+import { UsuarioService } from '../../../usuario.service';
+import { Observable } from 'rxjs';
+import { Usuario } from '../../../model/Usuario';
 
 @Component({
   selector: 'app-edit-profissional',
@@ -24,9 +24,9 @@ export class EditProfissionalComponent implements OnInit {
     this.editForm = new FormGroup({
       nome: new FormControl('', [Validators.required, Validators.maxLength(60)]),
       username: new FormControl('', [Validators.required, Validators.maxLength(60)]),
-      telefone: new FormControl('', [Validators.required, Validators.maxLength(10)]),
+      telefone: new FormControl('', [Validators.required, Validators.maxLength(15)]),
       email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(50)]),
-      senha: new FormControl('', [Validators.required, Validators.maxLength(8)])
+      senha: new FormControl('', [Validators.maxLength(8)])
     });
 
   }
@@ -43,8 +43,9 @@ export class EditProfissionalComponent implements OnInit {
       });
   }
 
-  updateProfissional(form: NgForm){
-    this.api.updateProfissional(this.profissional).subscribe(data => { console.log(data),console.log("profissional updated") ,this.router.navigate(["layout","home"])}, error => console.log(error));
+  updateProfissional(form: NgForm) {
+    const { agendamentos, ...rest } = this.profissional;
+    this.api.updateProfissional(rest as Profissional).subscribe(data => { console.log(data), console.log("profissional updated"), this.router.navigate(["layout", "home"]) }, error => console.log(error));
   }
 
 }

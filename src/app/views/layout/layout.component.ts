@@ -18,6 +18,7 @@ export class LayoutComponent {
 
   ngOnInit() {
     this.usuario$ = this.api.currentUser;
+    this.isCliente = this.api.getUserRole() === 'cliente';
   }
 
   logout() {
