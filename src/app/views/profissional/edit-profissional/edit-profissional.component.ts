@@ -4,8 +4,6 @@ import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angula
 import { Router } from '@angular/router';
 import { RestService } from '../../../rest.service';
 import { UsuarioService } from '../../../usuario.service';
-import { Observable } from 'rxjs';
-import { Usuario } from '../../../model/Usuario';
 
 @Component({
   selector: 'app-edit-profissional',
@@ -20,32 +18,44 @@ export class EditProfissionalComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private api: RestService, private apiUser: UsuarioService) { }
 
   ngOnInit() {
-    this.getProfissional();
     this.editForm = new FormGroup({
       nome: new FormControl('', [Validators.required, Validators.maxLength(60)]),
-      username: new FormControl('', [Validators.required, Validators.maxLength(60)]),
+      username: new FormControl({ value: '', disabled: true}, [Validators.required, Validators.maxLength(60)]),
       telefone: new FormControl('', [Validators.required, Validators.maxLength(15)]),
       email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(50)]),
       senha: new FormControl('', [Validators.maxLength(8)])
     });
-
+    this.fetchData();
   }
   public hasError = (controlName: string, errorName: string) => {
     return this.editForm.controls[controlName].hasError(errorName);
   }
+
+  fetchData() {
+    this.getProfissional();
+    this.initFields();
+  }
+
   getProfissional() {
     const user = this.apiUser.currentUserValue
     this.api.getProfissional(user.id)
       .subscribe(data => {
         this.profissional = data;
-        this.editForm.setValue(this.profissional);
-        console.log(this.profissional);
       });
+  }
+
+  initFields() {
+    this.editForm.get('nome').setValue(this.profissional.nome);
+    this.editForm.get('username').setValue(this.profissional.username);
+    this.editForm.get('telefone').setValue(this.profissional.telefone);
+    this.editForm.get('email').setValue(this.profissional.email);
   }
 
   updateProfissional(form: NgForm) {
     const { agendamentos, ...rest } = this.profissional;
-    this.api.updateProfissional(rest as Profissional).subscribe(data => { console.log(data), console.log("profissional updated"), this.router.navigate(["layout", "home"]) }, error => console.log(error));
+    this.api.updateProfissional(rest as Profissional).subscribe(() => {
+      this.router.navigate(['layout', 'home']);
+    });
   }
 
 }
